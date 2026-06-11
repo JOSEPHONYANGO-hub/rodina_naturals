@@ -1,6 +1,5 @@
-import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
-import { authOptions } from "@/lib/auth";
+import { created, ok, unauthorized, badRequest } from "@/lib/api-response";
+import { requireAdmin } from "@/lib/authz";
 import { prisma } from "@/lib/prisma";
 import { categorySchema } from "@/lib/validators";
 
@@ -9,14 +8,12 @@ export async function GET() {
     orderBy: { name: "asc" },
     include: { _count: { select: { products: true } } },
   });
-  return NextResponse.json(categories);
+  return ok(categories);
 }
 
 export async function POST(request: Request) {
-  const session = await getServerSession(authOptions);
-  if (session?.user.role !== "ADMIN") {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const session = await requireAdmin();
+  if (!session) return unauthorized();
 
   try {
     const body = categorySchema.parse(await request.json());
@@ -26,8 +23,8 @@ export async function POST(request: Request) {
       create: { name: body.name, slug: body.name.toLowerCase() },
     });
 
-    return NextResponse.json(category, { status: 201 });
+    return created(category);
   } catch {
-    return NextResponse.json({ error: "Invalid category." }, { status: 400 });
+    return badRequest("Invalid category.");
   }
 }

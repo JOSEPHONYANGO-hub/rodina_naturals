@@ -1,5 +1,6 @@
 import { MapPin, Phone } from "lucide-react";
 import Link from "next/link";
+import { CONTACT_DETAILS, SOCIAL_LINKS } from "@/config/brand";
 import { Logo } from "@/components/layout/logo";
 
 export function Footer() {
@@ -13,21 +14,21 @@ export function Footer() {
           </p>
           <div className="mt-5 flex gap-3">
             <Link
-              href="https://www.facebook.com/profile.php?id=61575638121262"
+              href={SOCIAL_LINKS.facebook}
               aria-label="Facebook"
               className="grid h-9 w-9 place-items-center border border-white/20 text-xs font-semibold transition hover:border-gold hover:text-gold"
             >
               F
             </Link>
             <Link
-              href="https://www.instagram.com/rodinanaturals/"
+              href={SOCIAL_LINKS.instagram}
               aria-label="Instagram"
               className="grid h-9 w-9 place-items-center border border-white/20 text-xs font-semibold transition hover:border-gold hover:text-gold"
             >
               IG
             </Link>
             <Link
-              href="https://www.tiktok.com/@rodinanaturals_ke"
+              href={SOCIAL_LINKS.tiktok}
               aria-label="TikTok"
               className="grid h-9 w-9 place-items-center border border-white/20 text-xs font-semibold transition hover:border-gold hover:text-gold"
             >
@@ -49,11 +50,11 @@ export function Footer() {
           <div className="mt-4 space-y-3 text-sm leading-7 text-white/75">
             <p className="flex gap-2">
               <MapPin className="mt-1 h-4 w-4 shrink-0 text-gold" />
-              Kenafrica Business Park, Ruaraka, Tower B, 3rd Floor, Office 5, Nairobi
+              {CONTACT_DETAILS.location}
             </p>
             <p className="flex items-center gap-2">
               <Phone className="h-4 w-4 text-gold" />
-              0793 200 000
+              {CONTACT_DETAILS.phone}
             </p>
           </div>
         </div>

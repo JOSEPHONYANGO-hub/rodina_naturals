@@ -1,9 +1,9 @@
-import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
-import { authOptions } from "@/lib/auth";
+import { badRequest, ok, unauthorized } from "@/lib/api-response";
+import { requireAdmin } from "@/lib/authz";
 import { prisma } from "@/lib/prisma";
-import { slugify } from "@/lib/utils";
 import { productSchema } from "@/lib/validators";
+import { updateProduct } from "@/services/catalog";
 
 export async function GET(_: Request, { params }: { params: { id: string } }) {
   const product = await prisma.product.findFirst({
@@ -15,36 +15,26 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
   });
 
   if (!product) return NextResponse.json({ error: "Product not found." }, { status: 404 });
-  return NextResponse.json(product);
+  return ok(product);
 }
 
 export async function PATCH(request: Request, { params }: { params: { id: string } }) {
-  const session = await getServerSession(authOptions);
-  if (session?.user.role !== "ADMIN") {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const session = await requireAdmin();
+  if (!session) return unauthorized();
 
   try {
     const body = productSchema.partial().parse(await request.json());
-    const product = await prisma.product.update({
-      where: { id: params.id },
-      data: {
-        ...body,
-        ...(body.name ? { slug: slugify(body.name) } : {}),
-      },
-    });
-    return NextResponse.json(product);
+    const product = await updateProduct(params.id, body);
+    return ok(product);
   } catch {
-    return NextResponse.json({ error: "Invalid product details." }, { status: 400 });
+    return badRequest("Invalid product details.");
   }
 }
 
 export async function DELETE(_: Request, { params }: { params: { id: string } }) {
-  const session = await getServerSession(authOptions);
-  if (session?.user.role !== "ADMIN") {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const session = await requireAdmin();
+  if (!session) return unauthorized();
 
   await prisma.product.delete({ where: { id: params.id } });
-  return NextResponse.json({ ok: true });
+  return ok({ ok: true });
 }

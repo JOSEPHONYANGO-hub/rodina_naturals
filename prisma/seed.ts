@@ -1,9 +1,8 @@
 import { PrismaClient, Role } from "@prisma/client";
 import { hash } from "bcryptjs";
+import { CATEGORIES } from "../src/config/brand";
 
 const prisma = new PrismaClient();
-
-const categories = ["Bioxcin", "Procsin", "Bioblas", "Restorex", "Rain", "Thalia"];
 
 const imagePool = [
   "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1200&q=80",
@@ -14,7 +13,7 @@ const imagePool = [
 
 async function main() {
   await Promise.all(
-    categories.map((name) =>
+    CATEGORIES.map((name) =>
       prisma.category.upsert({
         where: { slug: name.toLowerCase() },
         update: {},

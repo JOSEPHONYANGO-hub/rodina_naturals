@@ -1,15 +1,11 @@
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
 import { formatCurrency } from "@/lib/utils";
+import { getAdminDashboard } from "@/services/admin";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
-  const [products, orders, categories] = await Promise.all([
-    prisma.product.findMany({ include: { category: true }, orderBy: { createdAt: "desc" } }),
-    prisma.order.findMany({ include: { items: true }, orderBy: { createdAt: "desc" } }),
-    prisma.category.findMany({ include: { _count: { select: { products: true } } } }),
-  ]);
+  const [products, orders, categories] = await getAdminDashboard();
 
   return (
     <div className="bg-cream pb-20 pt-32">

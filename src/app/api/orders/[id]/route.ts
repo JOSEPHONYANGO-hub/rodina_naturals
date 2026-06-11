@@ -1,7 +1,6 @@
-import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
 import { z } from "zod";
-import { authOptions } from "@/lib/auth";
+import { ok, unauthorized } from "@/lib/api-response";
+import { requireAdmin } from "@/lib/authz";
 import { prisma } from "@/lib/prisma";
 
 const statusSchema = z.object({
@@ -9,10 +8,8 @@ const statusSchema = z.object({
 });
 
 export async function PATCH(request: Request, { params }: { params: { id: string } }) {
-  const session = await getServerSession(authOptions);
-  if (session?.user.role !== "ADMIN") {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const session = await requireAdmin();
+  if (!session) return unauthorized();
 
   const body = statusSchema.parse(await request.json());
   const order = await prisma.order.update({
@@ -20,5 +17,5 @@ export async function PATCH(request: Request, { params }: { params: { id: string
     data: { status: body.status },
   });
 
-  return NextResponse.json(order);
+  return ok(order);
 }

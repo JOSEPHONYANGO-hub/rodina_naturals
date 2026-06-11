@@ -5,17 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/lib/cart-store";
 import { formatCurrency } from "@/lib/utils";
+import type { ProductCardData } from "@/types/catalog";
 
 type ProductCardProps = {
-  product: {
-    id: string;
-    slug: string;
-    name: string;
-    price: string | number;
-    images: string[];
-    stock: number;
-    category?: { name: string };
-  };
+  product: ProductCardData;
 };
 
 export function ProductCard({ product }: ProductCardProps) {

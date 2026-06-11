@@ -1,7 +1,6 @@
-import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
 import { v2 as cloudinary } from "cloudinary";
-import { authOptions } from "@/lib/auth";
+import { badRequest, ok, unauthorized } from "@/lib/api-response";
+import { requireAdmin } from "@/lib/authz";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -10,15 +9,13 @@ cloudinary.config({
 });
 
 export async function POST(request: Request) {
-  const session = await getServerSession(authOptions);
-  if (session?.user.role !== "ADMIN") {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const session = await requireAdmin();
+  if (!session) return unauthorized();
 
   const formData = await request.formData();
   const file = formData.get("file");
   if (!(file instanceof File)) {
-    return NextResponse.json({ error: "Missing image file." }, { status: 400 });
+    return badRequest("Missing image file.");
   }
 
   const bytes = Buffer.from(await file.arrayBuffer());
@@ -31,5 +28,5 @@ export async function POST(request: Request) {
       .end(bytes);
   });
 
-  return NextResponse.json(uploaded);
+  return ok(uploaded);
 }

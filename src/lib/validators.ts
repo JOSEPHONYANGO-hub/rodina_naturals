@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { CATEGORIES } from "@/config/brand";
 
 export const registerSchema = z.object({
   name: z.string().min(2),
@@ -19,7 +20,7 @@ export const productSchema = z.object({
 });
 
 export const categorySchema = z.object({
-  name: z.enum(["Bioxcin", "Procsin", "Bioblas", "Restorex", "Rain", "Thalia"]),
+  name: z.enum(CATEGORIES),
 });
 
 export const orderSchema = z.object({

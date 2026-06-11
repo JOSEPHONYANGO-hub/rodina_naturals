@@ -2,21 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { HeroSlider } from "@/components/home/hero-slider";
 import { ProductCard } from "@/components/product/product-card";
-import { prisma } from "@/lib/prisma";
+import { SOCIAL_LINKS } from "@/config/brand";
+import { getHomeCatalog, toProductCard } from "@/services/catalog";
 
 export const dynamic = "force-dynamic";
-
-function cardProduct(product: {
-  id: string;
-  slug: string;
-  name: string;
-  price: { toString(): string };
-  images: string[];
-  stock: number;
-  category: { name: string };
-}) {
-  return { ...product, price: product.price.toString() };
-}
 
 const testimonials = [
   "The boutique experience feels thoughtful, and the products are beautifully curated.",
@@ -25,19 +14,7 @@ const testimonials = [
 ];
 
 export default async function Home() {
-  const [featured, bestSellers, categories] = await Promise.all([
-    prisma.product.findMany({
-      where: { isFeatured: true },
-      include: { category: true },
-      take: 4,
-    }),
-    prisma.product.findMany({
-      where: { isBestSeller: true },
-      include: { category: true },
-      take: 4,
-    }),
-    prisma.category.findMany({ orderBy: { name: "asc" } }),
-  ]);
+  const [featured, bestSellers, categories] = await getHomeCatalog();
 
   return (
     <>
@@ -55,7 +32,7 @@ export default async function Home() {
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((product) => (
-              <ProductCard key={product.id} product={cardProduct(product)} />
+              <ProductCard key={product.id} product={toProductCard(product)} />
             ))}
           </div>
         </div>
@@ -89,7 +66,7 @@ export default async function Home() {
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {bestSellers.map((product) => (
-              <ProductCard key={product.id} product={cardProduct(product)} />
+              <ProductCard key={product.id} product={toProductCard(product)} />
             ))}
           </div>
         </div>
@@ -113,7 +90,7 @@ export default async function Home() {
               <p className="text-xs uppercase tracking-[0.3em] text-gold">Instagram</p>
               <h2 className="mt-3 text-4xl">@rodinanaturals</h2>
             </div>
-            <Link href="https://www.instagram.com/rodinanaturals/" className="text-sm uppercase tracking-[0.2em] text-maroon">
+            <Link href={SOCIAL_LINKS.instagram} className="text-sm uppercase tracking-[0.2em] text-maroon">
               Follow us
             </Link>
           </div>
