@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f5ede6;
+  --foreground: #2f1d1e;
+  --maroon: #6f1219;
+  --maroon-dark: #4d0c12;
+  --gold: #c9a45c;
+  --cream: #f5ede6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif tracking-wide text-maroon;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center bg-maroon px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-maroonDark focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center border border-maroon px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-maroon transition hover:border-gold hover:text-maroonDark;
+  }
+
+  .field {
+    @apply w-full border border-maroon/15 bg-white px-4 py-3 text-sm outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/20;
+  }
+
+  .soft-card {
+    @apply bg-white shadow-[0_18px_60px_rgba(77,12,18,0.08)];
+  }
+}
