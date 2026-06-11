@@ -22,8 +22,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     environment:
       DATABASE_URL: postgresql://rodina:${POSTGRES_PASSWORD:-rodina_password}@postgres:5432/rodina_naturals?schema=public
       NEXTAUTH_URL: ${NEXTAUTH_URL}
