@@ -10,6 +10,8 @@ const config: Config = {
     extend: {
       colors: {
         cream: "#F5EDE6",
+        ivory: "#FFFAF6",
+        rose: "#EAD8CF",
         maroon: "#6F1219",
         maroonDark: "#4D0C12",
         gold: "#C9A45C",

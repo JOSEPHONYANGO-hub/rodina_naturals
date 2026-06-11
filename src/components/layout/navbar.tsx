@@ -33,13 +33,20 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition duration-300",
-        solid ? "bg-white/95 shadow-sm backdrop-blur" : "bg-transparent",
+        "fixed inset-x-0 top-0 z-50 border-b transition duration-300",
+        solid
+          ? "border-maroon/10 bg-ivory/95 shadow-[0_12px_40px_rgba(77,12,18,0.05)] backdrop-blur"
+          : "border-white/10 bg-transparent",
       )}
     >
       <div className="container-page flex h-20 items-center justify-between">
         <Logo />
-        <nav className="hidden items-center gap-8 text-sm uppercase tracking-[0.18em] text-maroon md:flex">
+        <nav
+          className={cn(
+            "hidden items-center gap-9 text-[11px] font-semibold uppercase tracking-[0.24em] md:flex",
+            solid ? "text-maroon" : "text-white",
+          )}
+        >
           {links.map((link) => (
             <Link key={link.href} href={link.href} className="transition hover:text-gold">
               {link.label}
@@ -47,19 +54,27 @@ export function Navbar() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <Link href="/login" className="p-2 text-maroon transition hover:text-gold" aria-label="Login">
+          <Link
+            href="/login"
+            className={cn("p-2 transition hover:text-gold", solid ? "text-maroon" : "text-white")}
+            aria-label="Login"
+          >
             <UserRound size={20} />
           </Link>
-          <Link href="/cart" className="relative p-2 text-maroon transition hover:text-gold" aria-label="Cart">
+          <Link
+            href="/cart"
+            className={cn("relative p-2 transition hover:text-gold", solid ? "text-maroon" : "text-white")}
+            aria-label="Cart"
+          >
             <ShoppingBag size={20} />
             {count > 0 ? (
-              <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-maroon text-[10px] font-semibold text-white">
+              <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-gold text-[10px] font-semibold text-maroon">
                 {count}
               </span>
             ) : null}
           </Link>
           <button
-            className="p-2 text-maroon md:hidden"
+            className={cn("p-2 md:hidden", solid ? "text-maroon" : "text-white")}
             onClick={() => setOpen((value) => !value)}
             aria-label="Toggle menu"
           >

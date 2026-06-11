@@ -19,14 +19,14 @@ export default async function Home() {
   return (
     <>
       <HeroSlider />
-      <section className="bg-cream py-20">
+      <section className="bg-cream py-24">
         <div className="container-page">
           <div className="mb-10 flex items-end justify-between gap-6">
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-gold">Curated ritual</p>
-              <h2 className="mt-3 text-4xl">Featured Products</h2>
+              <p className="eyebrow">Curated ritual</p>
+              <h2 className="section-title">Featured Products</h2>
             </div>
-            <Link href="/shop" className="hidden text-sm uppercase tracking-[0.2em] text-maroon md:block">
+            <Link href="/shop" className="hidden text-xs font-semibold uppercase tracking-[0.24em] text-maroon transition hover:text-gold md:block">
               View all
             </Link>
           </div>
@@ -38,18 +38,18 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="luxury-band py-24">
         <div className="container-page">
           <div className="mb-10 text-center">
-            <p className="text-xs uppercase tracking-[0.3em] text-gold">Collections</p>
-            <h2 className="mt-3 text-4xl">Shop By Category</h2>
+            <p className="eyebrow">Collections</p>
+            <h2 className="section-title">Shop By Category</h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
             {categories.map((category) => (
               <Link
                 key={category.id}
                 href={`/shop?category=${category.slug}`}
-                className="border border-maroon/10 bg-cream px-5 py-8 text-center text-lg font-serif text-maroon transition hover:border-gold hover:bg-white"
+                className="border border-maroon/10 bg-white px-5 py-9 text-center text-lg font-serif tracking-[0.08em] text-maroon transition duration-300 hover:border-gold hover:bg-cream hover:text-maroonDark"
               >
                 {category.name}
               </Link>
@@ -58,11 +58,11 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="bg-cream py-20">
+      <section className="bg-cream py-24">
         <div className="container-page">
           <div className="mb-10">
-            <p className="text-xs uppercase tracking-[0.3em] text-gold">Beloved picks</p>
-            <h2 className="mt-3 text-4xl">Best Sellers</h2>
+            <p className="eyebrow">Beloved picks</p>
+            <h2 className="section-title">Best Sellers</h2>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {bestSellers.map((product) => (
@@ -72,25 +72,25 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="bg-ivory py-24">
         <div className="container-page grid gap-6 md:grid-cols-3">
           {testimonials.map((quote) => (
-            <blockquote key={quote} className="soft-card p-8">
-              <p className="text-lg leading-8 text-ink/80">&ldquo;{quote}&rdquo;</p>
-              <footer className="mt-6 text-sm uppercase tracking-[0.2em] text-gold">Rodina client</footer>
+            <blockquote key={quote} className="border border-maroon/10 bg-white p-8">
+              <p className="font-serif text-2xl leading-9 text-maroon">&ldquo;{quote}&rdquo;</p>
+              <footer className="mt-6 text-xs font-semibold uppercase tracking-[0.24em] text-gold">Rodina client</footer>
             </blockquote>
           ))}
         </div>
       </section>
 
-      <section className="bg-cream py-20">
+      <section className="bg-cream py-24">
         <div className="container-page">
           <div className="mb-10 flex flex-col justify-between gap-3 md:flex-row md:items-end">
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-gold">Instagram</p>
-              <h2 className="mt-3 text-4xl">@rodinanaturals</h2>
+              <p className="eyebrow">Instagram</p>
+              <h2 className="section-title">@rodinanaturals</h2>
             </div>
-            <Link href={SOCIAL_LINKS.instagram} className="text-sm uppercase tracking-[0.2em] text-maroon">
+            <Link href={SOCIAL_LINKS.instagram} className="text-xs font-semibold uppercase tracking-[0.24em] text-maroon transition hover:text-gold">
               Follow us
             </Link>
           </div>
@@ -109,7 +109,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="bg-maroon py-16 text-white">
+      <section className="bg-maroon py-20 text-white">
         <div className="container-page flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-gold">Newsletter</p>

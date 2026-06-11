@@ -9,17 +9,17 @@ import { cn } from "@/lib/utils";
 const slides = [
   {
     title: "Reveal Your Natural Glow",
-    copy: "Curated skincare rituals with a polished boutique touch.",
+    copy: "Elevated skincare and beauty rituals selected for radiant everyday confidence.",
     image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1800&q=85",
   },
   {
     title: "Beauty, Softly Considered",
-    copy: "Premium hair, skin, and body essentials selected for daily confidence.",
+    copy: "A refined edit of hair, skin, and body essentials with a boutique Nairobi touch.",
     image: "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1800&q=85",
   },
   {
     title: "Rituals With Radiance",
-    copy: "Elegant formulas for a clean, luminous self-care experience.",
+    copy: "Polished formulas and sensorial textures for a luminous self-care experience.",
     image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1800&q=85",
   },
 ];
@@ -42,7 +42,7 @@ export function HeroSlider() {
 
   return (
     <section
-      className="relative min-h-[92vh] overflow-hidden bg-maroon"
+      className="relative min-h-[94vh] overflow-hidden bg-maroon"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -62,34 +62,40 @@ export function HeroSlider() {
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-maroon/80 via-maroon/42 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-maroon/82 via-maroon/42 to-maroon/5" />
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-cream to-transparent" />
         </div>
       ))}
-      <div className="container-page relative flex min-h-[92vh] items-center pt-24">
-        <div className="max-w-2xl text-white">
-          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.35em] text-gold">
+      <div className="container-page relative flex min-h-[94vh] items-center pt-24">
+        <div className="max-w-[720px] text-white">
+          <p className="mb-6 text-xs font-semibold uppercase tracking-[0.38em] text-gold">
             Rodina Naturals
           </p>
-          <h1 className="text-5xl leading-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="max-w-3xl text-5xl leading-[0.98] text-white sm:text-7xl lg:text-8xl">
             {slides[active].title}
           </h1>
-          <p className="mt-6 max-w-lg text-base leading-8 text-white/85 sm:text-lg">
+          <p className="mt-7 max-w-xl text-base font-light leading-8 text-white/86 sm:text-lg">
             {slides[active].copy}
           </p>
-          <Link href="/shop" className="btn-primary mt-8 bg-white text-maroon hover:bg-gold">
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <Link href="/shop" className="btn-primary bg-white text-maroon hover:bg-gold">
             Shop Now
-          </Link>
+            </Link>
+            <Link href="/shop?category=thalia" className="btn-secondary border-white/50 text-white hover:border-gold hover:bg-white/10 hover:text-white">
+              Explore Rituals
+            </Link>
+          </div>
         </div>
       </div>
       <button
-        className="absolute left-4 top-1/2 hidden -translate-y-1/2 bg-white/90 p-3 text-maroon transition hover:bg-gold md:block"
+        className="absolute left-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 place-items-center border border-white/30 bg-white/10 text-white backdrop-blur transition hover:border-gold hover:bg-white/20 md:grid"
         onClick={() => go(-1)}
         aria-label="Previous slide"
       >
         <ChevronLeft />
       </button>
       <button
-        className="absolute right-4 top-1/2 hidden -translate-y-1/2 bg-white/90 p-3 text-maroon transition hover:bg-gold md:block"
+        className="absolute right-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 place-items-center border border-white/30 bg-white/10 text-white backdrop-blur transition hover:border-gold hover:bg-white/20 md:grid"
         onClick={() => go(1)}
         aria-label="Next slide"
       >
@@ -100,8 +106,8 @@ export function HeroSlider() {
           <button
             key={slide.title}
             className={cn(
-              "h-2.5 w-2.5 rounded-full border border-white transition",
-              index === active ? "bg-gold" : "bg-white/40",
+              "h-2 w-8 border border-white/70 transition",
+              index === active ? "bg-gold" : "bg-white/30",
             )}
             onClick={() => setActive(index)}
             aria-label={`Go to slide ${index + 1}`}

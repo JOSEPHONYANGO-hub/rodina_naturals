@@ -9,6 +9,8 @@
   --maroon-dark: #4d0c12;
   --gold: #c9a45c;
   --cream: #f5ede6;
+  --ivory: #fffaf6;
+  --rose: #ead8cf;
 }
 
 * {
@@ -22,6 +24,7 @@ html {
 body {
   color: var(--foreground);
   background: var(--background);
+  text-rendering: optimizeLegibility;
 }
 
 @layer base {
@@ -29,7 +32,7 @@ body {
   h2,
   h3,
   h4 {
-    @apply font-serif tracking-wide text-maroon;
+    @apply font-serif font-medium tracking-[0.04em] text-maroon;
   }
 }
 
@@ -39,18 +42,30 @@ body {
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center bg-maroon px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-maroonDark focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+    @apply inline-flex min-h-12 items-center justify-center bg-maroon px-7 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-white transition duration-300 hover:bg-maroonDark focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center border border-maroon px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-maroon transition hover:border-gold hover:text-maroonDark;
+    @apply inline-flex min-h-12 items-center justify-center border border-maroon/35 bg-transparent px-7 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-maroon transition duration-300 hover:border-gold hover:bg-white hover:text-maroonDark;
   }
 
   .field {
-    @apply w-full border border-maroon/15 bg-white px-4 py-3 text-sm outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/20;
+    @apply w-full border border-maroon/15 bg-white/95 px-4 py-3.5 text-sm outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/20;
   }
 
   .soft-card {
-    @apply bg-white shadow-[0_18px_60px_rgba(77,12,18,0.08)];
+    @apply border border-maroon/10 bg-white shadow-[0_24px_80px_rgba(77,12,18,0.07)];
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.32em] text-gold;
+  }
+
+  .section-title {
+    @apply mt-3 text-4xl leading-tight sm:text-5xl;
+  }
+
+  .luxury-band {
+    @apply border-y border-maroon/10 bg-[#fffaf6];
   }
 }

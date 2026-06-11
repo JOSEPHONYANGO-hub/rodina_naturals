@@ -36,7 +36,10 @@ export function ShopFilters({
   }
 
   return (
-    <aside className="soft-card h-fit p-5">
+    <aside className="h-fit border border-maroon/10 bg-ivory p-5 shadow-[0_18px_50px_rgba(77,12,18,0.05)]">
+      <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-maroon">
+        Refine
+      </p>
       <div className="relative">
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-maroon/50" />
         <input
