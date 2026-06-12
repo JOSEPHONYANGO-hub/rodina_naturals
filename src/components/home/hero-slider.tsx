@@ -8,24 +8,24 @@ import { cn } from "@/lib/utils";
 
 const slides = [
   {
-    kicker: "Glow edit",
-    title: "Beauty essentials for skin, hair, and body.",
-    copy: "Premium cosmetics and care products curated for Kenyan beauty routines, from everyday glow to polished occasion looks.",
-    image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1800&q=85",
-    cta: "/shop",
+    kicker: "Skincare ritual",
+    title: "Thalia Signature Care for a soft natural glow.",
+    copy: "A lifestyle-led skincare pick inspired by Rodina Naturals social beauty content, curated for daily radiance and confident skin.",
+    image: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=1800&q=85",
+    cta: "/shop?category=thalia",
   },
   {
     kicker: "New arrivals",
-    title: "Build a shelf that feels beautifully intentional.",
-    copy: "Shop clean, high-performing formulas across skincare, haircare, bath, body, and boutique beauty brands.",
-    image: "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1800&q=85",
-    cta: "/shop?category=thalia",
+    title: "Beauty routines that feel personal and polished.",
+    copy: "Shop skincare, haircare, bath, body, and boutique beauty essentials styled around real everyday rituals.",
+    image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1800&q=85",
+    cta: "/shop",
   },
   {
     kicker: "Limited offers",
     title: "Discover your next ritual with Rodina Naturals.",
     copy: "Fresh picks, best sellers, and considered deals selected for a modern Nairobi beauty experience.",
-    image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1800&q=85",
+    image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=1800&q=85",
     cta: "/shop?max=2000",
   },
 ];
