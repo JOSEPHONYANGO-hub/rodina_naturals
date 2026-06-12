@@ -2,8 +2,10 @@
 
 import {
   ChevronDown,
+  Mail,
   Heart,
   Menu,
+  Phone,
   Search,
   ShoppingBag,
   Sparkles,
@@ -12,11 +14,10 @@ import {
 } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import type { FormEvent } from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Logo } from "@/components/layout/logo";
-import { CATEGORIES } from "@/config/brand";
+import { CATEGORIES, CONTACT_DETAILS, SOCIAL_LINKS } from "@/config/brand";
 import { useCart } from "@/lib/cart-store";
 import { cn } from "@/lib/utils";
 
@@ -31,24 +32,12 @@ const links = [
 ];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
   const [search, setSearch] = useState("");
   const { data: session, status } = useSession();
-  const pathname = usePathname();
   const count = useCart((state) => state.count());
-  const isHome = pathname === "/";
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const solid = scrolled || !isHome || open;
   const suggestions = CATEGORIES.filter((category) =>
     category.toLowerCase().includes(search.toLowerCase()),
   ).slice(0, 4);
@@ -61,55 +50,53 @@ export function Navbar() {
 
   return (
     <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b transition duration-300",
-        solid
-          ? "border-maroon/10 bg-ivory/95 shadow-[0_12px_40px_rgba(77,12,18,0.05)] backdrop-blur"
-          : "border-white/10 bg-transparent",
-      )}
+      className="sticky inset-x-0 top-0 z-50 border-b-4 border-[#e2358c] bg-white text-maroon shadow-[0_10px_30px_rgba(36,22,23,0.08)]"
       onMouseLeave={() => setMegaOpen(false)}
     >
-      <div className="container-page flex h-[76px] items-center justify-between gap-4">
-        <Logo className="shrink-0" />
-        <nav
-          className={cn(
-            "hidden items-center gap-5 text-[10px] font-semibold uppercase tracking-[0.18em] lg:flex xl:gap-7",
-            solid ? "text-maroon" : "text-white",
-          )}
-        >
-          {links.map((link) => (
-            <Link
-              key={`${link.href}-${link.label}`}
-              href={link.href}
-              className="inline-flex items-center gap-1 whitespace-nowrap transition hover:text-gold"
-              onMouseEnter={() => setMegaOpen(Boolean(link.hasMega))}
-            >
-              {link.label}
-              {link.hasMega ? <ChevronDown className="h-3 w-3" /> : null}
+      <div className="bg-[#e2358c] text-white">
+        <div className="container-page flex min-h-9 flex-wrap items-center justify-between gap-x-5 gap-y-2 py-2 text-xs font-bold sm:text-sm">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <a href={`tel:${CONTACT_DETAILS.phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-2">
+              <Phone className="h-4 w-4" />
+              Call to order: {CONTACT_DETAILS.phone}
+            </a>
+            <a href="mailto:customercare@rodinabeauty.co.ke" className="inline-flex items-center gap-2">
+              <Mail className="h-4 w-4" />
+              Email: customercare@rodinabeauty.co.ke
+            </a>
+          </div>
+          <div className="hidden items-center gap-4 md:flex">
+            <Link href="/shop" className="hover:text-cream">
+              Newsletter
             </Link>
-          ))}
-        </nav>
+            <Link href={SOCIAL_LINKS.facebook} className="hover:text-cream" aria-label="Facebook">
+              F
+            </Link>
+            <Link href={SOCIAL_LINKS.instagram} className="hover:text-cream" aria-label="Instagram">
+              IG
+            </Link>
+            <Link href={SOCIAL_LINKS.tiktok} className="hover:text-cream" aria-label="TikTok">
+              TT
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="container-page flex min-h-[78px] items-center justify-between gap-5 py-3">
+        <Logo className="shrink-0" />
         <form
           onSubmit={submitSearch}
-          className={cn(
-            "relative hidden min-w-[230px] max-w-[330px] flex-1 items-center xl:flex",
-            solid ? "text-maroon" : "text-white",
-          )}
+          className="relative hidden max-w-3xl flex-1 items-center text-charcoal md:flex"
         >
-          <Search className="absolute left-4 h-4 w-4 opacity-70" />
+          <Search className="absolute right-4 h-5 w-5 text-charcoal" />
           <input
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Search beauty essentials"
-            className={cn(
-              "h-11 w-full rounded-full border pl-11 pr-4 text-sm outline-none transition placeholder:text-current/50 focus:border-gold",
-              solid
-                ? "border-maroon/10 bg-white text-maroon"
-                : "border-white/25 bg-white/10 text-white backdrop-blur",
-            )}
+            className="h-12 w-full rounded-full border border-charcoal/20 bg-[#f8f8f8] pl-5 pr-12 text-sm font-medium text-charcoal outline-none transition placeholder:text-charcoal/50 focus:border-[#e2358c] focus:bg-white"
           />
           {search && suggestions.length ? (
-            <div className="absolute left-0 right-0 top-12 overflow-hidden rounded-2xl border border-maroon/10 bg-white p-2 text-maroon shadow-[0_18px_50px_rgba(77,12,18,0.12)]">
+            <div className="absolute left-0 right-0 top-14 overflow-hidden rounded-2xl border border-maroon/10 bg-white p-2 text-maroon shadow-[0_18px_50px_rgba(77,12,18,0.12)]">
               {suggestions.map((category) => (
                 <Link
                   key={category}
@@ -123,10 +110,10 @@ export function Navbar() {
             </div>
           ) : null}
         </form>
-        <div className="flex items-center gap-1 sm:gap-3">
+        <div className="flex items-center gap-2 text-maroon sm:gap-4">
           <Link
             href="/shop"
-            className={cn("hidden p-2 transition hover:text-gold sm:block", solid ? "text-maroon" : "text-white")}
+            className="hidden p-2 transition hover:text-[#e2358c] sm:block"
             aria-label="Wishlist"
           >
             <Heart size={20} />
@@ -136,9 +123,7 @@ export function Navbar() {
               <button
                 className={cn(
                   "flex items-center gap-2 rounded-full border px-2 py-1.5 text-xs font-semibold transition hover:border-gold",
-                  solid
-                    ? "border-maroon/15 bg-white text-maroon"
-                    : "border-white/25 bg-white/10 text-white backdrop-blur",
+                  "border-maroon/15 bg-white text-maroon",
                 )}
                 onClick={() => setAccountOpen((value) => !value)}
                 aria-label="Account menu"
@@ -153,7 +138,7 @@ export function Navbar() {
             ) : (
               <Link
                 href="/login"
-                className={cn("p-2 transition hover:text-gold", solid ? "text-maroon" : "text-white")}
+                className="p-2 text-maroon transition hover:text-[#e2358c]"
                 aria-label="Login"
               >
                 <UserRound size={20} />
@@ -204,7 +189,7 @@ export function Navbar() {
           </div>
           <Link
             href="/cart"
-            className={cn("relative p-2 transition hover:text-gold", solid ? "text-maroon" : "text-white")}
+            className="relative p-2 text-maroon transition hover:text-[#e2358c]"
             aria-label="Cart"
           >
             <ShoppingBag size={20} />
@@ -215,7 +200,7 @@ export function Navbar() {
             ) : null}
           </Link>
           <button
-            className={cn("p-2 lg:hidden", solid ? "text-maroon" : "text-white")}
+            className="p-2 text-maroon lg:hidden"
             onClick={() => setOpen((value) => !value)}
             aria-label="Toggle menu"
           >
@@ -223,6 +208,26 @@ export function Navbar() {
           </button>
         </div>
       </div>
+
+      <nav className="hidden border-t border-maroon/10 bg-white lg:block">
+        <div className="container-page flex min-h-[58px] items-center justify-center gap-7 text-sm font-bold text-[#d92782] xl:gap-10 xl:text-base">
+          {links.map((link) => (
+            <Link
+              key={`${link.href}-${link.label}`}
+              href={link.href}
+              className="inline-flex items-center gap-1 whitespace-nowrap transition hover:text-maroon"
+              onMouseEnter={() => setMegaOpen(Boolean(link.hasMega))}
+            >
+              <span className="grid h-8 w-8 place-items-center rounded-full bg-pink-50 text-[#e2358c]">
+                {link.label.slice(0, 1)}
+              </span>
+              {link.label}
+              {link.hasMega ? <ChevronDown className="h-4 w-4" /> : null}
+            </Link>
+          ))}
+        </div>
+      </nav>
+
       {megaOpen ? (
         <div className="hidden border-t border-maroon/10 bg-white shadow-[0_24px_70px_rgba(77,12,18,0.1)] lg:block">
           <div className="container-page grid gap-8 py-7 lg:grid-cols-[1fr_360px]">

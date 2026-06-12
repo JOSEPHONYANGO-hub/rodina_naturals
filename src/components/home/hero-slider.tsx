@@ -48,7 +48,7 @@ export function HeroSlider() {
 
   return (
     <section
-      className="relative min-h-[88vh] overflow-hidden bg-charcoal"
+      className="relative min-h-[calc(100vh-174px)] overflow-hidden bg-charcoal"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -73,7 +73,7 @@ export function HeroSlider() {
         </div>
       ))}
 
-      <div className="container-page relative flex min-h-[88vh] items-center pt-28">
+      <div className="container-page relative flex min-h-[calc(100vh-174px)] items-center py-16">
         <div className="grid w-full items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_420px]">
           <div className="max-w-3xl text-white">
             <p className="mb-5 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.26em] text-gold backdrop-blur">
