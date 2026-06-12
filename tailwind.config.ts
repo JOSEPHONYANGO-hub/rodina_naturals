@@ -12,6 +12,8 @@ const config: Config = {
         cream: "#F5EDE6",
         ivory: "#FFFAF6",
         rose: "#EAD8CF",
+        blush: "#D8B6AA",
+        charcoal: "#241617",
         maroon: "#6F1219",
         maroonDark: "#4D0C12",
         gold: "#C9A45C",

@@ -8,19 +8,25 @@ import { cn } from "@/lib/utils";
 
 const slides = [
   {
-    title: "Reveal Your Natural Glow",
-    copy: "Elevated skincare and beauty rituals selected for radiant everyday confidence.",
+    kicker: "Glow edit",
+    title: "Beauty essentials for skin, hair, and body.",
+    copy: "Premium cosmetics and care products curated for Kenyan beauty routines, from everyday glow to polished occasion looks.",
     image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1800&q=85",
+    cta: "/shop",
   },
   {
-    title: "Beauty, Softly Considered",
-    copy: "A refined edit of hair, skin, and body essentials with a boutique Nairobi touch.",
+    kicker: "New arrivals",
+    title: "Build a shelf that feels beautifully intentional.",
+    copy: "Shop clean, high-performing formulas across skincare, haircare, bath, body, and boutique beauty brands.",
     image: "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1800&q=85",
+    cta: "/shop?category=thalia",
   },
   {
-    title: "Rituals With Radiance",
-    copy: "Polished formulas and sensorial textures for a luminous self-care experience.",
+    kicker: "Limited offers",
+    title: "Discover your next ritual with Rodina Naturals.",
+    copy: "Fresh picks, best sellers, and considered deals selected for a modern Nairobi beauty experience.",
     image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1800&q=85",
+    cta: "/shop?max=2000",
   },
 ];
 
@@ -42,7 +48,7 @@ export function HeroSlider() {
 
   return (
     <section
-      className="relative min-h-[94vh] overflow-hidden bg-maroon"
+      className="relative min-h-[88vh] overflow-hidden bg-charcoal"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -62,40 +68,63 @@ export function HeroSlider() {
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-maroon/82 via-maroon/42 to-maroon/5" />
-          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-cream to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-charcoal/88 via-maroon/50 to-white/0" />
+          <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-cream to-transparent" />
         </div>
       ))}
-      <div className="container-page relative flex min-h-[94vh] items-center pt-24">
-        <div className="max-w-[720px] text-white">
-          <p className="mb-6 text-xs font-semibold uppercase tracking-[0.38em] text-gold">
-            Rodina Naturals
-          </p>
-          <h1 className="max-w-3xl text-5xl leading-[0.98] text-white sm:text-7xl lg:text-8xl">
-            {slides[active].title}
-          </h1>
-          <p className="mt-7 max-w-xl text-base font-light leading-8 text-white/86 sm:text-lg">
-            {slides[active].copy}
-          </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Link href="/shop" className="btn-primary bg-white text-maroon hover:bg-gold">
-            Shop Now
-            </Link>
-            <Link href="/shop?category=thalia" className="btn-secondary border-white/50 text-white hover:border-gold hover:bg-white/10 hover:text-white">
-              Explore Rituals
-            </Link>
+
+      <div className="container-page relative flex min-h-[88vh] items-center pt-28">
+        <div className="grid w-full items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_420px]">
+          <div className="max-w-3xl text-white">
+            <p className="mb-5 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.26em] text-gold backdrop-blur">
+              {slides[active].kicker}
+            </p>
+            <h1 className="max-w-4xl text-5xl font-semibold leading-[0.98] text-white sm:text-7xl lg:text-8xl">
+              {slides[active].title}
+            </h1>
+            <p className="mt-7 max-w-2xl text-base font-light leading-8 text-white/84 sm:text-lg">
+              {slides[active].copy}
+            </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link href={slides[active].cta} className="btn-primary bg-white text-maroon hover:bg-gold">
+                Shop Now
+              </Link>
+              <Link
+                href="/shop?max=2000"
+                className="btn-secondary border-white/45 text-white hover:border-gold hover:bg-white/10 hover:text-white"
+              >
+                View Deals
+              </Link>
+            </div>
+          </div>
+
+          <div className="hidden rounded-[34px] border border-white/20 bg-white/12 p-5 text-white shadow-[0_30px_100px_rgba(0,0,0,0.22)] backdrop-blur lg:block">
+            <div className="rounded-[28px] bg-white p-5 text-charcoal">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-gold">
+                Rodina promise
+              </p>
+              <p className="mt-3 text-3xl font-semibold leading-tight">
+                Authentic beauty, fast Nairobi delivery, secure checkout.
+              </p>
+              <div className="mt-6 grid grid-cols-3 gap-3 text-center text-xs font-semibold uppercase tracking-[0.16em] text-maroon">
+                <span className="rounded-2xl bg-cream px-3 py-4">Skin</span>
+                <span className="rounded-2xl bg-cream px-3 py-4">Hair</span>
+                <span className="rounded-2xl bg-cream px-3 py-4">Body</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
       <button
-        className="absolute left-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 place-items-center border border-white/30 bg-white/10 text-white backdrop-blur transition hover:border-gold hover:bg-white/20 md:grid"
+        className="absolute left-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-white/10 text-white backdrop-blur transition hover:border-gold hover:bg-white/20 md:grid"
         onClick={() => go(-1)}
         aria-label="Previous slide"
       >
         <ChevronLeft />
       </button>
       <button
-        className="absolute right-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 place-items-center border border-white/30 bg-white/10 text-white backdrop-blur transition hover:border-gold hover:bg-white/20 md:grid"
+        className="absolute right-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-white/10 text-white backdrop-blur transition hover:border-gold hover:bg-white/20 md:grid"
         onClick={() => go(1)}
         aria-label="Next slide"
       >
@@ -106,7 +135,7 @@ export function HeroSlider() {
           <button
             key={slide.title}
             className={cn(
-              "h-2 w-8 border border-white/70 transition",
+              "h-2 w-9 rounded-full border border-white/70 transition",
               index === active ? "bg-gold" : "bg-white/30",
             )}
             onClick={() => setActive(index)}

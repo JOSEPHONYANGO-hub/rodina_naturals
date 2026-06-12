@@ -18,17 +18,27 @@ export default async function ShopPage({
   return (
     <div className="bg-cream pb-24 pt-32">
       <div className="container-page">
-        <div className="mb-12 max-w-3xl">
+        <div className="mb-10 overflow-hidden rounded-[34px] bg-white p-7 shadow-[0_18px_60px_rgba(77,12,18,0.06)] sm:p-10">
           <p className="eyebrow">Boutique store</p>
-          <h1 className="mt-3 text-5xl leading-tight sm:text-6xl">Shop Rodina Naturals</h1>
-          <p className="mt-5 max-w-2xl leading-8 text-ink/68">
-            A refined edit of beauty, haircare, and skincare essentials for considered daily rituals.
-          </p>
+          <div className="mt-3 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <h1 className="text-5xl font-semibold leading-tight text-charcoal sm:text-6xl">
+                Shop Rodina Naturals
+              </h1>
+              <p className="mt-5 max-w-2xl leading-8 text-ink/68">
+                Beauty, skincare, haircare, and body essentials selected for a premium Kenyan
+                ecommerce experience.
+              </p>
+            </div>
+            <p className="rounded-full bg-cream px-5 py-3 text-sm font-semibold text-maroon">
+              {listing.total} products available
+            </p>
+          </div>
         </div>
         <div className="grid gap-8 lg:grid-cols-[300px_1fr]">
           <ShopFilters categories={categories} />
           <div>
-            <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 xl:grid-cols-3">
               {listing.products.map((product) => (
                 <ProductCard key={product.id} product={toProductCard(product)} />
               ))}
@@ -41,7 +51,7 @@ export default async function ShopPage({
                   <Link
                     key={index}
                     href={`/shop?${next.toString()}`}
-                    className={`grid h-10 w-10 place-items-center border ${
+                    className={`grid h-10 w-10 place-items-center rounded-full border text-sm font-semibold ${
                       listing.page === index + 1
                         ? "border-maroon bg-maroon text-white"
                         : "border-maroon/20 bg-ivory text-maroon transition hover:border-gold"

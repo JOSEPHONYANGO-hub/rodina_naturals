@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   title: "Rodina Naturals | Premium Skincare Boutique",
   description:
     "Luxury cosmetics and skincare products from Rodina Naturals in Nairobi.",
+  icons: {
+    icon: "/rodina-logo.jpeg",
+    apple: "/rodina-logo.jpeg",
+  },
 };
 
 export default function RootLayout({

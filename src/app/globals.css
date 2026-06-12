@@ -11,6 +11,8 @@
   --cream: #f5ede6;
   --ivory: #fffaf6;
   --rose: #ead8cf;
+  --blush: #d8b6aa;
+  --charcoal: #241617;
 }
 
 * {
@@ -27,6 +29,11 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+::selection {
+  background: var(--maroon);
+  color: #fffaf6;
+}
+
 @layer base {
   h1,
   h2,
@@ -38,15 +45,15 @@ body {
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-10;
   }
 
   .btn-primary {
-    @apply inline-flex min-h-12 items-center justify-center bg-maroon px-7 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-white transition duration-300 hover:bg-maroonDark focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+    @apply inline-flex min-h-12 items-center justify-center rounded-full bg-maroon px-8 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-[0_16px_34px_rgba(111,18,25,0.2)] transition duration-300 hover:bg-charcoal focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
   }
 
   .btn-secondary {
-    @apply inline-flex min-h-12 items-center justify-center border border-maroon/35 bg-transparent px-7 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-maroon transition duration-300 hover:border-gold hover:bg-white hover:text-maroonDark;
+    @apply inline-flex min-h-12 items-center justify-center rounded-full border border-maroon/25 bg-transparent px-8 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-maroon transition duration-300 hover:border-gold hover:bg-white hover:text-maroonDark;
   }
 
   .field {
@@ -58,14 +65,22 @@ body {
   }
 
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.32em] text-gold;
+    @apply text-[11px] font-semibold uppercase tracking-[0.32em] text-gold;
   }
 
   .section-title {
-    @apply mt-3 text-4xl leading-tight sm:text-5xl;
+    @apply mt-3 text-4xl leading-[1.02] sm:text-6xl;
   }
 
   .luxury-band {
     @apply border-y border-maroon/10 bg-[#fffaf6];
+  }
+
+  .section-copy {
+    @apply max-w-2xl text-sm leading-7 text-ink/65 sm:text-base sm:leading-8;
+  }
+
+  .fine-link {
+    @apply text-[11px] font-semibold uppercase tracking-[0.24em] text-maroon transition hover:text-gold;
   }
 }
