@@ -10,6 +10,7 @@ import {
   UserRound,
   X,
 } from "lucide-react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { FormEvent } from "react";
@@ -33,7 +34,9 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const { data: session, status } = useSession();
   const pathname = usePathname();
   const count = useCart((state) => state.count());
   const isHome = pathname === "/";
@@ -128,13 +131,77 @@ export function Navbar() {
           >
             <Heart size={20} />
           </Link>
-          <Link
-            href="/login"
-            className={cn("p-2 transition hover:text-gold", solid ? "text-maroon" : "text-white")}
-            aria-label="Login"
-          >
-            <UserRound size={20} />
-          </Link>
+          <div className="relative">
+            {status === "authenticated" ? (
+              <button
+                className={cn(
+                  "flex items-center gap-2 rounded-full border px-2 py-1.5 text-xs font-semibold transition hover:border-gold",
+                  solid
+                    ? "border-maroon/15 bg-white text-maroon"
+                    : "border-white/25 bg-white/10 text-white backdrop-blur",
+                )}
+                onClick={() => setAccountOpen((value) => !value)}
+                aria-label="Account menu"
+              >
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-gold text-[11px] font-bold uppercase text-maroon">
+                  {(session.user.name || session.user.email || "A").slice(0, 1)}
+                </span>
+                <span className="hidden max-w-28 truncate xl:inline">
+                  {session.user.name || "Account"}
+                </span>
+              </button>
+            ) : (
+              <Link
+                href="/login"
+                className={cn("p-2 transition hover:text-gold", solid ? "text-maroon" : "text-white")}
+                aria-label="Login"
+              >
+                <UserRound size={20} />
+              </Link>
+            )}
+            {accountOpen && status === "authenticated" ? (
+              <div className="absolute right-0 top-12 w-72 overflow-hidden rounded-[24px] border border-maroon/10 bg-white text-maroon shadow-[0_24px_70px_rgba(77,12,18,0.16)]">
+                <div className="border-b border-maroon/10 bg-cream p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">
+                    Signed in
+                  </p>
+                  <p className="mt-2 truncate font-semibold text-charcoal">
+                    {session.user.name || "Rodina user"}
+                  </p>
+                  <p className="mt-1 truncate text-sm text-ink/60">{session.user.email}</p>
+                  {session.user.role === "ADMIN" ? (
+                    <span className="mt-3 inline-flex rounded-full bg-maroon px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
+                      Admin
+                    </span>
+                  ) : null}
+                </div>
+                <div className="grid p-2 text-sm">
+                  {session.user.role === "ADMIN" ? (
+                    <Link
+                      href="/admin"
+                      className="rounded-2xl px-4 py-3 transition hover:bg-cream"
+                      onClick={() => setAccountOpen(false)}
+                    >
+                      Admin dashboard
+                    </Link>
+                  ) : null}
+                  <Link
+                    href="/cart"
+                    className="rounded-2xl px-4 py-3 transition hover:bg-cream"
+                    onClick={() => setAccountOpen(false)}
+                  >
+                    View cart
+                  </Link>
+                  <button
+                    className="rounded-2xl px-4 py-3 text-left text-maroon transition hover:bg-cream"
+                    onClick={() => signOut({ callbackUrl: "/" })}
+                  >
+                    Sign out
+                  </button>
+                </div>
+              </div>
+            ) : null}
+          </div>
           <Link
             href="/cart"
             className={cn("relative p-2 transition hover:text-gold", solid ? "text-maroon" : "text-white")}
@@ -209,6 +276,35 @@ export function Navbar() {
             </form>
           </div>
           <nav className="container-page flex flex-col pb-4 text-sm uppercase tracking-[0.18em] text-maroon">
+            {status === "authenticated" ? (
+              <div className="mb-3 rounded-2xl bg-cream p-4 normal-case tracking-normal">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                  Signed in
+                </p>
+                <p className="mt-1 font-semibold text-charcoal">
+                  {session.user.name || session.user.email}
+                </p>
+                {session.user.role === "ADMIN" ? (
+                  <Link
+                    href="/admin"
+                    className="mt-3 inline-flex text-xs font-bold uppercase tracking-[0.18em] text-maroon"
+                    onClick={() => setOpen(false)}
+                  >
+                    Admin dashboard
+                  </Link>
+                ) : null}
+                <button
+                  className="mt-3 block text-xs font-bold uppercase tracking-[0.18em] text-maroon"
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                >
+                  Sign out
+                </button>
+              </div>
+            ) : (
+              <Link href="/login" className="py-3" onClick={() => setOpen(false)}>
+                Login
+              </Link>
+            )}
             {links.map((link) => (
               <Link
                 key={`${link.href}-${link.label}`}
