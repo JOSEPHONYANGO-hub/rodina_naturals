@@ -50,10 +50,10 @@ export function Navbar() {
 
   return (
     <header
-      className="sticky inset-x-0 top-0 z-50 border-b-4 border-[#e2358c] bg-white text-maroon shadow-[0_10px_30px_rgba(36,22,23,0.08)]"
+      className="sticky inset-x-0 top-0 z-50 border-b-4 border-brandPurple bg-white text-brandPurple shadow-[0_10px_30px_rgba(36,22,23,0.08)]"
       onMouseLeave={() => setMegaOpen(false)}
     >
-      <div className="bg-[#e2358c] text-white">
+      <div className="bg-brandPurple text-white">
         <div className="container-page flex min-h-9 flex-wrap items-center justify-between gap-x-5 gap-y-2 py-2 text-xs font-bold sm:text-sm">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <a href={`tel:${CONTACT_DETAILS.phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-2">
@@ -93,7 +93,7 @@ export function Navbar() {
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Search beauty essentials"
-            className="h-12 w-full rounded-full border border-charcoal/20 bg-[#f8f8f8] pl-5 pr-12 text-sm font-medium text-charcoal outline-none transition placeholder:text-charcoal/50 focus:border-[#e2358c] focus:bg-white"
+            className="h-12 w-full rounded-full border border-charcoal/20 bg-[#f8f8f8] pl-5 pr-12 text-sm font-medium text-charcoal outline-none transition placeholder:text-charcoal/50 focus:border-brandPurple focus:bg-white"
           />
           {search && suggestions.length ? (
             <div className="absolute left-0 right-0 top-14 overflow-hidden rounded-2xl border border-maroon/10 bg-white p-2 text-maroon shadow-[0_18px_50px_rgba(77,12,18,0.12)]">
@@ -110,10 +110,10 @@ export function Navbar() {
             </div>
           ) : null}
         </form>
-        <div className="flex items-center gap-2 text-maroon sm:gap-4">
+        <div className="flex items-center gap-2 text-brandPurple sm:gap-4">
           <Link
             href="/shop"
-            className="hidden p-2 transition hover:text-[#e2358c] sm:block"
+            className="hidden p-2 transition hover:text-brandPurpleDark sm:block"
             aria-label="Wishlist"
           >
             <Heart size={20} />
@@ -123,12 +123,12 @@ export function Navbar() {
               <button
                 className={cn(
                   "flex items-center gap-2 rounded-full border px-2 py-1.5 text-xs font-semibold transition hover:border-gold",
-                  "border-maroon/15 bg-white text-maroon",
+                  "border-brandPurple/15 bg-white text-brandPurple",
                 )}
                 onClick={() => setAccountOpen((value) => !value)}
                 aria-label="Account menu"
               >
-                <span className="grid h-8 w-8 place-items-center rounded-full bg-gold text-[11px] font-bold uppercase text-maroon">
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-gold text-[11px] font-bold uppercase text-brandPurple">
                   {(session.user.name || session.user.email || "A").slice(0, 1)}
                 </span>
                 <span className="hidden max-w-28 truncate xl:inline">
@@ -138,7 +138,7 @@ export function Navbar() {
             ) : (
               <Link
                 href="/login"
-                className="p-2 text-maroon transition hover:text-[#e2358c]"
+                className="p-2 text-brandPurple transition hover:text-brandPurpleDark"
                 aria-label="Login"
               >
                 <UserRound size={20} />
@@ -189,18 +189,18 @@ export function Navbar() {
           </div>
           <Link
             href="/cart"
-            className="relative p-2 text-maroon transition hover:text-[#e2358c]"
+            className="relative p-2 text-brandPurple transition hover:text-brandPurpleDark"
             aria-label="Cart"
           >
             <ShoppingBag size={20} />
             {count > 0 ? (
-              <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-gold text-[10px] font-semibold text-maroon">
+              <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-gold text-[10px] font-semibold text-brandPurple">
                 {count}
               </span>
             ) : null}
           </Link>
           <button
-            className="p-2 text-maroon lg:hidden"
+            className="p-2 text-brandPurple lg:hidden"
             onClick={() => setOpen((value) => !value)}
             aria-label="Toggle menu"
           >
@@ -210,15 +210,15 @@ export function Navbar() {
       </div>
 
       <nav className="hidden border-t border-maroon/10 bg-white lg:block">
-        <div className="container-page flex min-h-[58px] items-center justify-center gap-7 text-sm font-bold text-[#d92782] xl:gap-10 xl:text-base">
+        <div className="container-page flex min-h-[58px] items-center justify-center gap-7 text-sm font-bold text-brandPurple xl:gap-10 xl:text-base">
           {links.map((link) => (
             <Link
               key={`${link.href}-${link.label}`}
               href={link.href}
-              className="inline-flex items-center gap-1 whitespace-nowrap transition hover:text-maroon"
+              className="inline-flex items-center gap-1 whitespace-nowrap transition hover:text-brandPurpleDark"
               onMouseEnter={() => setMegaOpen(Boolean(link.hasMega))}
             >
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-pink-50 text-[#e2358c]">
+              <span className="grid h-8 w-8 place-items-center rounded-full bg-brandPurple/10 text-brandPurple">
                 {link.label.slice(0, 1)}
               </span>
               {link.label}

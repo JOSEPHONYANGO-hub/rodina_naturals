@@ -14,6 +14,8 @@ const config: Config = {
         rose: "#EAD8CF",
         blush: "#D8B6AA",
         charcoal: "#241617",
+        brandPurple: "#7A2C73",
+        brandPurpleDark: "#5A1F55",
         maroon: "#6F1219",
         maroonDark: "#4D0C12",
         gold: "#C9A45C",

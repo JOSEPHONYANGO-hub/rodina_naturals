@@ -48,7 +48,7 @@ export function HeroSlider() {
 
   return (
     <section
-      className="relative min-h-[calc(100vh-174px)] overflow-hidden bg-charcoal"
+      className="relative min-h-[430px] overflow-hidden bg-charcoal md:min-h-[520px]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -68,25 +68,25 @@ export function HeroSlider() {
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-charcoal/88 via-maroon/50 to-white/0" />
-          <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-cream to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brandPurple/88 via-brandPurple/48 to-white/0" />
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-cream to-transparent" />
         </div>
       ))}
 
-      <div className="container-page relative flex min-h-[calc(100vh-174px)] items-center py-16">
-        <div className="grid w-full items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_420px]">
-          <div className="max-w-3xl text-white">
-            <p className="mb-5 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.26em] text-gold backdrop-blur">
+      <div className="container-page relative flex min-h-[430px] items-center py-10 md:min-h-[520px]">
+        <div className="grid w-full items-center gap-8 lg:grid-cols-[minmax(0,0.95fr)_360px]">
+          <div className="max-w-2xl text-white">
+            <p className="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-gold backdrop-blur">
               {slides[active].kicker}
             </p>
-            <h1 className="max-w-4xl text-5xl font-semibold leading-[0.98] text-white sm:text-7xl lg:text-8xl">
+            <h1 className="max-w-3xl text-4xl font-semibold leading-[1.04] text-white sm:text-5xl lg:text-6xl">
               {slides[active].title}
             </h1>
-            <p className="mt-7 max-w-2xl text-base font-light leading-8 text-white/84 sm:text-lg">
+            <p className="mt-5 max-w-xl text-sm font-light leading-7 text-white/86 sm:text-base">
               {slides[active].copy}
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link href={slides[active].cta} className="btn-primary bg-white text-maroon hover:bg-gold">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <Link href={slides[active].cta} className="btn-primary bg-white text-brandPurple hover:bg-gold">
                 Shop Now
               </Link>
               <Link
@@ -98,15 +98,15 @@ export function HeroSlider() {
             </div>
           </div>
 
-          <div className="hidden rounded-[34px] border border-white/20 bg-white/12 p-5 text-white shadow-[0_30px_100px_rgba(0,0,0,0.22)] backdrop-blur lg:block">
-            <div className="rounded-[28px] bg-white p-5 text-charcoal">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-gold">
+          <div className="hidden rounded-[28px] border border-white/20 bg-white/12 p-4 text-white shadow-[0_24px_70px_rgba(0,0,0,0.2)] backdrop-blur lg:block">
+            <div className="rounded-[24px] bg-white p-5 text-charcoal">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold">
                 Rodina promise
               </p>
-              <p className="mt-3 text-3xl font-semibold leading-tight">
+              <p className="mt-3 text-2xl font-semibold leading-tight">
                 Authentic beauty, fast Nairobi delivery, secure checkout.
               </p>
-              <div className="mt-6 grid grid-cols-3 gap-3 text-center text-xs font-semibold uppercase tracking-[0.16em] text-maroon">
+              <div className="mt-5 grid grid-cols-3 gap-3 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-brandPurple">
                 <span className="rounded-2xl bg-cream px-3 py-4">Skin</span>
                 <span className="rounded-2xl bg-cream px-3 py-4">Hair</span>
                 <span className="rounded-2xl bg-cream px-3 py-4">Body</span>
