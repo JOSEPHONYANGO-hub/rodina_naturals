@@ -98,7 +98,7 @@ export function Navbar() {
         </div>
       </div>
 
-      <div className="container-page flex min-h-[78px] items-center justify-between gap-5 py-3">
+      <div className="container-page flex min-h-[100px] items-center justify-between gap-5 py-3">
         <Logo className="shrink-0" />
         <form
           onSubmit={submitSearch}
