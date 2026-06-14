@@ -41,7 +41,7 @@ export default async function Home() {
     <>
       <HeroSlider />
 
-      <section className="relative z-10 -mt-10 pb-14">
+      <section className="bg-cream pb-14 pt-8">
         <div className="container-page grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {trusts.map((item) => (
             <div
