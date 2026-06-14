@@ -54,7 +54,7 @@ export function Navbar() {
       className="sticky inset-x-0 top-0 z-50 border-b-4 border-brandPurple bg-white text-brandPurple shadow-[0_10px_30px_rgba(36,22,23,0.08)]"
       onMouseLeave={() => setMegaOpen(false)}
     >
-      <div className="bg-brandPurple text-white">
+      <div className="bg-maroon text-white">
         <div className="container-page flex min-h-9 flex-wrap items-center justify-between gap-x-5 gap-y-2 py-2 text-xs font-bold sm:text-sm">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <a href={`tel:${CONTACT_DETAILS.phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-2">
@@ -72,7 +72,7 @@ export function Navbar() {
             </Link>
             <Link
               href={SOCIAL_LINKS.facebook}
-              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-brandPurple"
+              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-maroon"
               aria-label="Facebook"
               target="_blank"
             >
@@ -80,7 +80,7 @@ export function Navbar() {
             </Link>
             <Link
               href={SOCIAL_LINKS.instagram}
-              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-brandPurple"
+              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-maroon"
               aria-label="Instagram"
               target="_blank"
             >
@@ -88,7 +88,7 @@ export function Navbar() {
             </Link>
             <Link
               href={SOCIAL_LINKS.tiktok}
-              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-brandPurple"
+              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-maroon"
               aria-label="TikTok"
               target="_blank"
             >
