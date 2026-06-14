@@ -47,12 +47,7 @@ export function HeroSlider() {
       onMouseLeave={() => setPaused(false)}
     >
       <div className="container-page">
-        <div
-          className="relative mx-auto aspect-[2/1] w-full overflow-hidden bg-brandPurple shadow-[0_18px_60px_rgba(36,22,23,0.12)]"
-          style={{
-            maxWidth: "min(100%, calc((100vh - 350px) * 2), 1180px)",
-          }}
-        >
+        <div className="relative mx-auto aspect-[2/1] w-full max-w-[min(100%,calc((100vh-350px)*2),1180px)] overflow-hidden bg-brandPurple shadow-[0_18px_60px_rgba(36,22,23,0.12)] max-lg:max-w-[min(100%,calc((100vh-330px)*2),980px)] max-sm:max-w-full">
           {slides.map((slide, index) => (
             <Link
               key={slide.title}
