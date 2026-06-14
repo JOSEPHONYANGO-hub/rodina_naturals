@@ -46,7 +46,7 @@ export function HeroSlider() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative h-[240px] w-full overflow-hidden bg-brandPurple shadow-[0_12px_36px_rgba(36,22,23,0.1)] sm:h-[300px] lg:h-[410px] xl:h-[430px]">
+      <div className="relative aspect-[24/7] w-full overflow-hidden bg-brandPurple shadow-[0_12px_36px_rgba(36,22,23,0.1)]">
         {slides.map((slide, index) => (
           <Link
             key={slide.title}
@@ -63,7 +63,7 @@ export function HeroSlider() {
               fill
               priority={index === 0}
               sizes="100vw"
-              className="object-cover object-center"
+              className="h-full w-full object-fill"
             />
           </Link>
         ))}
