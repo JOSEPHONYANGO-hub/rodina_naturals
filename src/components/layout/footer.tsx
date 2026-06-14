@@ -1,6 +1,7 @@
-import { MapPin, Music2, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import { Logo } from "@/components/layout/logo";
+import { SocialIcon } from "@/components/social-icons";
 import { CATEGORIES, CONTACT_DETAILS, SOCIAL_LINKS } from "@/config/brand";
 
 const customerLinks = [
@@ -74,28 +75,35 @@ export function Footer() {
               <Phone className="h-4 w-4 text-gold" />
               {CONTACT_DETAILS.phone}
             </p>
+            <p className="flex items-center gap-2">
+              <Mail className="h-4 w-4 text-gold" />
+              {CONTACT_DETAILS.email}
+            </p>
           </div>
           <div className="mt-6 flex gap-3">
             <Link
               href={SOCIAL_LINKS.facebook}
               aria-label="Facebook"
               className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white transition hover:border-gold hover:text-gold"
+              target="_blank"
             >
-              <span className="text-xs font-bold">F</span>
+              <SocialIcon name="facebook" />
             </Link>
             <Link
               href={SOCIAL_LINKS.instagram}
               aria-label="Instagram"
               className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white transition hover:border-gold hover:text-gold"
+              target="_blank"
             >
-              <span className="text-xs font-bold">IG</span>
+              <SocialIcon name="instagram" />
             </Link>
             <Link
               href={SOCIAL_LINKS.tiktok}
               aria-label="TikTok"
               className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white transition hover:border-gold hover:text-gold"
+              target="_blank"
             >
-              <Music2 className="h-4 w-4" />
+              <SocialIcon name="tiktok" />
             </Link>
           </div>
         </div>

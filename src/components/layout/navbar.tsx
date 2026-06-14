@@ -17,6 +17,7 @@ import Link from "next/link";
 import type { FormEvent } from "react";
 import { useState } from "react";
 import { Logo } from "@/components/layout/logo";
+import { SocialIcon } from "@/components/social-icons";
 import { CATEGORIES, CONTACT_DETAILS, SOCIAL_LINKS } from "@/config/brand";
 import { useCart } from "@/lib/cart-store";
 import { cn } from "@/lib/utils";
@@ -60,23 +61,38 @@ export function Navbar() {
               <Phone className="h-4 w-4" />
               Call to order: {CONTACT_DETAILS.phone}
             </a>
-            <a href="mailto:customercare@rodinabeauty.co.ke" className="inline-flex items-center gap-2">
+            <a href={`mailto:${CONTACT_DETAILS.email}`} className="inline-flex items-center gap-2">
               <Mail className="h-4 w-4" />
-              Email: customercare@rodinabeauty.co.ke
+              Email: {CONTACT_DETAILS.email}
             </a>
           </div>
-          <div className="hidden items-center gap-4 md:flex">
+          <div className="flex items-center gap-3">
             <Link href="/shop" className="hover:text-cream">
               Newsletter
             </Link>
-            <Link href={SOCIAL_LINKS.facebook} className="hover:text-cream" aria-label="Facebook">
-              F
+            <Link
+              href={SOCIAL_LINKS.facebook}
+              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-brandPurple"
+              aria-label="Facebook"
+              target="_blank"
+            >
+              <SocialIcon name="facebook" />
             </Link>
-            <Link href={SOCIAL_LINKS.instagram} className="hover:text-cream" aria-label="Instagram">
-              IG
+            <Link
+              href={SOCIAL_LINKS.instagram}
+              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-brandPurple"
+              aria-label="Instagram"
+              target="_blank"
+            >
+              <SocialIcon name="instagram" />
             </Link>
-            <Link href={SOCIAL_LINKS.tiktok} className="hover:text-cream" aria-label="TikTok">
-              TT
+            <Link
+              href={SOCIAL_LINKS.tiktok}
+              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-brandPurple"
+              aria-label="TikTok"
+              target="_blank"
+            >
+              <SocialIcon name="tiktok" />
             </Link>
           </div>
         </div>
