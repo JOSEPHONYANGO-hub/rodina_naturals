@@ -9,6 +9,7 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
   const product = await prisma.product.findFirst({
     where: { OR: [{ id: params.id }, { slug: params.id }] },
     include: {
+      brand: true,
       category: true,
       reviews: { include: { user: { select: { name: true } } }, orderBy: { createdAt: "desc" } },
     },

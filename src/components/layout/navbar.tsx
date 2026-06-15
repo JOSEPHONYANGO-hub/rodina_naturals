@@ -2,9 +2,9 @@
 
 import {
   ChevronDown,
-  Mail,
   Heart,
   Menu,
+  MapPin,
   Phone,
   Search,
   ShoppingBag,
@@ -17,19 +17,19 @@ import Link from "next/link";
 import type { FormEvent } from "react";
 import { useState } from "react";
 import { Logo } from "@/components/layout/logo";
-import { SocialIcon } from "@/components/social-icons";
-import { CATEGORIES, CONTACT_DETAILS, SOCIAL_LINKS } from "@/config/brand";
+import { CATEGORIES, CONTACT_DETAILS } from "@/config/brand";
 import { useCart } from "@/lib/cart-store";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/shop", label: "All Products", hasMega: true },
-  { href: "/shop", label: "Our Brands", hasMega: true },
-  { href: "/shop?category=thalia", label: "Skincare" },
-  { href: "/shop?category=bioblas", label: "Haircare" },
-  { href: "/shop?q=makeup", label: "Makeup" },
-  { href: "/shop?category=rain", label: "Bath & Body" },
-  { href: "/shop?max=2000", label: "Offers / Deals" },
+  { href: "/", label: "Home" },
+  { href: "/shop", label: "Shop", hasMega: true },
+  { href: "/shop?brand=bioxcin", label: "Brands", hasMega: true },
+  { href: "/shop?category=skincare", label: "Skincare" },
+  { href: "/shop?category=hair-care", label: "Haircare" },
+  { href: "/shop?category=body-care", label: "Body Care" },
+  { href: "/shop?max=2000", label: "Top Deals" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 export function Navbar() {
@@ -51,72 +51,61 @@ export function Navbar() {
 
   return (
     <header
-      className="sticky inset-x-0 top-0 z-50 border-b-4 border-brandPurple bg-white text-brandPurple shadow-[0_10px_30px_rgba(36,22,23,0.08)]"
+      className="sticky inset-x-0 top-0 z-50 bg-[#a81723] text-white shadow-[0_12px_34px_rgba(34,34,34,0.16)]"
       onMouseLeave={() => setMegaOpen(false)}
     >
-      <div className="bg-maroon text-white">
-        <div className="container-page flex min-h-9 flex-wrap items-center justify-between gap-x-5 gap-y-2 py-2 text-xs font-bold sm:text-sm">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <a href={`tel:${CONTACT_DETAILS.phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-2">
-              <Phone className="h-4 w-4" />
-              Call to order: {CONTACT_DETAILS.phone}
-            </a>
-            <a href={`mailto:${CONTACT_DETAILS.email}`} className="inline-flex items-center gap-2">
-              <Mail className="h-4 w-4" />
-              Email: {CONTACT_DETAILS.email}
+      <div className="bg-[#7d111b] text-white/90">
+        <div className="container-page grid min-h-8 grid-cols-1 items-center gap-2 py-2 text-[11px] font-bold sm:grid-cols-3">
+          <div className="hidden items-center gap-5 sm:flex">
+            <span className="inline-flex items-center gap-2 truncate">
+              <MapPin className="h-3.5 w-3.5 text-[#F5E6D3]" />
+              Location
+            </span>
+            <a href={`tel:${CONTACT_DETAILS.phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-2 whitespace-nowrap hover:text-[#F5E6D3]">
+              <Phone className="h-3.5 w-3.5 text-[#F5E6D3]" />
+              {CONTACT_DETAILS.phone}
             </a>
           </div>
-          <div className="flex items-center gap-3">
-            <Link href="/shop" className="hover:text-cream">
-              Newsletter
+          <p className="text-center uppercase tracking-[0.16em] text-[#F5E6D3]">
+            Mid-Season Sale Up to 50% Off.
+          </p>
+          <div className="hidden items-center justify-end gap-6 sm:flex">
+            <Link href="/contact" className="hover:text-[#F5E6D3]">
+              Shipping & return
             </Link>
-            <Link
-              href={SOCIAL_LINKS.facebook}
-              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-maroon"
-              aria-label="Facebook"
-              target="_blank"
-            >
-              <SocialIcon name="facebook" />
-            </Link>
-            <Link
-              href={SOCIAL_LINKS.instagram}
-              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-maroon"
-              aria-label="Instagram"
-              target="_blank"
-            >
-              <SocialIcon name="instagram" />
-            </Link>
-            <Link
-              href={SOCIAL_LINKS.tiktok}
-              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-maroon"
-              aria-label="TikTok"
-              target="_blank"
-            >
-              <SocialIcon name="tiktok" />
+            <Link href="/cart" className="hover:text-[#F5E6D3]">
+              Track order
             </Link>
           </div>
         </div>
       </div>
 
-      <div className="container-page flex min-h-[100px] items-center justify-between gap-5 py-3">
-        <Logo className="shrink-0" />
+      <div className="border-y border-white/10 bg-[#a81723]">
+        <div className="container-page flex min-h-[82px] items-center justify-between gap-4 py-3">
+        <Logo className="shrink-0 rounded-xl bg-white px-2 py-1 shadow-none ring-1 ring-white/20 [&_img]:h-12 md:[&_img]:h-14" />
         <form
           onSubmit={submitSearch}
-          className="relative hidden max-w-3xl flex-1 items-center text-charcoal md:flex"
+          className="relative hidden max-w-2xl flex-1 items-center text-charcoal md:flex"
         >
-          <Search className="absolute right-4 h-5 w-5 text-charcoal" />
           <input
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-            placeholder="Search beauty essentials"
-            className="h-12 w-full rounded-full border border-charcoal/20 bg-[#f8f8f8] pl-5 pr-12 text-sm font-medium text-charcoal outline-none transition placeholder:text-charcoal/50 focus:border-brandPurple focus:bg-white"
+            placeholder="Search..."
+            className="h-12 w-full rounded-l-full border border-white/25 bg-white pl-5 pr-4 text-sm font-medium text-charcoal outline-none transition placeholder:text-charcoal/45 focus:border-[#F5E6D3]"
           />
+          <button
+            type="submit"
+            className="grid h-12 w-14 place-items-center rounded-r-full bg-[#F5E6D3] text-[#a81723] transition hover:bg-white"
+            aria-label="Search products"
+          >
+            <Search className="h-5 w-5" />
+          </button>
           {search && suggestions.length ? (
-            <div className="absolute left-0 right-0 top-14 overflow-hidden rounded-2xl border border-maroon/10 bg-white p-2 text-maroon shadow-[0_18px_50px_rgba(77,12,18,0.12)]">
+            <div className="absolute left-0 right-0 top-14 z-50 overflow-hidden rounded-2xl border border-maroon/10 bg-white p-2 text-maroon shadow-[0_18px_50px_rgba(77,12,18,0.12)]">
               {suggestions.map((category) => (
                 <Link
                   key={category}
-                  href={`/shop?category=${category.toLowerCase()}`}
+                  href={`/shop?brand=${category.toLowerCase()}`}
                   className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm hover:bg-cream"
                 >
                   <Sparkles className="h-3.5 w-3.5 text-gold" />
@@ -126,10 +115,10 @@ export function Navbar() {
             </div>
           ) : null}
         </form>
-        <div className="flex items-center gap-2 text-brandPurple sm:gap-4">
+        <div className="flex items-center gap-2 text-white sm:gap-4">
           <Link
             href="/shop"
-            className="hidden p-2 transition hover:text-brandPurpleDark sm:block"
+            className="hidden p-2 transition hover:text-[#F5E6D3] sm:block"
             aria-label="Wishlist"
           >
             <Heart size={20} />
@@ -138,13 +127,13 @@ export function Navbar() {
             {status === "authenticated" ? (
               <button
                 className={cn(
-                  "flex items-center gap-2 rounded-full border px-2 py-1.5 text-xs font-semibold transition hover:border-gold",
-                  "border-brandPurple/15 bg-white text-brandPurple",
+                  "flex items-center gap-2 rounded-full border px-2 py-1.5 text-xs font-semibold transition hover:border-[#F5E6D3]",
+                  "border-white/20 bg-white/10 text-white",
                 )}
                 onClick={() => setAccountOpen((value) => !value)}
                 aria-label="Account menu"
               >
-                <span className="grid h-8 w-8 place-items-center rounded-full bg-gold text-[11px] font-bold uppercase text-brandPurple">
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-[#F5E6D3] text-[11px] font-bold uppercase text-[#a81723]">
                   {(session.user.name || session.user.email || "A").slice(0, 1)}
                 </span>
                 <span className="hidden max-w-28 truncate xl:inline">
@@ -154,7 +143,7 @@ export function Navbar() {
             ) : (
               <Link
                 href="/login"
-                className="p-2 text-brandPurple transition hover:text-brandPurpleDark"
+                className="p-2 text-white transition hover:text-[#F5E6D3]"
                 aria-label="Login"
               >
                 <UserRound size={20} />
@@ -205,18 +194,18 @@ export function Navbar() {
           </div>
           <Link
             href="/cart"
-            className="relative p-2 text-brandPurple transition hover:text-brandPurpleDark"
+            className="relative p-2 text-white transition hover:text-[#F5E6D3]"
             aria-label="Cart"
           >
             <ShoppingBag size={20} />
             {count > 0 ? (
-              <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-gold text-[10px] font-semibold text-brandPurple">
+              <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-[#F5E6D3] text-[10px] font-semibold text-[#a81723]">
                 {count}
               </span>
             ) : null}
           </Link>
           <button
-            className="p-2 text-brandPurple lg:hidden"
+            className="p-2 text-white lg:hidden"
             onClick={() => setOpen((value) => !value)}
             aria-label="Toggle menu"
           >
@@ -224,19 +213,17 @@ export function Navbar() {
           </button>
         </div>
       </div>
+      </div>
 
-      <nav className="hidden border-t border-maroon/10 bg-white lg:block">
-        <div className="container-page flex min-h-[58px] items-center justify-center gap-7 text-sm font-bold text-brandPurple xl:gap-10 xl:text-base">
+      <nav className="hidden bg-[#8f1420] lg:block">
+        <div className="container-page flex min-h-[50px] items-center justify-center gap-7 text-[12px] font-extrabold uppercase tracking-[0.12em] text-white xl:gap-9">
           {links.map((link) => (
             <Link
               key={`${link.href}-${link.label}`}
               href={link.href}
-              className="inline-flex items-center gap-1 whitespace-nowrap transition hover:text-brandPurpleDark"
+              className="inline-flex items-center gap-1 whitespace-nowrap border-b-2 border-transparent py-4 transition hover:border-[#F5E6D3] hover:text-[#F5E6D3]"
               onMouseEnter={() => setMegaOpen(Boolean(link.hasMega))}
             >
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-brandPurple/10 text-brandPurple">
-                {link.label.slice(0, 1)}
-              </span>
               {link.label}
               {link.hasMega ? <ChevronDown className="h-4 w-4" /> : null}
             </Link>

@@ -10,6 +10,7 @@ type ProductFormValue = {
   ingredients: string;
   price: { toString(): string } | number | string;
   categoryId: string;
+  brandId: string | null;
   stock: number;
   images: string[];
   isFeatured: boolean;
@@ -17,9 +18,11 @@ type ProductFormValue = {
 };
 
 export function ProductForm({
+  brands,
   categories,
   product,
 }: {
+  brands: { id: string; name: string }[];
   categories: { id: string; name: string }[];
   product?: ProductFormValue;
 }) {
@@ -52,6 +55,7 @@ export function ProductForm({
       ingredients: form.get("ingredients"),
       price: Number(form.get("price")),
       categoryId: form.get("categoryId"),
+      brandId: form.get("brandId"),
       stock: Number(form.get("stock")),
       images,
       isFeatured: form.get("isFeatured") === "on",
@@ -102,6 +106,12 @@ export function ProductForm({
         <option value="">Select category</option>
         {categories.map((category) => (
           <option key={category.id} value={category.id}>{category.name}</option>
+        ))}
+      </select>
+      <select className="field" name="brandId" defaultValue={product?.brandId || ""} required>
+        <option value="">Select brand</option>
+        {brands.map((brand) => (
+          <option key={brand.id} value={brand.id}>{brand.name}</option>
         ))}
       </select>
       <textarea className="field min-h-32" name="description" defaultValue={product?.description} placeholder="Description" required />

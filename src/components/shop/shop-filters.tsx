@@ -5,8 +5,10 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export function ShopFilters({
+  brands,
   categories,
 }: {
+  brands: { name: string; slug: string }[];
   categories: { name: string; slug: string }[];
 }) {
   const params = useSearchParams();
@@ -95,11 +97,11 @@ export function ShopFilters({
         </select>
         <select
           className="field rounded-full"
-          defaultValue={params.get("category") || ""}
-          onChange={(event) => setFilter("category", event.target.value)}
+          defaultValue={params.get("brand") || ""}
+          onChange={(event) => setFilter("brand", event.target.value)}
         >
           <option value="">All brands</option>
-          {categories.map((category) => (
+          {brands.map((category) => (
             <option key={category.slug} value={category.slug}>
               {category.name}
             </option>

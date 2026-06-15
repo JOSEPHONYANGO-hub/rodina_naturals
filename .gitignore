@@ -29,6 +29,11 @@ yarn-error.log*
 .env
 .env*.local
 
+# local postgres development data
+.postgres-data/
+.postgres-log
+.postgres-pw
+
 # vercel
 .vercel
 

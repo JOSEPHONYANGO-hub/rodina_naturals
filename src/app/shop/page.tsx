@@ -1,19 +1,43 @@
 import Link from "next/link";
 import { ProductCard } from "@/components/product/product-card";
 import { ShopFilters } from "@/components/shop/shop-filters";
-import { getCategories, getProductListing, toProductCard } from "@/services/catalog";
+import {
+  FEATURED_BRANDS,
+  SHOP_CATEGORIES,
+  getCategories,
+  getBrands,
+  getFallbackProductListing,
+  getProductListing,
+  toProductCard,
+} from "@/services/catalog";
 
 export const dynamic = "force-dynamic";
 
 export default async function ShopPage({
   searchParams,
 }: {
-  searchParams: { q?: string; category?: string; min?: string; max?: string; page?: string };
+  searchParams: { q?: string; brand?: string; category?: string; min?: string; max?: string; page?: string };
 }) {
-  const [listing, categories] = await Promise.all([
-    getProductListing(searchParams),
-    getCategories(),
-  ]);
+  let listing = getFallbackProductListing(searchParams);
+  let categories = SHOP_CATEGORIES;
+  let brands = FEATURED_BRANDS;
+
+  try {
+    const [databaseListing, databaseBrands, databaseCategories] = await Promise.all([
+      getProductListing(searchParams),
+      getBrands(),
+      getCategories(),
+    ]);
+
+    listing = {
+      ...databaseListing,
+      products: databaseListing.products.map((product) => toProductCard(product)),
+    };
+    brands = databaseBrands.length ? databaseBrands : FEATURED_BRANDS;
+    categories = databaseCategories.length ? databaseCategories : SHOP_CATEGORIES;
+  } catch (error) {
+    console.warn("Using shop fallback products because catalog data is unavailable.", error);
+  }
 
   return (
     <div className="bg-cream pb-24 pt-32">
@@ -36,11 +60,11 @@ export default async function ShopPage({
           </div>
         </div>
         <div className="grid gap-8 lg:grid-cols-[300px_1fr]">
-          <ShopFilters categories={categories} />
+          <ShopFilters brands={brands} categories={categories} />
           <div>
             <div className="grid grid-cols-2 gap-4 sm:gap-6 xl:grid-cols-3">
               {listing.products.map((product) => (
-                <ProductCard key={product.id} product={toProductCard(product)} />
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
             <div className="mt-10 flex items-center justify-center gap-3">

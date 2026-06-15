@@ -6,10 +6,12 @@ export type ProductCardData = {
   images: string[];
   stock: number;
   category?: { name: string };
+  brand?: { name: string } | null;
 };
 
 export type ProductFilters = {
   q?: string;
+  brand?: string;
   category?: string;
   min?: string;
   max?: string;

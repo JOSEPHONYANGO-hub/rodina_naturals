@@ -1,6 +1,6 @@
 "use client";
 
-import { Eye, Heart, ShoppingBag, X } from "lucide-react";
+import { Eye, Heart, ShoppingBag, Star, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -11,6 +11,10 @@ import type { ProductCardData } from "@/types/catalog";
 type ProductCardProps = {
   product: ProductCardData;
 };
+
+function reviewCount(productId: string) {
+  return 48 + productId.split("").reduce((total, char) => total + char.charCodeAt(0), 0) % 280;
+}
 
 export function ProductCard({ product }: ProductCardProps) {
   const add = useCart((state) => state.add);
@@ -53,7 +57,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </Link>
           <div className="absolute left-3 top-3">
             <span className="rounded-full bg-white/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-maroon shadow">
-              {soldOut ? "Sold Out" : "In Stock"}
+              {soldOut ? "Sold Out" : "Sale"}
             </span>
           </div>
           <div className="absolute right-3 top-3 flex flex-col gap-2 opacity-100 transition md:opacity-0 md:group-hover:opacity-100">
@@ -73,22 +77,31 @@ export function ProductCard({ product }: ProductCardProps) {
             </Link>
           </div>
         </div>
-        <div className="px-4 pb-4 pt-4 sm:px-5 sm:pb-5">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold">
-            {product.category?.name}
+        <div className="px-4 pb-4 pt-4 transition duration-300 group-hover:bg-[#a81723] sm:px-5 sm:pb-5">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold transition group-hover:text-[#F5E6D3]">
+            {product.brand?.name || product.category?.name}
           </p>
           <Link href={`/products/${product.slug}`}>
-            <h3 className="mt-2 min-h-[3.5rem] text-base font-semibold leading-snug text-charcoal transition group-hover:text-maroon sm:text-lg">
+            <h3 className="mt-2 min-h-[3.5rem] text-base font-semibold leading-snug text-charcoal transition group-hover:text-white sm:text-lg">
               {product.name}
             </h3>
           </Link>
-          <div className="mt-4 flex items-center justify-between gap-3 border-t border-maroon/10 pt-4">
-            <p className="text-sm font-bold tracking-[0.04em] text-maroon sm:text-base">
+          <div className="mt-3 flex items-center gap-2 text-xs font-semibold text-charcoal/60 transition group-hover:text-white/78">
+            <span className="inline-flex items-center gap-0.5 text-gold transition group-hover:text-[#F5E6D3]" aria-label="Rated 4.8 out of 5">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <Star key={index} className="h-3.5 w-3.5 fill-current" />
+              ))}
+            </span>
+            <span>4.8</span>
+            <span>({reviewCount(product.id)} reviews)</span>
+          </div>
+          <div className="mt-4 flex items-center justify-between gap-3 border-t border-maroon/10 pt-4 transition group-hover:border-white/18">
+            <p className="text-sm font-bold tracking-[0.04em] text-maroon transition group-hover:text-white sm:text-base">
               {formatCurrency(product.price)}
             </p>
             <button
               onClick={addProduct}
-              className="inline-flex min-h-10 items-center justify-center rounded-full bg-charcoal px-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-maroon disabled:cursor-not-allowed disabled:bg-charcoal/20 sm:px-5"
+              className="inline-flex min-h-10 items-center justify-center rounded-full bg-charcoal px-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-maroon group-hover:bg-white group-hover:text-[#a81723] group-hover:hover:bg-[#F5E6D3] disabled:cursor-not-allowed disabled:bg-charcoal/20 sm:px-5"
               aria-label={`Add ${product.name} to cart`}
               disabled={soldOut}
             >

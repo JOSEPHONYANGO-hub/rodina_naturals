@@ -14,6 +14,7 @@ export const productSchema = z.object({
   price: z.coerce.number().positive(),
   images: z.array(z.string().url()).min(1),
   categoryId: z.string().min(1),
+  brandId: z.string().min(1),
   stock: z.coerce.number().int().min(0),
   isFeatured: z.coerce.boolean().optional(),
   isBestSeller: z.coerce.boolean().optional(),
