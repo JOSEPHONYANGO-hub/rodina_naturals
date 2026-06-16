@@ -3,18 +3,97 @@ import { hash } from "bcryptjs";
 
 const prisma = new PrismaClient();
 
-const SHOP_CATEGORIES = [
-  { name: "Skincare", slug: "skincare" },
-  { name: "Hair Care", slug: "hair-care" },
-  { name: "Body Care", slug: "body-care" },
-  { name: "Foot Care", slug: "foot-care" },
-  { name: "Makeup", slug: "makeup" },
-  { name: "Fragrances", slug: "fragrances" },
-  { name: "Men's Grooming", slug: "mens-grooming" },
-  { name: "Beauty Tools", slug: "beauty-tools" },
-  { name: "Organic Products", slug: "organic-products" },
-  { name: "Gift Sets", slug: "gift-sets" },
+function categorySlug(name: string) {
+  return name
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/'/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+const SHOP_CATEGORY_NAMES = [
+  "Skincare",
+  "Cleansers",
+  "Toners",
+  "Serums",
+  "Moisturizers",
+  "Face Masks",
+  "Sunscreens",
+  "Eye Care",
+  "Lip Care",
+  "Hair Care",
+  "Shampoo",
+  "Conditioner",
+  "Hair Oils",
+  "Hair Masks",
+  "Hair Serums",
+  "Hair Growth Products",
+  "Styling Products",
+  "Body Care",
+  "Body Wash",
+  "Body Lotion",
+  "Body Butter",
+  "Body Scrubs",
+  "Hand Creams",
+  "Foot Care",
+  "Foot Creams",
+  "Heel Repair",
+  "Foot Scrubs",
+  "Foot Masks",
+  "Makeup",
+  "Foundation",
+  "Concealer",
+  "Lipstick",
+  "Mascara",
+  "Eyeshadow",
+  "Eyeliner",
+  "Fragrances",
+  "Women's Perfumes",
+  "Men's Perfumes",
+  "Body Mists",
+  "Men's Grooming",
+  "Beard Care",
+  "Shaving",
+  "Face Care",
+  "Hair Styling",
+  "Beauty Tools",
+  "Makeup Brushes",
+  "Beauty Blenders",
+  "Hair Brushes",
+  "Facial Rollers",
+  "Organic Products",
+  "Organic Skincare",
+  "Organic Haircare",
+  "Herbal Products",
+  "Gift Sets",
+  "Skincare Sets",
+  "Haircare Sets",
+  "Beauty Bundles",
+  "Skin Concerns",
+  "Acne & Blemishes",
+  "Dry Skin",
+  "Oily Skin",
+  "Sensitive Skin",
+  "Hyperpigmentation",
+  "Anti-Aging",
+  "Hair Concerns",
+  "Hair Loss",
+  "Dandruff",
+  "Dry Hair",
+  "Damaged Hair",
+  "Weak Hair",
+  "Curly Hair Care",
+  "Body Concerns",
+  "Stretch Marks",
+  "Dark Spots",
+  "Uneven Skin Tone",
 ];
+
+const SHOP_CATEGORIES = SHOP_CATEGORY_NAMES.map((name) => ({
+  name,
+  slug: categorySlug(name),
+}));
 
 const FEATURED_BRANDS = [
   { name: "Bioxcin", slug: "bioxcin" },

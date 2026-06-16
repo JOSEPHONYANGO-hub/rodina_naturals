@@ -1,6 +1,6 @@
 "use client";
 
-import { Eye, Heart, ShoppingBag, Star, X } from "lucide-react";
+import { Eye, Heart, ShoppingCart, Star, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -12,6 +12,8 @@ type ProductCardProps = {
   product: ProductCardData;
 };
 
+const PRODUCT_IMAGE_FALLBACK = "/rodina-logo.jpeg";
+
 function reviewCount(productId: string) {
   return 48 + productId.split("").reduce((total, char) => total + char.charCodeAt(0), 0) % 280;
 }
@@ -20,7 +22,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const add = useCart((state) => state.add);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
   const soldOut = product.stock < 1;
-  const image = product.images[0];
+  const image = product.images[0] || PRODUCT_IMAGE_FALLBACK;
 
   const addProduct = () =>
     add({
@@ -35,7 +37,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <article className="group overflow-hidden rounded-[28px] border border-maroon/10 bg-white shadow-[0_18px_55px_rgba(77,12,18,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(77,12,18,0.11)]">
         <div className="relative">
           <Link href={`/products/${product.slug}`} className="block">
-            <div className="relative aspect-[4/5] overflow-hidden bg-rose/35">
+            <div className="relative h-[220px] overflow-hidden bg-rose/35 sm:h-[250px] lg:h-[270px]">
               <Image
                 src={image}
                 alt={product.name}
@@ -78,7 +80,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
         </div>
         <div className="px-4 pb-4 pt-4 transition duration-300 group-hover:bg-[#a81723] sm:px-5 sm:pb-5">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold transition group-hover:text-[#F5E6D3]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#a81723] transition group-hover:text-[#F5E6D3]">
             {product.brand?.name || product.category?.name}
           </p>
           <Link href={`/products/${product.slug}`}>
@@ -87,7 +89,7 @@ export function ProductCard({ product }: ProductCardProps) {
             </h3>
           </Link>
           <div className="mt-3 flex items-center gap-2 text-xs font-semibold text-charcoal/60 transition group-hover:text-white/78">
-            <span className="inline-flex items-center gap-0.5 text-gold transition group-hover:text-[#F5E6D3]" aria-label="Rated 4.8 out of 5">
+            <span className="inline-flex items-center gap-0.5 text-[#a81723] transition group-hover:text-[#F5E6D3]" aria-label="Rated 4.8 out of 5">
               {Array.from({ length: 5 }).map((_, index) => (
                 <Star key={index} className="h-3.5 w-3.5 fill-current" />
               ))}
@@ -101,12 +103,11 @@ export function ProductCard({ product }: ProductCardProps) {
             </p>
             <button
               onClick={addProduct}
-              className="inline-flex min-h-10 items-center justify-center rounded-full bg-charcoal px-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-maroon group-hover:bg-white group-hover:text-[#a81723] group-hover:hover:bg-[#F5E6D3] disabled:cursor-not-allowed disabled:bg-charcoal/20 sm:px-5"
+              className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-charcoal text-white transition hover:bg-maroon group-hover:bg-white group-hover:text-[#a81723] group-hover:hover:bg-[#F5E6D3] disabled:cursor-not-allowed disabled:bg-charcoal/20"
               aria-label={`Add ${product.name} to cart`}
               disabled={soldOut}
             >
-              <ShoppingBag className="mr-2 h-4 w-4" />
-              Add
+              <ShoppingCart className="h-5 w-5" />
             </button>
           </div>
         </div>
@@ -144,7 +145,7 @@ export function ProductCard({ product }: ProductCardProps) {
                   disabled={soldOut}
                   className={cn("btn-primary", soldOut && "cursor-not-allowed opacity-45")}
                 >
-                  <ShoppingBag className="mr-2 h-4 w-4" />
+                  <ShoppingCart className="mr-2 h-4 w-4" />
                   {soldOut ? "Out Of Stock" : "Add To Cart"}
                 </button>
                 <Link href={`/products/${product.slug}`} className="btn-secondary">

@@ -2,11 +2,8 @@ import {
   ArrowRight,
   Award,
   BadgeCheck,
-  BookOpen,
   CreditCard,
   Droplets,
-  Headphones,
-  RefreshCcw,
   Scissors,
   Sparkles,
   Truck,
@@ -14,6 +11,7 @@ import {
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { CarouselFrame } from "@/components/home/carousel-frame";
 import { HeroSlider } from "@/components/home/hero-slider";
 import { ProductCard } from "@/components/product/product-card";
 import { fallbackProducts, getHomeCatalog, toProductCard } from "@/services/catalog";
@@ -147,30 +145,11 @@ const brands = [
   },
 ];
 
-const collections = [
-  ["Best Sellers", "Most-loved essentials with proven routine results.", "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=1200&q=85"],
-  ["New Arrivals", "Fresh formulas and newly launched beauty edits.", "https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&w=1200&q=85"],
-  ["Trending Products", "Beauty products currently leading the conversation.", "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=85"],
-  ["Customer Favorites", "Highly rated picks our shoppers return to.", "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=85"],
-  ["Editor's Picks", "Curated by Rodina for refined everyday rituals.", "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1200&q=85"],
-  ["Limited Editions", "Special sets and seasonal beauty discoveries.", "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=1200&q=85"],
-];
-
 const trustCards = [
   { icon: BadgeCheck, title: "100% Genuine Products", copy: "Every item is sourced with authenticity and brand integrity in mind." },
   { icon: CreditCard, title: "Secure Checkout", copy: "Protected payment flows with card and M-Pesa support." },
   { icon: Truck, title: "Fast Delivery", copy: "Reliable dispatch for beauty routines that cannot wait." },
-  { icon: Headphones, title: "Premium Customer Support", copy: "Thoughtful help before and after every purchase." },
-  { icon: RefreshCcw, title: "Easy Returns", copy: "Clear return support for a confident shopping experience." },
   { icon: Award, title: "Trusted Beauty Brands", copy: "A focused marketplace for professional care and daily luxury." },
-];
-
-const articles = [
-  ["How To Build A Skincare Routine", "A simple order for cleansing, treating, hydrating and protecting skin.", "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=85"],
-  ["Hair Growth Tips", "Strength-focused steps for fuller-looking, healthier-feeling hair.", "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=85"],
-  ["Anti-Aging Essentials", "Ingredients and textures that support smoother-looking skin.", "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=900&q=85"],
-  ["Choosing The Right Shampoo", "Match your cleanser to scalp needs, texture and treatment goals.", "https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=900&q=85"],
-  ["Healthy Skin Habits", "Small daily rituals that keep your routine consistent and polished.", "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=900&q=85"],
 ];
 
 function SectionBanner({
@@ -187,12 +166,12 @@ function SectionBanner({
   align?: "left" | "center";
 }) {
   return (
-    <div className="relative isolate overflow-hidden bg-[#222222] px-6 py-12 text-white shadow-[0_24px_80px_rgba(34,34,34,0.16)] sm:px-10 lg:px-14">
-      <Image src={image} alt="" fill sizes="100vw" className="absolute inset-0 -z-20 object-cover opacity-60" />
+    <div className="relative isolate overflow-hidden bg-[#222222] px-6 py-9 text-white shadow-[0_24px_80px_rgba(34,34,34,0.16)] sm:px-10 sm:py-10 lg:px-14">
+      <Image src={image} alt="" fill sizes="100vw" className="absolute inset-0 -z-20 object-cover opacity-30" />
       <div className="absolute inset-0 -z-10 bg-[#222222]/58" />
       <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
         <p className="text-[11px] font-bold uppercase tracking-[0.34em] text-[#F5E6D3]">{eyebrow}</p>
-        <h2 className="mt-4 text-4xl font-semibold leading-[1.02] text-white sm:text-6xl">{title}</h2>
+        <h2 className="mt-3 text-4xl font-semibold leading-[1.02] text-white sm:text-5xl">{title}</h2>
         <p className="mt-5 max-w-2xl text-sm leading-7 text-white/85 sm:text-base">{copy}</p>
       </div>
     </div>
@@ -214,13 +193,13 @@ function ProductRail({
           Shop products
         </Link>
       </div>
-      <div className="flex snap-x gap-4 overflow-x-auto pb-2 [scrollbar-width:thin]">
+      <CarouselFrame ariaLabel={`${title} carousel`} className="gap-4 pb-2">
         {products.map((product) => (
           <div key={`${title}-${product.id}`} className="min-w-[250px] snap-start sm:min-w-[290px] lg:min-w-[310px]">
             <ProductCard product={product} />
           </div>
         ))}
-      </div>
+      </CarouselFrame>
     </div>
   );
 }
@@ -244,21 +223,17 @@ export default async function Home() {
       <HeroSlider />
 
       <main className="overflow-hidden bg-[#FAF8F5]">
-        <section className="py-16 sm:py-24">
+        <section className="pb-8 pt-16 sm:pb-10 sm:pt-24">
           <div className="container-page">
             <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
-                <p className="eyebrow">Category showcase</p>
                 <h2 className="section-title">Shop Beauty By Category</h2>
               </div>
               <Link href="/shop" className="fine-link">
                 View all categories
               </Link>
             </div>
-            <div
-              className="flex snap-x gap-5 overflow-x-auto pb-4 [scrollbar-width:thin]"
-              aria-label="Main beauty categories carousel"
-            >
+            <CarouselFrame ariaLabel="Main beauty categories carousel" className="gap-5 pb-4">
               {categoryShowcase.map((category, index) => (
                 <Link
                   key={category.title}
@@ -272,7 +247,7 @@ export default async function Home() {
                     sizes="(min-width: 1280px) 40vw, (min-width: 768px) 50vw, 100vw"
                     className="object-cover transition duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-black/20 transition group-hover:bg-black/30" />
+                  <div className="absolute inset-0 bg-black/30 transition group-hover:bg-black/30" />
                   <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
                     <p className="text-[11px] font-bold uppercase tracking-[0.26em] text-[#F5E6D3]">
                       {String(index + 1).padStart(2, "0")} / Category
@@ -285,11 +260,11 @@ export default async function Home() {
                   </div>
                 </Link>
               ))}
-            </div>
+            </CarouselFrame>
           </div>
         </section>
 
-        <section className="bg-white py-16 sm:py-24">
+        <section className="bg-white pb-16 pt-8 sm:pb-24 sm:pt-10">
           <div className="container-page space-y-10">
             <SectionBanner
               eyebrow="Shop by concern"
@@ -298,30 +273,30 @@ export default async function Home() {
               image="https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=1800&q=88"
             />
             <ProductRail title="Concern-focused favorites" products={products} />
-            <div className="grid gap-5 lg:grid-cols-3">
-              {concernGroups.map((group) => (
-                <div key={group.title} className="rounded-[32px] border border-[#a81723]/10 bg-[#FAF8F5] p-6 shadow-[0_20px_60px_rgba(34,34,34,0.06)]">
-                  <div className="flex items-center gap-3">
-                    <span className="grid h-12 w-12 place-items-center rounded-full bg-[#a81723] text-white">
-                      <group.icon className="h-5 w-5" />
-                    </span>
-                    <h3 className="text-2xl font-semibold text-[#222222]">{group.title}</h3>
-                  </div>
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-                    {group.concerns.map((concern) => (
-                      <Link
-                        key={concern}
-                        href={`/shop?q=${encodeURIComponent(concern)}`}
-                        className="group flex items-center justify-between rounded-2xl border border-[#a81723]/10 bg-white px-4 py-3 text-sm font-semibold text-[#222222] shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-[#a81723]/40 hover:text-[#a81723]"
-                      >
-                        {concern}
-                        <ArrowRight className="h-4 w-4 opacity-0 transition group-hover:translate-x-1 group-hover:opacity-100" />
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <CarouselFrame ariaLabel="Shop by concern carousel" className="gap-4 pb-3">
+              {concernGroups.flatMap((group) =>
+                group.concerns.map((concern) => (
+                  <Link
+                    key={`${group.title}-${concern}`}
+                    href={`/shop?q=${encodeURIComponent(concern)}`}
+                    className="group min-w-[210px] snap-start rounded-[24px] border border-[#a81723]/20 bg-[#7a111b] p-5 text-white shadow-[0_16px_45px_rgba(34,34,34,0.12)] transition duration-300 hover:-translate-y-1 hover:border-[#F5E6D3]/50 hover:bg-[#5f0d15] hover:shadow-[0_24px_65px_rgba(168,23,35,0.22)] sm:min-w-[240px]"
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="grid h-11 w-11 place-items-center rounded-full bg-[#F5E6D3] text-[#a81723] shadow-sm">
+                        <group.icon className="h-5 w-5" />
+                      </span>
+                      <ArrowRight className="h-4 w-4 text-[#F5E6D3] opacity-60 transition group-hover:translate-x-1 group-hover:opacity-100" />
+                    </div>
+                    <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.22em] text-[#F5E6D3]/78">
+                      {group.title}
+                    </p>
+                    <h3 className="mt-2 text-xl font-semibold leading-tight text-white">
+                      {concern}
+                    </h3>
+                  </Link>
+                )),
+              )}
+            </CarouselFrame>
           </div>
         </section>
 
@@ -334,7 +309,7 @@ export default async function Home() {
               image="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1800&q=88"
               align="center"
             />
-            <ProductRail title="Featured brand products" products={products} />
+            <ProductRail title="Featured brand products" products={featuredCards} />
             <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {brands.map((brand) => (
                 <Link
@@ -369,34 +344,6 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="bg-[#222222] py-16 text-white sm:py-24">
-          <div className="container-page">
-            <div className="mb-10">
-              <p className="text-[11px] font-bold uppercase tracking-[0.34em] text-[#F5E6D3]">Featured collections</p>
-              <h2 className="mt-3 max-w-3xl text-4xl font-semibold leading-[1.04] text-white sm:text-6xl">Magazine-style edits for every beauty mood</h2>
-            </div>
-            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-6">
-              {collections.map(([title, copy, image], index) => (
-                <Link
-                  key={title}
-                  href={`/shop?q=${encodeURIComponent(title)}`}
-                  className={`group relative min-h-[330px] overflow-hidden rounded-[32px] bg-[#a81723] p-6 shadow-[0_26px_80px_rgba(0,0,0,0.22)] ${
-                    index < 2 ? "xl:col-span-3" : "xl:col-span-2"
-                  }`}
-                >
-                  <Image src={image} alt={title} fill sizes="(min-width: 1280px) 50vw, 100vw" className="object-cover opacity-70 transition duration-700 group-hover:scale-110 group-hover:opacity-82" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#222222]/88 via-[#222222]/25 to-transparent" />
-                  <div className="relative flex h-full min-h-[280px] flex-col justify-end">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#F5E6D3]">Collection</p>
-                    <h3 className="mt-2 text-3xl font-semibold text-white">{title}</h3>
-                    <p className="mt-3 max-w-md text-sm leading-7 text-white/78">{copy}</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="bg-white py-16 sm:py-24">
           <div className="container-page">
             <SectionBanner
@@ -406,29 +353,56 @@ export default async function Home() {
               image="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&w=1800&q=88"
             />
             <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-              {products.map((product) => (
+              {bestSellerCards.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
           </div>
         </section>
 
-        <section className="bg-[#FAF8F5] py-16 sm:py-24">
+        <section className="bg-[#FAF8F5] py-14 sm:py-20">
           <div className="container-page">
-            <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-              <div>
+            <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+              <div className="lg:sticky lg:top-28">
                 <p className="eyebrow">Why shop with Rodina</p>
-                <h2 className="section-title">A premium beauty marketplace built on trust</h2>
-                <p className="mt-5 text-sm leading-7 text-[#222222]/65 sm:text-base">
+                <h2 className="mt-3 max-w-xl text-4xl font-semibold leading-[1.02] text-[#7a111b] sm:text-5xl lg:text-6xl">
+                  A premium beauty marketplace built on trust
+                </h2>
+                <p className="mt-5 max-w-lg text-sm leading-7 text-[#222222]/65 sm:text-base">
                   Thoughtful product discovery, genuine brands and a polished shopping flow for skincare, haircare, body care and wellness essentials.
                 </p>
+                <div className="mt-8 grid max-w-lg grid-cols-3 overflow-hidden rounded-[24px] border border-[#a81723]/10 bg-white shadow-[0_18px_55px_rgba(34,34,34,0.05)]">
+                  {[
+                    ["100%", "Genuine"],
+                    ["Fast", "Delivery"],
+                    ["Secure", "Checkout"],
+                  ].map(([value, label]) => (
+                    <div key={label} className="border-r border-[#a81723]/10 px-4 py-4 last:border-r-0">
+                      <p className="text-lg font-semibold text-[#7a111b]">{value}</p>
+                      <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[#222222]/45">{label}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
+
               <div className="grid gap-4 sm:grid-cols-2">
-                {trustCards.map((item) => (
-                  <div key={item.title} className="rounded-[28px] border border-[#a81723]/10 bg-white p-5 shadow-[0_18px_55px_rgba(34,34,34,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(168,23,35,0.12)]">
-                    <item.icon className="h-6 w-6 text-[#a81723]" />
-                    <h3 className="mt-4 text-lg font-semibold text-[#222222]">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-[#222222]/62">{item.copy}</p>
+                {trustCards.map((item, index) => (
+                  <div
+                    key={item.title}
+                    className="group rounded-[22px] border border-[#a81723]/12 bg-[#F5E6D3] p-5 shadow-[0_16px_50px_rgba(34,34,34,0.06)] transition duration-300 hover:-translate-y-1 hover:border-[#a81723]/28 hover:bg-[#f2dfc8] hover:shadow-[0_24px_70px_rgba(168,23,35,0.12)]"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white text-[#a81723] shadow-sm transition group-hover:bg-[#a81723] group-hover:text-white">
+                        <item.icon className="h-5 w-5" />
+                      </span>
+                      <span className="text-xs font-bold tracking-[0.18em] text-[#7a111b]/35">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <div className="mt-5 border-t border-[#a81723]/12 pt-4">
+                      <h3 className="text-lg font-semibold text-[#222222]">{item.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-[#222222]/64">{item.copy}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -436,40 +410,9 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="bg-white py-16 sm:py-24">
-          <div className="container-page space-y-10">
-            <SectionBanner
-              eyebrow="Beauty advice"
-              title="The Rodina Journal"
-              copy="Editorial guidance for choosing products, refining routines and shopping with confidence."
-              image="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=1800&q=88"
-              align="center"
-            />
-            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-5">
-              {articles.map(([title, copy, image], index) => (
-                <article key={title} className={`group overflow-hidden rounded-[30px] border border-[#a81723]/10 bg-[#FAF8F5] shadow-[0_18px_55px_rgba(34,34,34,0.07)] transition duration-500 hover:-translate-y-1 ${index === 0 ? "xl:col-span-2" : ""}`}>
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image src={image} alt={title} fill sizes="(min-width: 1280px) 30vw, 100vw" className="object-cover transition duration-700 group-hover:scale-110" />
-                  </div>
-                  <div className="p-5">
-                    <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-[#a81723]">
-                      <BookOpen className="h-4 w-4" />
-                      Advice
-                    </div>
-                    <h3 className="mt-3 text-xl font-semibold leading-tight text-[#222222]">{title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-[#222222]/62">{copy}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="bg-[#F5E6D3] px-4 py-16 sm:px-6 sm:py-24 lg:px-10">
           <div className="container-page">
             <div className="relative isolate overflow-hidden rounded-[38px] bg-[#a81723] px-6 py-14 text-white shadow-[0_30px_100px_rgba(168,23,35,0.24)] sm:px-10 lg:px-16">
-              <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full border border-white/20" />
-              <div className="absolute -bottom-24 left-1/4 h-64 w-64 rounded-full border border-[#F5E6D3]/28" />
               <div className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
                 <div>
                   <p className="text-[11px] font-bold uppercase tracking-[0.34em] text-[#F5E6D3]">Newsletter</p>

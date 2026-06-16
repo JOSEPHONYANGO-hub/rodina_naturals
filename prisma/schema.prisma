@@ -25,6 +25,17 @@ enum PaymentMethod {
   CASH_ON_DELIVERY
 }
 
+enum StockStatus {
+  IN_STOCK
+  OUT_OF_STOCK
+  BACKORDER
+}
+
+enum ProductType {
+  SIMPLE
+  VARIABLE
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -94,14 +105,31 @@ model Brand {
 model Product {
   id          String      @id @default(cuid())
   name        String
+  sku         String?     @unique
   slug        String      @unique
+  shortDescription String? @db.Text
   description String      @db.Text
   ingredients String      @db.Text
   price       Decimal     @db.Decimal(10, 2)
+  salePrice   Decimal?    @db.Decimal(10, 2)
+  taxStatus   String      @default("TAXABLE")
+  taxClass    String?
+  currency    String      @default("KES")
   images      String[]
   categoryId  String
   brandId     String?
+  stockStatus StockStatus @default(IN_STOCK)
   stock       Int         @default(0)
+  weight      Decimal?    @db.Decimal(10, 2)
+  length      Decimal?    @db.Decimal(10, 2)
+  width       Decimal?    @db.Decimal(10, 2)
+  height      Decimal?    @db.Decimal(10, 2)
+  tags        String[]
+  metaTitle   String?
+  metaDescription String? @db.Text
+  productType ProductType @default(SIMPLE)
+  isDownloadable Boolean  @default(false)
+  isVirtual   Boolean     @default(false)
   isFeatured  Boolean     @default(false)
   isBestSeller Boolean    @default(false)
   category    Category    @relation(fields: [categoryId], references: [id])

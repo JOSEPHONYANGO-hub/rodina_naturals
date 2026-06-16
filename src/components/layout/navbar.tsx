@@ -7,7 +7,7 @@ import {
   MapPin,
   Phone,
   Search,
-  ShoppingBag,
+  ShoppingCart,
   Sparkles,
   UserRound,
   X,
@@ -17,7 +17,8 @@ import Link from "next/link";
 import type { FormEvent } from "react";
 import { useState } from "react";
 import { Logo } from "@/components/layout/logo";
-import { CATEGORIES, CONTACT_DETAILS } from "@/config/brand";
+import { SocialIcon } from "@/components/social-icons";
+import { CATEGORIES, CONTACT_DETAILS, SOCIAL_LINKS } from "@/config/brand";
 import { useCart } from "@/lib/cart-store";
 import { cn } from "@/lib/utils";
 
@@ -30,6 +31,33 @@ const links = [
   { href: "/shop?category=body-care", label: "Body Care" },
   { href: "/shop?max=2000", label: "Top Deals" },
   { href: "/contact", label: "Contact Us" },
+];
+
+const categoryGroups = [
+  {
+    title: "Skincare",
+    href: "/shop?category=skincare",
+    items: ["Cleansers", "Toners", "Serums", "Moisturizers", "Sunscreens", "Eye Care"],
+  },
+  {
+    title: "Hair Care",
+    href: "/shop?category=hair-care",
+    items: ["Shampoo", "Conditioner", "Hair Oils", "Hair Masks", "Hair Growth", "Styling"],
+  },
+  {
+    title: "Body & Wellness",
+    href: "/shop?category=body-care",
+    items: ["Body Lotion", "Body Butter", "Scrubs", "Hand Creams", "Foot Care", "Gift Sets"],
+  },
+];
+
+const brandLinks = [
+  { name: "Bioxcin", href: "/shop?brand=bioxcin", copy: "Hair strengthening" },
+  { name: "Restorex", href: "/shop?brand=restorex", copy: "Repair routines" },
+  { name: "Procsin", href: "/shop?brand=procsin", copy: "Dermatological care" },
+  { name: "Bioblas", href: "/shop?brand=bioblas", copy: "Herbal hair care" },
+  { name: "Thalia", href: "/shop?brand=thalia", copy: "Natural body care" },
+  { name: "Rain", href: "/shop?brand=rain", copy: "Wellness skincare" },
 ];
 
 export function Navbar() {
@@ -69,12 +97,33 @@ export function Navbar() {
           <p className="text-center uppercase tracking-[0.16em] text-[#F5E6D3]">
             Mid-Season Sale Up to 50% Off.
           </p>
-          <div className="hidden items-center justify-end gap-6 sm:flex">
-            <Link href="/contact" className="hover:text-[#F5E6D3]">
-              Shipping & return
+          <div className="hidden items-center justify-end gap-3 sm:flex">
+            <Link href="/shop" className="mr-1 hover:text-[#F5E6D3]">
+              Newsletter
             </Link>
-            <Link href="/cart" className="hover:text-[#F5E6D3]">
-              Track order
+            <Link
+              href={SOCIAL_LINKS.facebook}
+              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-[#a81723]"
+              aria-label="Facebook"
+              target="_blank"
+            >
+              <SocialIcon name="facebook" />
+            </Link>
+            <Link
+              href={SOCIAL_LINKS.instagram}
+              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-[#a81723]"
+              aria-label="Instagram"
+              target="_blank"
+            >
+              <SocialIcon name="instagram" />
+            </Link>
+            <Link
+              href={SOCIAL_LINKS.tiktok}
+              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-[#a81723]"
+              aria-label="TikTok"
+              target="_blank"
+            >
+              <SocialIcon name="tiktok" />
             </Link>
           </div>
         </div>
@@ -197,7 +246,7 @@ export function Navbar() {
             className="relative p-2 text-white transition hover:text-[#F5E6D3]"
             aria-label="Cart"
           >
-            <ShoppingBag size={20} />
+            <ShoppingCart size={20} />
             {count > 0 ? (
               <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-[#F5E6D3] text-[10px] font-semibold text-[#a81723]">
                 {count}
@@ -221,49 +270,98 @@ export function Navbar() {
             <Link
               key={`${link.href}-${link.label}`}
               href={link.href}
-              className="inline-flex items-center gap-1 whitespace-nowrap border-b-2 border-transparent py-4 transition hover:border-[#F5E6D3] hover:text-[#F5E6D3]"
+              className="group relative inline-flex items-center gap-1 whitespace-nowrap py-4 transition duration-300 hover:text-[#F5E6D3]"
               onMouseEnter={() => setMegaOpen(Boolean(link.hasMega))}
             >
               {link.label}
-              {link.hasMega ? <ChevronDown className="h-4 w-4" /> : null}
+              {link.hasMega ? (
+                <ChevronDown className={cn("h-4 w-4 transition duration-300", megaOpen && "rotate-180")} />
+              ) : null}
+              <span className="absolute bottom-2 left-0 h-0.5 w-full origin-left scale-x-0 bg-[#F5E6D3] transition-transform duration-300 group-hover:scale-x-100" />
             </Link>
           ))}
         </div>
       </nav>
 
       {megaOpen ? (
-        <div className="hidden border-t border-maroon/10 bg-white shadow-[0_24px_70px_rgba(77,12,18,0.1)] lg:block">
-          <div className="container-page grid gap-8 py-7 lg:grid-cols-[1fr_360px]">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-gold">
-                Explore Rodina
+        <div className="hidden border-t border-white/10 bg-white/95 text-charcoal shadow-[0_30px_90px_rgba(34,34,34,0.16)] backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200 lg:block">
+          <div className="container-page grid gap-8 py-8 lg:grid-cols-[1.15fr_0.9fr_340px]">
+            <div className="rounded-[28px] border border-[#a81723]/10 bg-[#FAF8F5] p-6">
+              <div className="flex items-end justify-between gap-4">
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-gold">
+                    Shop by category
+                  </p>
+                  <h2 className="mt-2 text-3xl font-semibold text-[#222222]">Beauty departments</h2>
+                </div>
+                <Link href="/shop" className="fine-link">
+                  View all
+                </Link>
+              </div>
+              <div className="mt-6 grid gap-5 md:grid-cols-3">
+                {categoryGroups.map((group) => (
+                  <div key={group.title}>
+                    <Link
+                      href={group.href}
+                      className="group/category inline-flex items-center gap-2 text-base font-bold text-[#a81723] transition hover:text-charcoal"
+                    >
+                      {group.title}
+                      <ChevronDown className="h-4 w-4 -rotate-90 transition group-hover/category:translate-x-1" />
+                    </Link>
+                    <div className="mt-4 grid gap-2">
+                      {group.items.map((item) => (
+                        <Link
+                          key={item}
+                          href={`${group.href}&q=${encodeURIComponent(item)}`}
+                          className="group/item flex items-center justify-between rounded-2xl px-3 py-2 text-sm font-medium text-charcoal/68 transition duration-300 hover:bg-white hover:text-[#a81723] hover:shadow-[0_10px_28px_rgba(168,23,35,0.08)]"
+                        >
+                          <span>{item}</span>
+                          <span className="h-px w-0 bg-[#a81723] transition-all duration-300 group-hover/item:w-5" />
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[28px] border border-[#a81723]/10 bg-white p-6 shadow-[0_18px_55px_rgba(34,34,34,0.06)]">
+              <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-gold">
+                Trusted brands
               </p>
-              <div className="mt-4 grid grid-cols-3 gap-3">
-                {CATEGORIES.map((category) => (
+              <div className="mt-5 grid grid-cols-2 gap-3">
+                {brandLinks.map((brand) => (
                   <Link
-                    key={category}
-                    href={`/shop?category=${category.toLowerCase()}`}
-                    className="rounded-2xl border border-maroon/10 bg-cream px-5 py-4 text-sm font-semibold text-maroon transition hover:border-gold hover:bg-white"
+                    key={brand.name}
+                    href={brand.href}
+                    className="group/brand rounded-[22px] border border-[#a81723]/10 bg-[#FAF8F5] p-4 transition duration-300 hover:-translate-y-1 hover:border-[#a81723]/30 hover:bg-[#a81723] hover:shadow-[0_18px_45px_rgba(168,23,35,0.18)]"
                   >
-                    {category}
-                    <span className="mt-1 block text-xs font-normal text-ink/55">
-                      Shop the {category} collection
+                    <span className="grid h-9 w-9 place-items-center rounded-full bg-white text-sm font-bold text-[#a81723] shadow-sm transition group-hover/brand:bg-[#F5E6D3]">
+                      {brand.name.slice(0, 1)}
+                    </span>
+                    <span className="mt-3 block font-bold text-charcoal transition group-hover/brand:text-white">
+                      {brand.name}
+                    </span>
+                    <span className="mt-1 block text-xs leading-5 text-charcoal/55 transition group-hover/brand:text-white/78">
+                      {brand.copy}
                     </span>
                   </Link>
                 ))}
               </div>
             </div>
+
             <Link
               href="/shop?max=2000"
-              className="rounded-[28px] bg-charcoal p-7 text-white transition hover:bg-maroon"
+              className="group relative isolate min-h-[320px] overflow-hidden rounded-[28px] bg-charcoal p-7 text-white shadow-[0_24px_70px_rgba(34,34,34,0.18)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(168,23,35,0.22)]"
             >
+              <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(245,230,211,0.2),transparent_34%),linear-gradient(135deg,#222222,#7d111b)]" />
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-gold">
                 This week
               </p>
               <p className="mt-3 text-3xl font-semibold leading-tight">
                 Beauty deals curated for your shelf.
               </p>
-              <span className="mt-5 inline-flex text-xs font-semibold uppercase tracking-[0.22em] text-white">
+              <span className="mt-6 inline-flex rounded-full bg-white px-5 py-3 text-xs font-bold uppercase tracking-[0.2em] text-[#a81723] transition group-hover:bg-[#F5E6D3]">
                 View offers
               </span>
             </Link>

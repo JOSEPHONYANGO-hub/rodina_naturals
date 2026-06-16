@@ -9,6 +9,8 @@ import { toProductCard } from "@/services/catalog";
 
 export const dynamic = "force-dynamic";
 
+const PRODUCT_IMAGE_FALLBACK = "/rodina-logo.jpeg";
+
 export default async function ProductPage({ params }: { params: { slug: string } }) {
   const product = await prisma.product.findUnique({
     where: { slug: params.slug },
@@ -22,6 +24,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
   });
 
   if (!product) notFound();
+
+  const productImage = product.images[0] || PRODUCT_IMAGE_FALLBACK;
 
   const related = await prisma.product.findMany({
     where: { categoryId: product.categoryId, id: { not: product.id } },
@@ -37,7 +41,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
           <div className="grid gap-4">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[34px] border border-maroon/10 bg-rose/35 shadow-[0_22px_70px_rgba(77,12,18,0.08)]">
               <Image
-                src={product.images[0]}
+                src={productImage}
                 alt={product.name}
                 fill
                 priority
@@ -83,7 +87,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                   id: product.id,
                   name: product.name,
                   price: Number(product.price),
-                  image: product.images[0],
+                  image: productImage,
                   stock: product.stock,
                 }}
               />

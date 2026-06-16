@@ -165,6 +165,22 @@ export function toProductCard(product: {
   return { ...product, price: product.price.toString() };
 }
 
+function cleanProductData<T extends { sku?: string; slug?: string; name?: string }>(data: T) {
+  const next = { ...data } as T & Record<string, unknown>;
+
+  if ("sku" in next && typeof next.sku === "string") {
+    next.sku = next.sku.trim() || undefined;
+  }
+
+  for (const key of Object.keys(next)) {
+    if (next[key] === undefined || next[key] === "") {
+      delete next[key];
+    }
+  }
+
+  return next;
+}
+
 export async function getProductListing(filters: ProductFilters) {
   const normalized = normalizeProductFilters(filters);
   const where = buildProductWhere(filters);
@@ -193,11 +209,13 @@ export async function getHomeCatalog() {
     prisma.product.findMany({
       where: { isFeatured: true },
       include: { brand: true, category: true },
+      orderBy: { createdAt: "desc" },
       take: 4,
     }),
     prisma.product.findMany({
       where: { isBestSeller: true },
       include: { brand: true, category: true },
+      orderBy: { createdAt: "desc" },
       take: 4,
     }),
     prisma.category.findMany({ orderBy: { name: "asc" } }),
@@ -244,21 +262,53 @@ export function getFallbackProductListing(filters: ProductFilters) {
 
 export async function createProduct(data: {
   name: string;
-  description: string;
-  ingredients: string;
+  sku?: string;
+  slug?: string;
+  shortDescription?: string;
+  description?: string;
+  ingredients?: string;
   price: number;
+  salePrice?: number;
+  taxStatus?: string;
+  taxClass?: string;
+  currency?: string;
   images: string[];
-  categoryId: string;
+  categoryId?: string;
   brandId?: string | null;
+  stockStatus?: "IN_STOCK" | "OUT_OF_STOCK" | "BACKORDER";
   stock: number;
+  weight?: number;
+  length?: number;
+  width?: number;
+  height?: number;
+  tags?: string[];
+  metaTitle?: string;
+  metaDescription?: string;
+  productType?: "SIMPLE" | "VARIABLE";
+  isDownloadable?: boolean;
+  isVirtual?: boolean;
   isFeatured?: boolean;
   isBestSeller?: boolean;
 }) {
+  const productData = cleanProductData(data);
+  const fallbackCategory = productData.categoryId
+    ? null
+    : await prisma.category.upsert({
+        where: { slug: "uncategorized" },
+        update: {},
+        create: { name: "Uncategorized", slug: "uncategorized" },
+      });
+
   return prisma.product.create({
     data: {
-      ...data,
-      brandId: data.brandId || null,
-      slug: slugify(data.name),
+      ...productData,
+      brandId: productData.brandId || null,
+      categoryId: productData.categoryId || fallbackCategory?.id || "",
+      description: productData.description || productData.shortDescription || "Product details coming soon.",
+      ingredients: productData.ingredients || "Not specified.",
+      currency: productData.currency || "KES",
+      tags: productData.tags || [],
+      slug: slugify(productData.slug || productData.name),
     },
   });
 }
@@ -267,11 +317,25 @@ export async function updateProduct(
   id: string,
   data: Partial<Parameters<typeof createProduct>[0]>,
 ) {
+  const productData = cleanProductData(data);
+  const {
+    brandId,
+    categoryId,
+    name,
+    slug,
+    tags,
+    ...rest
+  } = productData;
+
   return prisma.product.update({
     where: { id },
     data: {
-      ...data,
-      ...(data.name ? { slug: slugify(data.name) } : {}),
+      ...rest,
+      ...(name ? { name } : {}),
+      ...(brandId !== undefined ? { brandId: brandId || null } : {}),
+      ...(categoryId ? { categoryId } : {}),
+      ...(tags ? { tags } : {}),
+      ...(slug ? { slug: slugify(slug) } : name ? { slug: slugify(name) } : {}),
     },
   });
 }
