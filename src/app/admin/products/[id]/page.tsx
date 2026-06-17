@@ -1,17 +1,19 @@
 import { notFound } from "next/navigation";
 import { ProductForm } from "@/components/admin/product-form";
 import { prisma } from "@/lib/prisma";
+import { getProductFormTaxonomy } from "@/services/product-taxonomy";
 
 export const dynamic = "force-dynamic";
 
 export default async function EditProductPage({ params }: { params: { id: string } }) {
-  const [product, brands, categories] = await Promise.all([
+  const [product, taxonomy] = await Promise.all([
     prisma.product.findUnique({ where: { id: params.id } }),
-    prisma.brand.findMany({ orderBy: { name: "asc" } }),
-    prisma.category.findMany({ orderBy: { name: "asc" } }),
+    getProductFormTaxonomy(),
   ]);
 
   if (!product) notFound();
+
+  const { brands, categories } = taxonomy;
 
   return (
     <div className="bg-cream pb-20 pt-32">

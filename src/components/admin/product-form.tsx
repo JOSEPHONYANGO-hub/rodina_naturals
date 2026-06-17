@@ -192,31 +192,31 @@ export function ProductForm({
         <p className="eyebrow">Core Identification</p>
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           <input className="field" name="name" defaultValue={product?.name} placeholder="Product name / title" required />
-          <input className="field" name="sku" defaultValue={product?.sku || ""} placeholder="SKU (optional)" />
-          <input className="field" name="slug" defaultValue={product?.slug || ""} placeholder="URL slug (optional)" />
+          <input className="field" name="sku" defaultValue={product?.sku || ""} placeholder="SKU" />
+          <input className="field" name="slug" defaultValue={product?.slug || ""} placeholder="URL slug" />
           <select className="field" name="brandId" defaultValue={product?.brandId || ""}>
-            <option value="">Select brand (optional)</option>
+            <option value="">Select brand</option>
             {brands.map((brand) => (
               <option key={brand.id} value={brand.id}>{brand.name}</option>
             ))}
           </select>
         </div>
-        <textarea className="field mt-4 min-h-24" name="shortDescription" defaultValue={product?.shortDescription || ""} placeholder="Short description / product hook (optional)" />
-        <textarea className="field mt-4 min-h-36" name="description" defaultValue={product?.description} placeholder="Long description, features, benefits, specifications (optional)" />
-        <textarea className="field mt-4 min-h-24" name="ingredients" defaultValue={product?.ingredients} placeholder="Ingredients or specifications (optional)" />
+        <textarea className="field mt-4 min-h-24" name="shortDescription" defaultValue={product?.shortDescription || ""} placeholder="Short description / product hook" />
+        <textarea className="field mt-4 min-h-36" name="description" defaultValue={product?.description} placeholder="Long description, features, benefits, specifications" />
+        <textarea className="field mt-4 min-h-24" name="ingredients" defaultValue={product?.ingredients} placeholder="Ingredients or specifications" />
       </div>
 
       <div className="border-t border-maroon/10 pt-5">
         <p className="eyebrow">Pricing & Financials</p>
         <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <input className="field" name="price" type="number" step="0.01" min="0" defaultValue={product?.price?.toString()} placeholder="Regular price" required />
-          <input className="field" name="salePrice" type="number" step="0.01" min="0" defaultValue={product?.salePrice?.toString() || ""} placeholder="Sale price (optional)" />
+          <input className="field" name="salePrice" type="number" step="0.01" min="0" defaultValue={product?.salePrice?.toString() || ""} placeholder="Sale price" />
           <select className="field" name="taxStatus" defaultValue={product?.taxStatus || "TAXABLE"}>
             <option value="TAXABLE">Taxable</option>
             <option value="NONE">No tax</option>
           </select>
           <input className="field" name="currency" defaultValue={product?.currency || "KES"} placeholder="Currency" maxLength={3} />
-          <input className="field md:col-span-2" name="taxClass" defaultValue={product?.taxClass || ""} placeholder="Tax class (optional, e.g. VAT inclusive)" />
+          <input className="field md:col-span-2" name="taxClass" defaultValue={product?.taxClass || ""} placeholder="Tax class, e.g. VAT inclusive" />
         </div>
       </div>
 
@@ -230,24 +230,24 @@ export function ProductForm({
           </select>
           <input className="field" name="stock" type="number" min="0" defaultValue={product?.stock ?? 0} placeholder="Quantity / stock level" required />
           <select className="field" name="categoryId" defaultValue={product?.categoryId}>
-            <option value="">Select category (optional)</option>
+            <option value="">Select category</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>{category.name}</option>
             ))}
           </select>
-          <input className="field" name="weight" type="number" step="0.01" min="0" defaultValue={product?.weight?.toString() || ""} placeholder="Weight kg (optional)" disabled={isVirtual} />
-          <input className="field" name="length" type="number" step="0.01" min="0" defaultValue={product?.length?.toString() || ""} placeholder="Length cm (optional)" disabled={isVirtual} />
-          <input className="field" name="width" type="number" step="0.01" min="0" defaultValue={product?.width?.toString() || ""} placeholder="Width cm (optional)" disabled={isVirtual} />
-          <input className="field" name="height" type="number" step="0.01" min="0" defaultValue={product?.height?.toString() || ""} placeholder="Height cm (optional)" disabled={isVirtual} />
+          <input className="field" name="weight" type="number" step="0.01" min="0" defaultValue={product?.weight?.toString() || ""} placeholder="Weight kg" disabled={isVirtual} />
+          <input className="field" name="length" type="number" step="0.01" min="0" defaultValue={product?.length?.toString() || ""} placeholder="Length cm" disabled={isVirtual} />
+          <input className="field" name="width" type="number" step="0.01" min="0" defaultValue={product?.width?.toString() || ""} placeholder="Width cm" disabled={isVirtual} />
+          <input className="field" name="height" type="number" step="0.01" min="0" defaultValue={product?.height?.toString() || ""} placeholder="Height cm" disabled={isVirtual} />
         </div>
       </div>
 
       <div className="border-t border-maroon/10 pt-5">
         <p className="eyebrow">Categorization & SEO</p>
         <div className="mt-4 grid gap-4 md:grid-cols-2">
-          <input className="field" name="tags" defaultValue={product?.tags?.join(", ") || ""} placeholder="Tags, comma separated (optional)" />
-          <input className="field" name="metaTitle" defaultValue={product?.metaTitle || ""} placeholder="Meta title (optional)" />
-          <textarea className="field min-h-24 md:col-span-2" name="metaDescription" defaultValue={product?.metaDescription || ""} placeholder="Meta description (optional)" />
+          <input className="field" name="tags" defaultValue={product?.tags?.join(", ") || ""} placeholder="Tags, comma separated" />
+          <input className="field" name="metaTitle" defaultValue={product?.metaTitle || ""} placeholder="Meta title" />
+          <textarea className="field min-h-24 md:col-span-2" name="metaDescription" defaultValue={product?.metaDescription || ""} placeholder="Meta description" />
         </div>
       </div>
 
@@ -276,7 +276,7 @@ export function ProductForm({
             ))}
           </div>
         ) : (
-          <p className="mt-3 text-sm text-ink/55">Images are optional. Upload one when available.</p>
+          <p className="mt-3 text-sm text-ink/55">Upload an image when available.</p>
         )}
       </div>
 

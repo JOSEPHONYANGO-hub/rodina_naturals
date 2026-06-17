@@ -410,33 +410,6 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="bg-[#F5E6D3] px-4 py-16 sm:px-6 sm:py-24 lg:px-10">
-          <div className="container-page">
-            <div className="relative isolate overflow-hidden rounded-[38px] bg-[#a81723] px-6 py-14 text-white shadow-[0_30px_100px_rgba(168,23,35,0.24)] sm:px-10 lg:px-16">
-              <div className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
-                <div>
-                  <p className="text-[11px] font-bold uppercase tracking-[0.34em] text-[#F5E6D3]">Newsletter</p>
-                  <h2 className="mt-4 text-4xl font-semibold leading-[1.04] text-white sm:text-6xl">Join The Rodina Beauty Club</h2>
-                  <p className="mt-5 max-w-2xl text-sm leading-7 text-white/82 sm:text-base">
-                    Receive exclusive offers, beauty tips and early access to new collections.
-                  </p>
-                </div>
-                <form className="relative rounded-[28px] border border-white/20 bg-white/12 p-3 shadow-[0_20px_70px_rgba(0,0,0,0.16)] backdrop-blur-md sm:flex sm:items-center">
-                  <label className="sr-only" htmlFor="newsletter-email">Email address</label>
-                  <input
-                    id="newsletter-email"
-                    type="email"
-                    placeholder="Email address"
-                    className="min-h-14 w-full rounded-full border border-white/20 bg-white px-5 text-sm font-medium text-[#222222] outline-none placeholder:text-[#222222]/45 focus:border-[#F5E6D3]"
-                  />
-                  <button className="mt-3 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-[#222222] px-7 text-xs font-bold uppercase tracking-[0.2em] text-white transition hover:bg-white hover:text-[#a81723] sm:ml-3 sm:mt-0 sm:w-auto">
-                    Subscribe
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
     </>
   );

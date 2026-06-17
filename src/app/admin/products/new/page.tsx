@@ -1,13 +1,11 @@
 import { ProductForm } from "@/components/admin/product-form";
-import { prisma } from "@/lib/prisma";
+import { getProductFormTaxonomy } from "@/services/product-taxonomy";
 
 export const dynamic = "force-dynamic";
 
 export default async function NewProductPage() {
-  const [brands, categories] = await Promise.all([
-    prisma.brand.findMany({ orderBy: { name: "asc" } }),
-    prisma.category.findMany({ orderBy: { name: "asc" } }),
-  ]);
+  const { brands, categories } = await getProductFormTaxonomy();
+
   return (
     <div className="bg-cream pb-20 pt-32">
       <div className="container-page max-w-3xl">
