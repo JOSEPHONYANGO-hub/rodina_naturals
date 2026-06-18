@@ -92,7 +92,10 @@ function extensionFor(entry: DriveEntry) {
 
 function meaningfulCategory(folders: string[]) {
   const cleaned = folders.map(cleanFolderName).filter(Boolean);
-  const category = [...cleaned].reverse().find((folder) => folder.toLowerCase() !== "3d");
+  const category = cleaned
+    .slice()
+    .reverse()
+    .find((folder) => folder.toLowerCase() !== "3d");
   return category || "Thalia";
 }
 
@@ -106,12 +109,13 @@ async function readFolder(folderId: string): Promise<DriveEntry[]> {
     /\[\[null,"([A-Za-z0-9_-]{20,})"\][\s\S]{0,1400}?"(application\/vnd\.google-apps\.folder|image\/[^"]+|application\/[^"]+)"[\s\S]{0,1400}?\[\[\["([^"]+)"/g;
 
   const entries = new Map<string, DriveEntry>();
-  for (const match of html.matchAll(entryPattern)) {
+  let match: RegExpExecArray | null;
+  while ((match = entryPattern.exec(html))) {
     const [, id, mime, name] = match;
     if (name === "Name") continue;
     entries.set(id, { id, mime, name });
   }
-  return [...entries.values()];
+  return Array.from(entries.values());
 }
 
 async function collectImages(folderId: string, folders: string[] = []): Promise<ImageAsset[]> {
@@ -207,8 +211,9 @@ async function main() {
     console.log(`Reset ${deleted.count} placeholder Thalia products.`);
   }
 
+  const groups = Array.from(grouped.values());
   let productCount = 0;
-  for (const group of grouped.values()) {
+  for (const group of groups) {
     const categorySlug = slugify(group.categoryName);
     const category = await prisma.category.upsert({
       where: { slug: categorySlug },
