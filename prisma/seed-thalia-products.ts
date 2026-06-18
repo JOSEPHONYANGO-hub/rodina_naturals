@@ -58,10 +58,21 @@ async function main() {
   for (const product of products) {
     const existing = await prisma.product.findUnique({
       where: { slug: product.slug },
-      select: { id: true },
+      select: { id: true, price: true, description: true },
     });
 
     if (existing) {
+      const isPlaceholder =
+        existing.price.toString() === "1" ||
+        existing.description.includes("Full product details and pricing will be updated soon.");
+
+      if (isPlaceholder) {
+        await prisma.product.update({
+          where: { id: existing.id },
+          data: { price: product.price },
+        });
+      }
+
       skipped += 1;
       continue;
     }
