@@ -12,8 +12,6 @@
       "/uploads/thalia/thalia-after-sun-spray-02.jpg",
       "/uploads/thalia/thalia-after-sun-spray-03.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "After SUN Spray"
@@ -36,8 +34,6 @@
     "images": [
       "/uploads/thalia/thalia-anti-cellulite-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Thalia Bubble Soap Anti Blemish 01.jpg"
@@ -60,8 +56,6 @@
     "images": [
       "/uploads/thalia/thalia-apple-liquid-soap-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "1e6a5731.jpg"
@@ -84,8 +78,6 @@
     "images": [
       "/uploads/thalia/thalia-apple-scrub-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "1e6a5731.jpg"
@@ -108,8 +100,6 @@
     "images": [
       "/uploads/thalia/thalia-apple-shower-gel-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "1e6a5731.jpg"
@@ -133,8 +123,6 @@
       "/uploads/thalia/thalia-apricot-soap-01.jpg",
       "/uploads/thalia/thalia-apricot-soap-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -159,8 +147,6 @@
       "/uploads/thalia/thalia-argan-oil-02.jpg",
       "/uploads/thalia/thalia-argan-oil-03.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Anti Hair Loss Shampoo 300 ML"
@@ -184,8 +170,6 @@
       "/uploads/thalia/thalia-argan-soap-01.jpg",
       "/uploads/thalia/thalia-argan-soap-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -209,8 +193,6 @@
       "/uploads/thalia/thalia-banana-01.jpg",
       "/uploads/thalia/thalia-banana-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "LIP Balm"
@@ -234,8 +216,6 @@
       "/uploads/thalia/thalia-blackgrape-soap-01.jpg",
       "/uploads/thalia/thalia-blackgrape-soap-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -258,8 +238,6 @@
     "images": [
       "/uploads/thalia/thalia-blooming-bouquet-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Body Showe GEL 500 ML"
@@ -282,11 +260,9 @@
     "images": [
       "/uploads/thalia/thalia-body-lotion-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
-      "Aloe Vera Seri\u0307si\u0307"
+      "Aloe Vera Seri̇si̇"
     ],
     "metaTitle": "Body Lotion | Thalia",
     "metaDescription": "Body Lotion by Thalia.",
@@ -308,8 +284,6 @@
       "/uploads/thalia/thalia-bubble-soap-anti-blemish-02.jpg",
       "/uploads/thalia/thalia-bubble-soap-anti-blemish-03.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Doypack"
@@ -335,8 +309,6 @@
       "/uploads/thalia/thalia-bubble-soap-anti-cellulite-03.jpg",
       "/uploads/thalia/thalia-bubble-soap-anti-cellulite-04.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Doypack"
@@ -362,8 +334,6 @@
       "/uploads/thalia/thalia-bubble-soap-glow-up-03.jpg",
       "/uploads/thalia/thalia-bubble-soap-glow-up-04.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Doypack"
@@ -389,8 +359,6 @@
       "/uploads/thalia/thalia-bubble-soap-vitamin-c-03.jpg",
       "/uploads/thalia/thalia-bubble-soap-vitamin-c-04.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Doypack"
@@ -413,8 +381,6 @@
     "images": [
       "/uploads/thalia/thalia-carrot-soap-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Flowpack Soap"
@@ -437,16 +403,14 @@
     "images": [
       "/uploads/thalia/thalia-caviar-renewing-mask-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
-      "T\u00fcp"
+      "Tüp"
     ],
     "metaTitle": "Caviar Renewing Mask | Thalia",
     "metaDescription": "Caviar Renewing Mask by Thalia.",
     "category": {
-      "name": "T\u00fcp",
+      "name": "Tüp",
       "slug": "tup"
     }
   },
@@ -462,8 +426,6 @@
       "/uploads/thalia/thalia-chamomille-soap-01.jpg",
       "/uploads/thalia/thalia-chamomille-soap-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -487,8 +449,6 @@
       "/uploads/thalia/thalia-cherry-01.jpg",
       "/uploads/thalia/thalia-cherry-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "LIP Balm"
@@ -511,8 +471,6 @@
     "images": [
       "/uploads/thalia/thalia-cherry-blister-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "LIP Balm"
@@ -536,8 +494,6 @@
       "/uploads/thalia/thalia-cinnamon-soap-01.jpg",
       "/uploads/thalia/thalia-cinnamon-soap-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -560,8 +516,6 @@
     "images": [
       "/uploads/thalia/thalia-clay-avocado-face-mask-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Sachet"
@@ -585,8 +539,6 @@
       "/uploads/thalia/thalia-clay-extract-face-mask-01.jpg",
       "/uploads/thalia/thalia-clay-extract-face-mask-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Sachet"
@@ -610,8 +562,6 @@
       "/uploads/thalia/thalia-clay-pomegranate-face-mask-01.jpg",
       "/uploads/thalia/thalia-clay-pomegranate-face-mask-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Sachet"
@@ -635,8 +585,6 @@
       "/uploads/thalia/thalia-clay-rise-face-mask-01.jpg",
       "/uploads/thalia/thalia-clay-rise-face-mask-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Sachet"
@@ -660,8 +608,6 @@
       "/uploads/thalia/thalia-clay-seaweed-face-mask-01.jpg",
       "/uploads/thalia/thalia-clay-seaweed-face-mask-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Sachet"
@@ -685,8 +631,6 @@
       "/uploads/thalia/thalia-clay-soap-01.jpg",
       "/uploads/thalia/thalia-clay-soap-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -709,8 +653,6 @@
     "images": [
       "/uploads/thalia/thalia-coconut-body-lotion-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "1e6a5731.jpg"
@@ -733,8 +675,6 @@
     "images": [
       "/uploads/thalia/thalia-coconut-liquid-soap-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "1e6a5731.jpg"
@@ -757,8 +697,6 @@
     "images": [
       "/uploads/thalia/thalia-coconut-scrub-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "1e6a5731.jpg"
@@ -781,8 +719,6 @@
     "images": [
       "/uploads/thalia/thalia-coconut-shower-gel-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "1e6a5731.jpg"
@@ -805,16 +741,14 @@
     "images": [
       "/uploads/thalia/thalia-coffee-firming-mask-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
-      "T\u00fcp"
+      "Tüp"
     ],
     "metaTitle": "Coffee Firming Mask | Thalia",
     "metaDescription": "Coffee Firming Mask by Thalia.",
     "category": {
-      "name": "T\u00fcp",
+      "name": "Tüp",
       "slug": "tup"
     }
   },
@@ -829,16 +763,14 @@
     "images": [
       "/uploads/thalia/thalia-collagen-sleeping-mask-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
-      "T\u00fcp"
+      "Tüp"
     ],
     "metaTitle": "Collagen Sleeping Mask | Thalia",
     "metaDescription": "Collagen Sleeping Mask by Thalia.",
     "category": {
-      "name": "T\u00fcp",
+      "name": "Tüp",
       "slug": "tup"
     }
   },
@@ -853,8 +785,6 @@
     "images": [
       "/uploads/thalia/thalia-cucumber-soap-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Flowpack Soap"
@@ -878,8 +808,6 @@
       "/uploads/thalia/thalia-daphne-soap-01.jpg",
       "/uploads/thalia/thalia-daphne-soap-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -905,8 +833,6 @@
       "/uploads/thalia/thalia-day-cream-03.jpg",
       "/uploads/thalia/thalia-day-cream-04.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Pink Aloe Vera"
@@ -929,8 +855,6 @@
     "images": [
       "/uploads/thalia/thalia-dazzling-berry-mix-soap-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Massage Soap"
@@ -953,16 +877,14 @@
     "images": [
       "/uploads/thalia/thalia-deep-cleansing-spot-control-mask-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
-      "T\u00fcp"
+      "Tüp"
     ],
     "metaTitle": "Deep Cleansing Spot Control Mask | Thalia",
     "metaDescription": "Deep Cleansing Spot Control Mask by Thalia.",
     "category": {
-      "name": "T\u00fcp",
+      "name": "Tüp",
       "slug": "tup"
     }
   },
@@ -977,8 +899,6 @@
     "images": [
       "/uploads/thalia/thalia-detoxitying-ginger-cinnam-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap With Roap"
@@ -1001,8 +921,6 @@
     "images": [
       "/uploads/thalia/thalia-el-ayak-peeling-psd-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "THE Curea Series"
@@ -1025,8 +943,6 @@
     "images": [
       "/uploads/thalia/thalia-euacalyptus-breeze-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Body Showe GEL 500 ML"
@@ -1050,8 +966,6 @@
       "/uploads/thalia/thalia-exfoliating-oat-cocoa-butter-01.jpg",
       "/uploads/thalia/thalia-exfoliating-oat-cocoa-butter-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap With Roap"
@@ -1075,8 +989,6 @@
       "/uploads/thalia/thalia-exotic-patchouli-lavender-01.jpg",
       "/uploads/thalia/thalia-exotic-patchouli-lavender-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap With Roap"
@@ -1099,11 +1011,9 @@
     "images": [
       "/uploads/thalia/thalia-face-ceram-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
-      "Aloe Vera Seri\u0307si\u0307"
+      "Aloe Vera Seri̇si̇"
     ],
     "metaTitle": "Face Ceram | Thalia",
     "metaDescription": "Face Ceram by Thalia.",
@@ -1124,11 +1034,9 @@
       "/uploads/thalia/thalia-face-cleanser-foam-01.jpg",
       "/uploads/thalia/thalia-face-cleanser-foam-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
-      "Aloe Vera Seri\u0307si\u0307"
+      "Aloe Vera Seri̇si̇"
     ],
     "metaTitle": "Face Cleanser Foam | Thalia",
     "metaDescription": "Face Cleanser Foam by Thalia.",
@@ -1152,8 +1060,6 @@
       "/uploads/thalia/thalia-face-wash-gel-04.jpg",
       "/uploads/thalia/thalia-face-wash-gel-05.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Pink Aloe Vera"
@@ -1179,8 +1085,6 @@
       "/uploads/thalia/thalia-garlic-ginseng-03.jpg",
       "/uploads/thalia/thalia-garlic-ginseng-04.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Anti Hair Loss Shampoo 300 ML"
@@ -1206,8 +1110,6 @@
       "/uploads/thalia/thalia-garlic-soap-03.jpg",
       "/uploads/thalia/thalia-garlic-soap-04.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -1230,8 +1132,6 @@
     "images": [
       "/uploads/thalia/thalia-genetly-cleanser-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Cleansing JEL"
@@ -1254,8 +1154,6 @@
     "images": [
       "/uploads/thalia/thalia-glow-up-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Thalia Bubble Soap Anti Blemish 01.jpg"
@@ -1279,8 +1177,6 @@
       "/uploads/thalia/thalia-goat-milk-soap-01.jpg",
       "/uploads/thalia/thalia-goat-milk-soap-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -1303,16 +1199,14 @@
     "images": [
       "/uploads/thalia/thalia-gold-peel-off-pirifying-mask-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
-      "T\u00fcp"
+      "Tüp"
     ],
     "metaTitle": "Gold Peel Off Pirifying Mask | Thalia",
     "metaDescription": "Gold Peel Off Pirifying Mask by Thalia.",
     "category": {
-      "name": "T\u00fcp",
+      "name": "Tüp",
       "slug": "tup"
     }
   },
@@ -1327,11 +1221,9 @@
     "images": [
       "/uploads/thalia/thalia-hair-conditioner-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
-      "Aloe Vera Seri\u0307si\u0307"
+      "Aloe Vera Seri̇si̇"
     ],
     "metaTitle": "Hair Conditioner | Thalia",
     "metaDescription": "Hair Conditioner by Thalia.",
@@ -1351,11 +1243,9 @@
     "images": [
       "/uploads/thalia/thalia-hand-cream-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
-      "Aloe Vera Seri\u0307si\u0307"
+      "Aloe Vera Seri̇si̇"
     ],
     "metaTitle": "Hand Cream | Thalia",
     "metaDescription": "Hand Cream by Thalia.",
@@ -1375,16 +1265,14 @@
     "images": [
       "/uploads/thalia/thalia-honey-almond-nourishing-mask-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
-      "T\u00fcp"
+      "Tüp"
     ],
     "metaTitle": "Honey & Almond Nourishing Mask | Thalia",
     "metaDescription": "Honey & Almond Nourishing Mask by Thalia.",
     "category": {
-      "name": "T\u00fcp",
+      "name": "Tüp",
       "slug": "tup"
     }
   },
@@ -1399,8 +1287,6 @@
     "images": [
       "/uploads/thalia/thalia-hydrating-cleanser-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Cleansing JEL"
@@ -1423,8 +1309,6 @@
     "images": [
       "/uploads/thalia/thalia-iris-dream-soap-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Massage Soap"
@@ -1450,8 +1334,6 @@
       "/uploads/thalia/thalia-juniper-tea-tree-03.jpg",
       "/uploads/thalia/thalia-juniper-tea-tree-04.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Anti Hair Loss Shampoo 300 ML"
@@ -1474,8 +1356,6 @@
     "images": [
       "/uploads/thalia/thalia-kapak-pink-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Pink Aloe Vera"
@@ -1499,8 +1379,6 @@
       "/uploads/thalia/thalia-kefir-soap-01.jpg",
       "/uploads/thalia/thalia-kefir-soap-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -1523,8 +1401,6 @@
     "images": [
       "/uploads/thalia/thalia-kiss-land-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Lotion AND Parfum SET"
@@ -1550,8 +1426,6 @@
       "/uploads/thalia/thalia-lavander-sage-tea-03.jpg",
       "/uploads/thalia/thalia-lavander-sage-tea-04.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Anti Hair Loss Shampoo 300 ML"
@@ -1575,8 +1449,6 @@
       "/uploads/thalia/thalia-lavander-soap-01.jpg",
       "/uploads/thalia/thalia-lavander-soap-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -1599,8 +1471,6 @@
     "images": [
       "/uploads/thalia/thalia-lemon-soap-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Flowpack Soap"
@@ -1623,8 +1493,6 @@
     "images": [
       "/uploads/thalia/thalia-lime-cool-body-shampoo-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Body Showe GEL 500 ML"
@@ -1647,8 +1515,6 @@
     "images": [
       "/uploads/thalia/thalia-lime-zest-soap-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Massage Soap"
@@ -1671,8 +1537,6 @@
     "images": [
       "/uploads/thalia/thalia-lush-lollies-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Body Showe GEL 500 ML"
@@ -1695,8 +1559,6 @@
     "images": [
       "/uploads/thalia/thalia-mango-bliss-soap-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Massage Soap"
@@ -1720,8 +1582,6 @@
       "/uploads/thalia/thalia-mastic-soap-01.jpg",
       "/uploads/thalia/thalia-mastic-soap-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -1745,8 +1605,6 @@
       "/uploads/thalia/thalia-mint-01.jpg",
       "/uploads/thalia/thalia-mint-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "LIP Balm"
@@ -1769,8 +1627,6 @@
     "images": [
       "/uploads/thalia/thalia-mint-blister-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "LIP Balm"
@@ -1794,8 +1650,6 @@
       "/uploads/thalia/thalia-moisturizing-sweet-almond-milk-01.jpg",
       "/uploads/thalia/thalia-moisturizing-sweet-almond-milk-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap With Roap"
@@ -1821,8 +1675,6 @@
       "/uploads/thalia/thalia-nettle-horse-chesnut-03.jpg",
       "/uploads/thalia/thalia-nettle-horse-chesnut-04.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Anti Hair Loss Shampoo 300 ML"
@@ -1845,8 +1697,6 @@
     "images": [
       "/uploads/thalia/thalia-noni-verde-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Body Showe GEL 500 ML"
@@ -1870,8 +1720,6 @@
       "/uploads/thalia/thalia-nourishing-olive-oil-01.jpg",
       "/uploads/thalia/thalia-nourishing-olive-oil-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap With Roap"
@@ -1897,8 +1745,6 @@
       "/uploads/thalia/thalia-olive-oil-03.jpg",
       "/uploads/thalia/thalia-olive-oil-04.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Anti Hair Loss Shampoo 300 ML"
@@ -1922,8 +1768,6 @@
       "/uploads/thalia/thalia-olive-oil-soap-01.jpg",
       "/uploads/thalia/thalia-olive-oil-soap-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -1947,8 +1791,6 @@
       "/uploads/thalia/thalia-olive-particles-01.jpg",
       "/uploads/thalia/thalia-olive-particles-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -1971,8 +1813,6 @@
     "images": [
       "/uploads/thalia/thalia-papaya-body-lotion-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "1e6a5731.jpg"
@@ -1995,8 +1835,6 @@
     "images": [
       "/uploads/thalia/thalia-papaya-liquid-soap-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "1e6a5731.jpg"
@@ -2019,8 +1857,6 @@
     "images": [
       "/uploads/thalia/thalia-papaya-scrub-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "1e6a5731.jpg"
@@ -2043,8 +1879,6 @@
     "images": [
       "/uploads/thalia/thalia-papaya-shower-gel-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "1e6a5731.jpg"
@@ -2067,8 +1901,6 @@
     "images": [
       "/uploads/thalia/thalia-peach-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Flowpack Soap"
@@ -2096,8 +1928,6 @@
       "/uploads/thalia/thalia-pearl-powder-soap-05.jpg",
       "/uploads/thalia/thalia-pearl-powder-soap-06.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -2120,8 +1950,6 @@
     "images": [
       "/uploads/thalia/thalia-pineapple-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Flowpack Soap"
@@ -2144,8 +1972,6 @@
     "images": [
       "/uploads/thalia/thalia-pink-aloe-vera-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Cream Gel.jpg"
@@ -2168,8 +1994,6 @@
     "images": [
       "/uploads/thalia/thalia-pink-grapefruit-soap-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Flowpack Soap"
@@ -2193,8 +2017,6 @@
       "/uploads/thalia/thalia-pomegranate-soap-01.jpg",
       "/uploads/thalia/thalia-pomegranate-soap-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -2218,8 +2040,6 @@
       "/uploads/thalia/thalia-purifying-rose-clay-01.jpg",
       "/uploads/thalia/thalia-purifying-rose-clay-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap With Roap"
@@ -2242,8 +2062,6 @@
     "images": [
       "/uploads/thalia/thalia-raspberry-body-lotion-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "1e6a5731.jpg"
@@ -2266,8 +2084,6 @@
     "images": [
       "/uploads/thalia/thalia-raspberry-liquid-soap-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "1e6a5731.jpg"
@@ -2290,8 +2106,6 @@
     "images": [
       "/uploads/thalia/thalia-raspberry-scrub-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "1e6a5731.jpg"
@@ -2314,8 +2128,6 @@
     "images": [
       "/uploads/thalia/thalia-raspberry-shower-gel-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "1e6a5731.jpg"
@@ -2338,8 +2150,6 @@
     "images": [
       "/uploads/thalia/thalia-refreshing-lemongrass-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap With Roap"
@@ -2362,8 +2172,6 @@
     "images": [
       "/uploads/thalia/thalia-refreshing-lomengrass-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap With Roap"
@@ -2387,8 +2195,6 @@
       "/uploads/thalia/thalia-relaxing-thyme-01.jpg",
       "/uploads/thalia/thalia-relaxing-thyme-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap With Roap"
@@ -2411,8 +2217,6 @@
     "images": [
       "/uploads/thalia/thalia-remember-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Lotion AND Parfum SET"
@@ -2436,8 +2240,6 @@
       "/uploads/thalia/thalia-rice-soap-01.jpg",
       "/uploads/thalia/thalia-rice-soap-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -2461,8 +2263,6 @@
       "/uploads/thalia/thalia-rose-soap-01.jpg",
       "/uploads/thalia/thalia-rose-soap-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -2485,8 +2285,6 @@
     "images": [
       "/uploads/thalia/thalia-royal-jasmine-soap-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Massage Soap"
@@ -2513,8 +2311,6 @@
       "/uploads/thalia/thalia-rub-cleanser-04.jpg",
       "/uploads/thalia/thalia-rub-cleanser-05.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Pink Aloe Vera"
@@ -2537,8 +2333,6 @@
     "images": [
       "/uploads/thalia/thalia-rub-cleanser-copy-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Cream Gel.jpg"
@@ -2561,8 +2355,6 @@
     "images": [
       "/uploads/thalia/thalia-sea-salt-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Body Showe GEL 500 ML"
@@ -2585,11 +2377,9 @@
     "images": [
       "/uploads/thalia/thalia-shampoo-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
-      "Aloe Vera Seri\u0307si\u0307"
+      "Aloe Vera Seri̇si̇"
     ],
     "metaTitle": "Shampoo | Thalia",
     "metaDescription": "Shampoo by Thalia.",
@@ -2609,8 +2399,6 @@
     "images": [
       "/uploads/thalia/thalia-shiny-girl-shampoo-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Girl AND BOY Shampoo 400 ML"
@@ -2633,8 +2421,6 @@
     "images": [
       "/uploads/thalia/thalia-shiny-girl-spray-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Girl AND BOY Shampoo 400 ML"
@@ -2658,11 +2444,9 @@
       "/uploads/thalia/thalia-soap-01.jpg",
       "/uploads/thalia/thalia-soap-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
-      "Aloe Vera Seri\u0307si\u0307"
+      "Aloe Vera Seri̇si̇"
     ],
     "metaTitle": "Soap | Thalia",
     "metaDescription": "Soap by Thalia.",
@@ -2682,8 +2466,6 @@
     "images": [
       "/uploads/thalia/thalia-solo-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Lotion AND Parfum SET"
@@ -2706,8 +2488,6 @@
     "images": [
       "/uploads/thalia/thalia-something-cool-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Lotion AND Parfum SET"
@@ -2734,8 +2514,6 @@
       "/uploads/thalia/thalia-soothing-gel-04.jpg",
       "/uploads/thalia/thalia-soothing-gel-05.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Pink Aloe Vera"
@@ -2758,8 +2536,6 @@
     "images": [
       "/uploads/thalia/thalia-soothing-gel-copy-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Cream Gel.jpg"
@@ -2782,11 +2558,9 @@
     "images": [
       "/uploads/thalia/thalia-sos-serum-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
-      "Aloe Vera Seri\u0307si\u0307"
+      "Aloe Vera Seri̇si̇"
     ],
     "metaTitle": "SOS Serum | Thalia",
     "metaDescription": "SOS Serum by Thalia.",
@@ -2806,8 +2580,6 @@
     "images": [
       "/uploads/thalia/thalia-spf50-daily-face-moisturize-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Daily Face Mouisturizer"
@@ -2834,8 +2606,6 @@
       "/uploads/thalia/thalia-spf50-daily-face-moisturizer-04.jpg",
       "/uploads/thalia/thalia-spf50-daily-face-moisturizer-05.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Daily Face Mouisturizer"
@@ -2863,8 +2633,6 @@
       "/uploads/thalia/thalia-spf50-sun-protection-cream-05.jpg",
       "/uploads/thalia/thalia-spf50-sun-protection-cream-06.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "SUN Protection Cream SPF50"
@@ -2887,8 +2655,6 @@
     "images": [
       "/uploads/thalia/thalia-storm-boy-shampoo-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Girl AND BOY Shampoo 400 ML"
@@ -2912,8 +2678,6 @@
       "/uploads/thalia/thalia-strawberry-01.jpg",
       "/uploads/thalia/thalia-strawberry-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "LIP Balm"
@@ -2936,8 +2700,6 @@
     "images": [
       "/uploads/thalia/thalia-strawberry-blister-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "LIP Balm"
@@ -2960,8 +2722,6 @@
     "images": [
       "/uploads/thalia/thalia-sulphur-red-pepper-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Anti Hair Loss Shampoo 300 ML"
@@ -2986,8 +2746,6 @@
       "/uploads/thalia/thalia-sulphur-redpepper-02.jpg",
       "/uploads/thalia/thalia-sulphur-redpepper-03.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Anti Hair Loss Shampoo 300 ML"
@@ -3012,8 +2770,6 @@
       "/uploads/thalia/thalia-sun-milk-02.jpg",
       "/uploads/thalia/thalia-sun-milk-03.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "SUN Milk"
@@ -3036,8 +2792,6 @@
     "images": [
       "/uploads/thalia/thalia-sun-milk-kids-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "SUN Milk Kids"
@@ -3063,8 +2817,6 @@
       "/uploads/thalia/thalia-sun-stick-cover-me-up-lm-03.jpg",
       "/uploads/thalia/thalia-sun-stick-cover-me-up-lm-04.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "SUN Sticks"
@@ -3091,8 +2843,6 @@
       "/uploads/thalia/thalia-sun-stick-cover-me-up-md-04.jpg",
       "/uploads/thalia/thalia-sun-stick-cover-me-up-md-05.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "SUN Sticks"
@@ -3117,8 +2867,6 @@
       "/uploads/thalia/thalia-sun-stick-glow-me-up-02.jpg",
       "/uploads/thalia/thalia-sun-stick-glow-me-up-03.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "SUN Sticks"
@@ -3145,8 +2893,6 @@
       "/uploads/thalia/thalia-sun-stick-glowme-up-04.jpg",
       "/uploads/thalia/thalia-sun-stick-glowme-up-05.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "SUN Sticks"
@@ -3175,8 +2921,6 @@
       "/uploads/thalia/thalia-sun-stick-silky-touch-06.jpg",
       "/uploads/thalia/thalia-sun-stick-silky-touch-07.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "SUN Sticks"
@@ -3202,8 +2946,6 @@
       "/uploads/thalia/thalia-sun-water-03.jpg",
       "/uploads/thalia/thalia-sun-water-04.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "SUN Water"
@@ -3226,8 +2968,6 @@
     "images": [
       "/uploads/thalia/thalia-the-curea-foot-care-cream-75-ml-psd-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "THE Curea Series"
@@ -3250,8 +2990,6 @@
     "images": [
       "/uploads/thalia/thalia-the-curea-foot-care-spray-100-ml-psd-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "THE Curea Series"
@@ -3274,8 +3012,6 @@
     "images": [
       "/uploads/thalia/thalia-the-curea-hand-care-cream-75-ml-psd-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "THE Curea Series"
@@ -3298,8 +3034,6 @@
     "images": [
       "/uploads/thalia/thalia-the-curea-hand-foot-cracked-balm-100-ml-psd-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "THE Curea Series"
@@ -3322,8 +3056,6 @@
     "images": [
       "/uploads/thalia/thalia-the-curea-nail-cuticle-care-oil-g-psd-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "THE Curea Series"
@@ -3346,8 +3078,6 @@
     "images": [
       "/uploads/thalia/thalia-toffee-cookie-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Body Showe GEL 500 ML"
@@ -3370,8 +3100,6 @@
     "images": [
       "/uploads/thalia/thalia-tomato-seed-soap-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Flowpack Soap"
@@ -3394,8 +3122,6 @@
     "images": [
       "/uploads/thalia/thalia-toner-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "DAY Cream 1.jpg"
@@ -3418,8 +3144,6 @@
     "images": [
       "/uploads/thalia/thalia-toner-copy-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Cream Gel.jpg"
@@ -3446,8 +3170,6 @@
       "/uploads/thalia/thalia-tonik-04.jpg",
       "/uploads/thalia/thalia-tonik-05.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Pink Aloe Vera"
@@ -3470,8 +3192,6 @@
     "images": [
       "/uploads/thalia/thalia-toplu-kapali-kapak-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "LIP Balm"
@@ -3494,8 +3214,6 @@
     "images": [
       "/uploads/thalia/thalia-toplu-yarim-kapak-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "LIP Balm"
@@ -3518,8 +3236,6 @@
     "images": [
       "/uploads/thalia/thalia-vanilla-whimsy-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Body Showe GEL 500 ML"
@@ -3545,8 +3261,6 @@
       "/uploads/thalia/thalia-verbena-soap-03.jpg",
       "/uploads/thalia/thalia-verbena-soap-04.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Soap 150 GR"
@@ -3569,8 +3283,6 @@
     "images": [
       "/uploads/thalia/thalia-vitamin-c-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Thalia Bubble Soap Anti Blemish 01.jpg"
@@ -3593,8 +3305,6 @@
     "images": [
       "/uploads/thalia/thalia-wash-gel-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "DAY Cream 1.jpg"
@@ -3617,8 +3327,6 @@
     "images": [
       "/uploads/thalia/thalia-wash-gel-copy-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Cream Gel.jpg"
@@ -3642,8 +3350,6 @@
       "/uploads/thalia/thalia-watermelon-01.jpg",
       "/uploads/thalia/thalia-watermelon-02.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "LIP Balm"
@@ -3666,8 +3372,6 @@
     "images": [
       "/uploads/thalia/thalia-watermelon-blister-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "LIP Balm"
@@ -3690,8 +3394,6 @@
     "images": [
       "/uploads/thalia/thalia-wheat-honey-shampoo-01.jpg"
     ],
-    "stockStatus": "OUT_OF_STOCK",
-    "stock": 0,
     "tags": [
       "Thalia",
       "Anti Hair Loss Shampoo 300 ML"

@@ -69,7 +69,7 @@ async function main() {
       if (isPlaceholder) {
         await prisma.product.update({
           where: { id: existing.id },
-          data: { price: product.price },
+          data: { price: product.price, stockStatus: StockStatus.IN_STOCK },
         });
       }
 
@@ -96,8 +96,6 @@ async function main() {
         images: product.images,
         categoryId: category.id,
         brandId: brand.id,
-        stockStatus: product.stockStatus as StockStatus,
-        stock: product.stock,
         tags: Array.from(new Set(["Thalia", categoryName, ...product.tags])),
         metaTitle: product.metaTitle,
         metaDescription: product.metaDescription,
