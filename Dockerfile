@@ -28,4 +28,4 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/next.config.mjs ./next.config.mjs
 
 EXPOSE 3000
-CMD ["sh", "-c", "npx prisma migrate deploy && npm run start"]
+CMD ["sh", "-c", "npx prisma migrate deploy && npx tsx prisma/seed-taxonomy.ts && npx tsx prisma/seed-thalia-products.ts && npm run start"]
