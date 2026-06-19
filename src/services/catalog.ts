@@ -176,12 +176,17 @@ export function toProductCard(product: {
   slug: string;
   name: string;
   price: { toString(): string };
+  salePrice?: { toString(): string } | null;
   images: string[];
   stock: number;
   category?: { name: string };
   brand?: { name: string } | null;
 }) {
-  return { ...product, price: product.price.toString() };
+  return {
+    ...product,
+    price: product.price.toString(),
+    salePrice: product.salePrice ? product.salePrice.toString() : null,
+  };
 }
 
 function cleanProductData<T extends { sku?: string; slug?: string; name?: string }>(data: T) {
@@ -229,13 +234,19 @@ export async function getHomeCatalog() {
       where: { isFeatured: true },
       include: { brand: true, category: true },
       orderBy: { createdAt: "desc" },
-      take: 5,
+      take: 10,
     }),
     prisma.product.findMany({
       where: { isBestSeller: true },
       include: { brand: true, category: true },
       orderBy: { createdAt: "desc" },
-      take: 5,
+      take: 10,
+    }),
+    prisma.product.findMany({
+      where: { salePrice: { not: null } },
+      include: { brand: true, category: true },
+      orderBy: [{ isFeatured: "desc" }, { isBestSeller: "desc" }, { createdAt: "desc" }],
+      take: 10,
     }),
     prisma.category.findMany({ orderBy: { name: "asc" } }),
   ]);

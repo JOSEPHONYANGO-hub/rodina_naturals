@@ -15,6 +15,19 @@ const BEST_SELLER_PRODUCT_SLUGS = new Set([
   "thalia-bubble-soap-vitamin-c",
 ]);
 
+const OFFER_PRODUCT_DISCOUNTS = new Map<string, number>([
+  ["thalia-spf50-daily-face-moisturizer", 20],
+  ["thalia-aloe-vera-body-lotion", 15],
+  ["thalia-the-curea-hand-care-cream-75-ml-psd", 15],
+  ["thalia-the-curea-hand-foot-cracked-balm-100-ml-psd", 20],
+  ["thalia-sun-water", 20],
+  ["thalia-sun-stick-silky-touch", 15],
+  ["thalia-spf50-sun-protection-cream", 25],
+  ["thalia-sun-milk", 20],
+  ["thalia-face-wash-gel", 15],
+  ["thalia-day-cream", 25],
+]);
+
 function slugify(name: string) {
   return name
     .toLowerCase()
@@ -66,6 +79,9 @@ async function main() {
   let skipped = 0;
 
   for (const product of products) {
+    const salePrice = OFFER_PRODUCT_DISCOUNTS.has(product.slug)
+      ? Math.max(1, Math.round(Number(product.price) * (100 - (OFFER_PRODUCT_DISCOUNTS.get(product.slug) || 0)) / 100))
+      : null;
     const existing = await prisma.product.findUnique({
       where: { slug: product.slug },
       select: { id: true, price: true, description: true },
@@ -80,6 +96,7 @@ async function main() {
         where: { id: existing.id },
         data: {
           ...(isPlaceholder ? { price: product.price } : {}),
+          salePrice,
           stock: 10,
           stockStatus: StockStatus.IN_STOCK,
           isFeatured: FEATURED_PRODUCT_SLUGS.has(product.slug),
@@ -106,6 +123,7 @@ async function main() {
         description: product.description,
         ingredients: product.ingredients,
         price: product.price,
+        salePrice,
         currency: product.currency,
         images: product.images,
         categoryId: category.id,

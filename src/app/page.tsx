@@ -160,25 +160,28 @@ function SectionBanner({
 function ProductRail({
   title,
   products,
+  cta = "View All",
 }: {
   title: string;
   products: ProductCardData[];
+  cta?: string;
 }) {
   return (
-    <div className="rounded-[32px] border border-[#a81723]/10 bg-white/72 p-4 shadow-[0_20px_70px_rgba(34,34,34,0.06)] sm:p-5">
+    <div>
       <div className="mb-5 flex items-center justify-between gap-4">
-        <h3 className="text-2xl font-semibold text-[#222222]">{title}</h3>
-        <Link href="/shop" className="fine-link">
-          Shop products
+        <h3 className="text-[26px] font-extrabold tracking-tight text-[#222222]">{title}</h3>
+        <Link
+          href="/shop"
+          className="inline-flex h-10 items-center rounded-full border border-[#ed0b68]/18 bg-white px-5 text-xs font-bold text-[#ed0b68] shadow-sm transition hover:border-[#ed0b68] hover:bg-[#ed0b68] hover:text-white"
+        >
+          {cta}
         </Link>
       </div>
-      <CarouselFrame ariaLabel={`${title} carousel`} className="gap-4 pb-2">
-        {products.map((product) => (
-          <div key={`${title}-${product.id}`} className="min-w-[250px] snap-start sm:min-w-[290px] lg:min-w-[310px]">
-            <ProductCard product={product} />
-          </div>
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">
+        {products.slice(0, 10).map((product) => (
+          <ProductCard key={`${title}-${product.id}`} product={product} variant="shop" />
         ))}
-      </CarouselFrame>
+      </div>
     </div>
   );
 }
@@ -186,11 +189,15 @@ function ProductRail({
 export default async function Home() {
   let featuredCards = fallbackProducts;
   let bestSellerCards = fallbackProducts;
+  let offerCards: ProductCardData[] = fallbackProducts
+    .slice(0, 3)
+    .map((product, index) => ({ ...product, salePrice: String(Math.round(Number(product.price) * (index === 1 ? 0.8 : 0.85))) }));
 
   try {
-    const [featured, bestSellers] = await getHomeCatalog();
+    const [featured, bestSellers, offers] = await getHomeCatalog();
     featuredCards = featured.length ? featured.map((product) => toProductCard(product)) : fallbackProducts;
     bestSellerCards = bestSellers.length ? bestSellers.map((product) => toProductCard(product)) : featuredCards;
+    offerCards = offers.length ? offers.map((product) => toProductCard(product)) : offerCards;
   } catch (error) {
     console.warn("Using homepage fallback products because catalog data is unavailable.", error);
   }
@@ -243,6 +250,12 @@ export default async function Home() {
           </div>
         </section>
 
+        <section className="bg-white pb-8 pt-4 sm:pb-14">
+          <div className="container-page">
+            <ProductRail title="Offers For You" products={offerCards} />
+          </div>
+        </section>
+
         <section className="bg-white pb-16 pt-8 sm:pb-24 sm:pt-10">
           <div className="container-page space-y-10">
             <SectionBanner
@@ -251,7 +264,7 @@ export default async function Home() {
               copy="Target your beauty concerns with carefully selected products."
               image="https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=1800&q=88"
             />
-            <ProductRail title="Concern-focused favorites" products={products} />
+            <ProductRail title="Concern-focused favorites" products={products} cta="Shop All" />
             <CarouselFrame ariaLabel="Shop by concern carousel" className="gap-4 pb-3">
               {concernGroups.flatMap((group) =>
                 group.concerns.map((concern) => (
@@ -319,12 +332,12 @@ export default async function Home() {
             <SectionBanner
               eyebrow="Best selling products"
               title="The Rodina Best Seller Edit"
-              copy="Premium product cards with quick view, wishlisting, ratings and smooth shopping actions."
+              copy="Premium product cards with quick view, wishlisting and smooth shopping actions."
               image="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&w=1800&q=88"
             />
             <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-5">
-              {bestSellerCards.map((product) => (
-                <ProductCard key={product.id} product={product} />
+              {bestSellerCards.slice(0, 10).map((product) => (
+                <ProductCard key={product.id} product={product} variant="shop" />
               ))}
             </div>
           </div>

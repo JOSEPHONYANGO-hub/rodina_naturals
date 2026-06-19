@@ -3,6 +3,7 @@ export type ProductCardData = {
   slug: string;
   name: string;
   price: string | number;
+  salePrice?: string | number | null;
   images: string[];
   stock: number;
   category?: { name: string };

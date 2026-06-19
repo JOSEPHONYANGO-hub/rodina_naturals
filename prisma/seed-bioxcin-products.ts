@@ -15,6 +15,8 @@ const BEST_SELLER_PRODUCT_SLUGS = new Set([
   "bioxcin-anti-wrinkle",
 ]);
 
+const OFFER_PRODUCT_DISCOUNTS = new Map<string, number>();
+
 function slugify(name: string) {
   return name
     .toLowerCase()
@@ -52,6 +54,9 @@ async function main() {
       description: product.description,
       ingredients: product.ingredients,
       price: product.price,
+      salePrice: OFFER_PRODUCT_DISCOUNTS.has(product.slug)
+        ? Math.max(1, Math.round(Number(product.price) * (100 - (OFFER_PRODUCT_DISCOUNTS.get(product.slug) || 0)) / 100))
+        : null,
       currency: product.currency,
       images: product.images,
       categoryId: category.id,

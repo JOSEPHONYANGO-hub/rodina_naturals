@@ -133,6 +133,23 @@ const BEST_SELLER_PRODUCT_SLUGS = [
   "thalia-bubble-soap-vitamin-c",
 ];
 
+const OFFER_PRODUCT_DISCOUNTS = new Map<string, number>([
+  ["thalia-spf50-daily-face-moisturizer", 20],
+  ["thalia-aloe-vera-body-lotion", 15],
+  ["thalia-the-curea-hand-care-cream-75-ml-psd", 15],
+  ["thalia-the-curea-hand-foot-cracked-balm-100-ml-psd", 20],
+  ["thalia-sun-water", 20],
+  ["thalia-sun-stick-silky-touch", 15],
+  ["thalia-spf50-sun-protection-cream", 25],
+  ["thalia-sun-milk", 20],
+  ["thalia-face-wash-gel", 15],
+  ["thalia-day-cream", 25],
+]);
+
+function offerPrice(price: { toString(): string }, discount: number) {
+  return Math.max(1, Math.round(Number(price.toString()) * (100 - discount) / 100));
+}
+
 async function main() {
   await Promise.all(
     SHOP_CATEGORIES.map((item) =>
@@ -164,7 +181,7 @@ async function main() {
   });
 
   await prisma.product.updateMany({
-    data: { isFeatured: false, isBestSeller: false },
+    data: { isFeatured: false, isBestSeller: false, salePrice: null },
   });
 
   await prisma.product.updateMany({
@@ -176,6 +193,20 @@ async function main() {
     where: { slug: { in: BEST_SELLER_PRODUCT_SLUGS } },
     data: { isBestSeller: true, stock: 10, stockStatus: StockStatus.IN_STOCK },
   });
+
+  const offerProducts = await prisma.product.findMany({
+    where: { slug: { in: Array.from(OFFER_PRODUCT_DISCOUNTS.keys()) } },
+    select: { id: true, slug: true, price: true },
+  });
+
+  await Promise.all(
+    offerProducts.map((product) =>
+      prisma.product.update({
+        where: { id: product.id },
+        data: { salePrice: offerPrice(product.price, OFFER_PRODUCT_DISCOUNTS.get(product.slug) || 0) },
+      }),
+    ),
+  );
 
   await prisma.user.upsert({
     where: { email: "admin@rodinanaturals.co.ke" },

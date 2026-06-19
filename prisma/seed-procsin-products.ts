@@ -13,6 +13,8 @@ const BEST_SELLER_PRODUCT_SLUGS = new Set([
   "procsin-hydrosynol-aha-bha-serum-30-ml",
 ]);
 
+const OFFER_PRODUCT_DISCOUNTS = new Map<string, number>();
+
 function slugify(name: string) {
   return name
     .toLowerCase()
@@ -43,6 +45,9 @@ async function main() {
       where: { slug: product.slug },
       select: { id: true, price: true, description: true },
     });
+    const salePrice = OFFER_PRODUCT_DISCOUNTS.has(product.slug)
+      ? Math.max(1, Math.round(Number(product.price) * (100 - (OFFER_PRODUCT_DISCOUNTS.get(product.slug) || 0)) / 100))
+      : null;
 
     if (existing) {
       const isPlaceholder =
@@ -59,6 +64,7 @@ async function main() {
                 description: product.description,
                 ingredients: product.ingredients,
                 price: product.price,
+                salePrice,
                 currency: product.currency,
                 images: product.images,
                 categoryId: category.id,
@@ -68,6 +74,7 @@ async function main() {
                 metaDescription: product.metaDescription,
               }
             : {}),
+          salePrice,
           stock: 10,
           stockStatus: StockStatus.IN_STOCK,
           isFeatured: FEATURED_PRODUCT_SLUGS.has(product.slug),
@@ -90,6 +97,7 @@ async function main() {
         description: product.description,
         ingredients: product.ingredients,
         price: product.price,
+        salePrice,
         currency: product.currency,
         images: product.images,
         categoryId: category.id,
