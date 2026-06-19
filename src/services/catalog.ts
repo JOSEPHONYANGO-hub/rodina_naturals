@@ -3,8 +3,10 @@ import { prisma } from "@/lib/prisma";
 import { slugify } from "@/lib/utils";
 import type { ProductCardData, ProductFilters } from "@/types/catalog";
 
-export const PRODUCT_PAGE_SIZE = 12;
+export const PRODUCT_PAGE_SIZE = 20;
 export const MAX_PRODUCT_PAGE_SIZE = 48;
+const PRODUCT_SORT_OPTIONS = ["recommended", "newest", "price-asc", "price-desc", "name"] as const;
+type ProductSort = (typeof PRODUCT_SORT_OPTIONS)[number];
 
 export const SHOP_CATEGORIES = [
   { name: "Skincare", slug: "skincare" },
@@ -112,15 +114,32 @@ export const fallbackProducts: ProductCardData[] = [
 export function normalizeProductFilters(filters: ProductFilters) {
   const page = Math.max(Number(filters.page || 1), 1);
   const take = Math.min(Math.max(Number(filters.take || PRODUCT_PAGE_SIZE), 1), MAX_PRODUCT_PAGE_SIZE);
+  const sort: ProductSort = PRODUCT_SORT_OPTIONS.includes(filters.sort as ProductSort)
+    ? (filters.sort as ProductSort)
+    : "recommended";
   return {
     page,
     take,
+    sort,
     query: filters.q?.trim() || "",
     brand: filters.brand?.trim() || "",
     category: filters.category?.trim() || "",
     min: filters.min ? Number(filters.min) : undefined,
     max: filters.max ? Number(filters.max) : undefined,
   };
+}
+
+function productOrderBy(sort: ProductSort): Prisma.ProductOrderByWithRelationInput[] {
+  if (sort === "price-asc") return [{ price: "asc" }, { createdAt: "desc" }];
+  if (sort === "price-desc") return [{ price: "desc" }, { createdAt: "desc" }];
+  if (sort === "name") return [{ name: "asc" }];
+  if (sort === "newest") return [{ createdAt: "desc" }];
+
+  return [
+    { isFeatured: "desc" },
+    { isBestSeller: "desc" },
+    { createdAt: "desc" },
+  ];
 }
 
 export function buildProductWhere(filters: ProductFilters): Prisma.ProductWhereInput {
@@ -189,7 +208,7 @@ export async function getProductListing(filters: ProductFilters) {
     prisma.product.findMany({
       where,
       include: { brand: true, category: true },
-      orderBy: { createdAt: "desc" },
+      orderBy: productOrderBy(normalized.sort),
       skip: (normalized.page - 1) * normalized.take,
       take: normalized.take,
     }),

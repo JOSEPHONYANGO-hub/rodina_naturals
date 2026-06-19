@@ -10,6 +10,7 @@ import type { ProductCardData } from "@/types/catalog";
 
 type ProductCardProps = {
   product: ProductCardData;
+  variant?: "default" | "shop";
 };
 
 const PRODUCT_IMAGE_FALLBACK = "/rodina-logo.jpeg";
@@ -18,7 +19,7 @@ function reviewCount(productId: string) {
   return 48 + productId.split("").reduce((total, char) => total + char.charCodeAt(0), 0) % 280;
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, variant = "default" }: ProductCardProps) {
   const add = useCart((state) => state.add);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
   const soldOut = product.stock < 1;
@@ -31,6 +32,104 @@ export function ProductCard({ product }: ProductCardProps) {
       price: Number(product.price),
       image,
     });
+
+  if (variant === "shop") {
+    return (
+      <>
+        <article className="group relative overflow-hidden rounded-[12px] border border-[#d7e0ea] bg-white p-4 shadow-[0_10px_24px_rgba(34,34,34,0.03)] transition duration-300 hover:-translate-y-0.5 hover:border-[#ed0b68] hover:shadow-[0_18px_38px_rgba(237,11,104,0.08)]">
+          <Link href={`/products/${product.slug}`} className="block">
+            <div className="relative mx-auto h-[170px] w-full overflow-hidden bg-white">
+              <Image
+                src={image}
+                alt={product.name}
+                fill
+                sizes="(min-width: 1280px) 22vw, (min-width: 768px) 33vw, 50vw"
+                className="object-contain p-2 transition duration-500 group-hover:scale-105"
+              />
+            </div>
+          </Link>
+          <div className="absolute right-4 top-4 flex flex-col gap-2">
+            <button
+              className="grid h-9 w-9 place-items-center rounded-full border border-[#9ca3af] bg-white text-[#6b7280] transition hover:border-[#ed0b68] hover:text-[#ed0b68]"
+              aria-label={`Quick view ${product.name}`}
+              onClick={() => setQuickViewOpen(true)}
+              type="button"
+            >
+              <Eye className="h-4 w-4" />
+            </button>
+            <Link
+              href="/shop"
+              className="grid h-9 w-9 place-items-center rounded-full border border-[#ed0b68] bg-white text-[#ed0b68] transition hover:bg-[#ed0b68] hover:text-white"
+              aria-label="Wishlist"
+            >
+              <Heart className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="pt-4">
+            <p className="text-xs text-[#8a94a6]">{product.category?.name || product.brand?.name}</p>
+            <Link href={`/products/${product.slug}`}>
+              <h3 className="mt-1 min-h-[3rem] text-[15px] font-bold leading-snug text-[#111827] transition hover:text-[#ed0b68]">
+                {product.name}
+              </h3>
+            </Link>
+            <p className="mt-4 text-sm font-semibold text-[#111827]">{formatCurrency(product.price)}</p>
+            <button
+              onClick={addProduct}
+              className="mt-3 h-11 w-full rounded-full bg-[#f4f3fb] text-sm font-bold text-[#111827] transition hover:bg-[#66b345] hover:text-white disabled:cursor-not-allowed disabled:bg-[#eef0f5] disabled:text-[#9ca3af]"
+              disabled={soldOut}
+              type="button"
+            >
+              + {soldOut ? "Out Of Stock" : "Add To Cart"}
+            </button>
+          </div>
+        </article>
+
+        {quickViewOpen ? (
+          <div
+            className="fixed inset-0 z-[80] grid place-items-center bg-charcoal/55 px-4 py-8 backdrop-blur-sm"
+            role="dialog"
+            aria-modal="true"
+          >
+            <div className="relative grid w-full max-w-4xl overflow-hidden rounded-[30px] bg-white shadow-[0_30px_100px_rgba(0,0,0,0.3)] md:grid-cols-[0.9fr_1fr]">
+              <button
+                className="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-full bg-white text-maroon shadow"
+                onClick={() => setQuickViewOpen(false)}
+                aria-label="Close quick view"
+              >
+                <X className="h-4 w-4" />
+              </button>
+              <div className="relative min-h-[320px] bg-rose/30">
+                <Image src={image} alt={product.name} fill sizes="50vw" className="object-contain p-6" />
+              </div>
+              <div className="p-7 sm:p-9">
+                <p className="eyebrow">{product.category?.name}</p>
+                <h3 className="mt-3 text-3xl font-semibold leading-tight text-charcoal sm:text-4xl">
+                  {product.name}
+                </h3>
+                <p className="mt-5 text-xl font-bold text-maroon">{formatCurrency(product.price)}</p>
+                <p className="mt-4 text-sm leading-7 text-ink/65">
+                  Premium beauty essential selected for modern everyday routines.
+                </p>
+                <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                  <button
+                    onClick={addProduct}
+                    disabled={soldOut}
+                    className={cn("btn-primary", soldOut && "cursor-not-allowed opacity-45")}
+                  >
+                    <ShoppingCart className="mr-2 h-4 w-4" />
+                    {soldOut ? "Out Of Stock" : "Add To Cart"}
+                  </button>
+                  <Link href={`/products/${product.slug}`} className="btn-secondary">
+                    View Details
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null}
+      </>
+    );
+  }
 
   return (
     <>

@@ -1,6 +1,6 @@
 "use client";
 
-import { SlidersHorizontal, Search, X } from "lucide-react";
+import { ChevronUp, Search, X } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -45,81 +45,92 @@ export function ShopFilters({
     router.push(pathname);
   }
 
+  const selectedCategory = params.get("category") || "";
+  const selectedBrand = params.get("brand") || "";
+
   return (
-    <aside className="h-fit rounded-[28px] border border-maroon/10 bg-white p-5 shadow-[0_18px_50px_rgba(77,12,18,0.06)]">
-      <div className="mb-5 flex items-center justify-between">
-        <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.26em] text-maroon">
-          <SlidersHorizontal className="h-4 w-4 text-gold" />
-          Refine
-        </p>
+    <aside className="h-fit overflow-hidden rounded-[12px] border border-[#d7e0ea] bg-white shadow-[0_10px_30px_rgba(34,34,34,0.04)]">
+      <div className="flex items-center justify-between border-b border-[#e5ebf1] bg-[#fbfdfb] px-4 py-3">
+        <p className="text-xs font-semibold text-[#148016]">Category</p>
+        <ChevronUp className="h-4 w-4 text-[#148016]" />
+      </div>
+      <div className="p-4">
         <button
           onClick={clearFilters}
-          className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-ink/50 transition hover:text-maroon"
+          className="mb-4 inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-ink/50 transition hover:text-maroon"
         >
           <X className="h-3 w-3" />
           Clear
         </button>
-      </div>
-      <div className="relative">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-maroon/50" />
-        <input
-          className="field rounded-full pl-10"
-          placeholder="Search products"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-        />
-        {query && suggestions.length ? (
-          <div className="absolute left-0 right-0 top-14 z-20 rounded-2xl border border-maroon/10 bg-white p-2 shadow-[0_18px_50px_rgba(77,12,18,0.12)]">
-            {suggestions.slice(0, 4).map((category) => (
-              <button
-                key={category.slug}
-                onClick={() => setFilter("category", category.slug)}
-                className="block w-full rounded-xl px-3 py-2 text-left text-sm text-maroon hover:bg-cream"
-              >
-                {category.name}
-              </button>
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-maroon/50" />
+          <input
+            className="field h-10 rounded-lg pl-10 text-sm"
+            placeholder="Search products"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+          />
+          {query && suggestions.length ? (
+            <div className="absolute left-0 right-0 top-14 z-20 rounded-2xl border border-maroon/10 bg-white p-2 shadow-[0_18px_50px_rgba(77,12,18,0.12)]">
+              {suggestions.slice(0, 4).map((category) => (
+                <button
+                  key={category.slug}
+                  onClick={() => setFilter("category", category.slug)}
+                  className="block w-full rounded-xl px-3 py-2 text-left text-sm text-maroon hover:bg-cream"
+                >
+                  {category.name}
+                </button>
+              ))}
+            </div>
+          ) : null}
+        </div>
+        <div className="mt-5 grid max-h-[420px] gap-3 overflow-y-auto pr-1 text-sm text-[#4b5563]">
+          {categories.slice(0, 22).map((category) => (
+            <label key={category.slug} className="flex cursor-pointer items-center gap-2">
+              <input
+                type="checkbox"
+                className="h-4 w-4 rounded border-[#cfd8e3] text-[#66b345]"
+                checked={selectedCategory === category.slug}
+                onChange={() => setFilter("category", selectedCategory === category.slug ? "" : category.slug)}
+              />
+              <span>{category.name}</span>
+            </label>
+          ))}
+        </div>
+
+        <div className="mt-6 border-t border-[#e5ebf1] pt-4">
+          <p className="mb-3 text-xs font-semibold text-[#148016]">Brand</p>
+          <div className="grid gap-3 text-sm text-[#4b5563]">
+            {brands.map((brand) => (
+              <label key={brand.slug} className="flex cursor-pointer items-center gap-2">
+                <input
+                  type="checkbox"
+                  className="h-4 w-4 rounded border-[#cfd8e3] text-[#66b345]"
+                  checked={selectedBrand === brand.slug}
+                  onChange={() => setFilter("brand", selectedBrand === brand.slug ? "" : brand.slug)}
+                />
+                <span>{brand.name}</span>
+              </label>
             ))}
           </div>
-        ) : null}
-      </div>
-      <div className="mt-5 grid gap-4">
-        <select
-          className="field rounded-full"
-          defaultValue={params.get("category") || ""}
-          onChange={(event) => setFilter("category", event.target.value)}
-        >
-          <option value="">All categories</option>
-          {categories.map((category) => (
-            <option key={category.slug} value={category.slug}>
-              {category.name}
-            </option>
-          ))}
-        </select>
-        <select
-          className="field rounded-full"
-          defaultValue={params.get("brand") || ""}
-          onChange={(event) => setFilter("brand", event.target.value)}
-        >
-          <option value="">All brands</option>
-          {brands.map((category) => (
-            <option key={category.slug} value={category.slug}>
-              {category.name}
-            </option>
-          ))}
-        </select>
-        <div className="grid grid-cols-2 gap-3">
-          <input
-            className="field rounded-full"
-            placeholder="Min price"
-            defaultValue={params.get("min") || ""}
-            onBlur={(event) => setFilter("min", event.target.value)}
-          />
-          <input
-            className="field rounded-full"
-            placeholder="Max price"
-            defaultValue={params.get("max") || ""}
-            onBlur={(event) => setFilter("max", event.target.value)}
-          />
+        </div>
+
+        <div className="mt-6 border-t border-[#e5ebf1] pt-4">
+          <p className="mb-3 text-xs font-semibold text-[#148016]">Price</p>
+          <div className="grid grid-cols-2 gap-2">
+            <input
+              className="field h-10 rounded-lg text-sm"
+              placeholder="Min price"
+              defaultValue={params.get("min") || ""}
+              onBlur={(event) => setFilter("min", event.target.value)}
+            />
+            <input
+              className="field h-10 rounded-lg text-sm"
+              placeholder="Max price"
+              defaultValue={params.get("max") || ""}
+              onBlur={(event) => setFilter("max", event.target.value)}
+            />
+          </div>
         </div>
       </div>
     </aside>

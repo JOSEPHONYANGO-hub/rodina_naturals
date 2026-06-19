@@ -17,4 +17,5 @@ export type ProductFilters = {
   max?: string;
   page?: string;
   take?: string;
+  sort?: string;
 };

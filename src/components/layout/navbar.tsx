@@ -2,6 +2,7 @@
 
 import {
   ChevronDown,
+  ChevronRight,
   Heart,
   Menu,
   MapPin,
@@ -13,6 +14,7 @@ import {
   X,
 } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import type { FormEvent } from "react";
 import { useState } from "react";
@@ -22,10 +24,20 @@ import { CATEGORIES, CONTACT_DETAILS, SOCIAL_LINKS } from "@/config/brand";
 import { useCart } from "@/lib/cart-store";
 import { cn } from "@/lib/utils";
 
-const links = [
+type MegaMenuKey = "category" | "condition" | "brand" | "services" | "health";
+
+const megaMenus: { key: MegaMenuKey; label: string }[] = [
+  { key: "category", label: "Shop by Category" },
+  { key: "condition", label: "Shop by Condition" },
+  { key: "brand", label: "Shop by Brand" },
+  { key: "services", label: "Services" },
+  { key: "health", label: "My Health Center" },
+];
+
+const mobileLinks = [
   { href: "/", label: "Home" },
-  { href: "/shop", label: "Shop", hasMega: true },
-  { href: "/shop?brand=bioxcin", label: "Brands", hasMega: true },
+  { href: "/shop", label: "Shop" },
+  { href: "/shop?brand=procsin", label: "Brands" },
   { href: "/shop?category=skincare", label: "Skincare" },
   { href: "/shop?category=hair-care", label: "Haircare" },
   { href: "/shop?category=body-care", label: "Body Care" },
@@ -33,36 +45,79 @@ const links = [
   { href: "/contact", label: "Contact Us" },
 ];
 
-const categoryGroups = [
+const categorySidebar = [
+  { title: "Beauty And Skin Care", href: "/shop?category=skincare", accent: "bg-pink-100 text-pink-700" },
+  { title: "Dermatological Skincare", href: "/shop?category=acne-and-blemishes", accent: "bg-orange-100 text-orange-700" },
+  { title: "Hair Care", href: "/shop?category=hair-care", accent: "bg-purple-100 text-purple-700" },
+  { title: "Body Care", href: "/shop?category=body-care", accent: "bg-green-100 text-green-700" },
+  { title: "Sun Care", href: "/shop?category=sunscreens", accent: "bg-yellow-100 text-yellow-700" },
+  { title: "Lip Care", href: "/shop?category=lip-care", accent: "bg-rose-100 text-rose-700" },
+  { title: "Eye Care", href: "/shop?category=eye-care", accent: "bg-sky-100 text-sky-700" },
+  { title: "Mum And Baby", href: "/shop?q=kids", accent: "bg-blue-100 text-blue-700" },
+  { title: "Men's Grooming", href: "/shop?category=mens-grooming", accent: "bg-slate-100 text-slate-700" },
+  { title: "Foot Care", href: "/shop?category=foot-care", accent: "bg-emerald-100 text-emerald-700" },
+];
+
+const categoryColumns = [
   {
-    title: "Skincare",
+    title: "Body Care",
+    href: "/shop?category=body-care",
+    items: ["Body Lotions", "Body Scrubs", "Shower Gels", "Hand Creams", "Foot Creams", "Body Sprays"],
+  },
+  {
+    title: "Face Care",
     href: "/shop?category=skincare",
-    items: ["Cleansers", "Toners", "Serums", "Moisturizers", "Sunscreens", "Eye Care"],
+    items: ["Clay Mask", "Creams & Gels", "Creams & Moisturisers", "Exfoliating Mask", "Eye Creams", "Face Cleansers", "Face Creams", "Face Mask", "Face Masks", "Face Scrub", "Face Oils", "Face Soaps & Cleansers", "Face Scrubs", "Serums", "Toners"],
   },
   {
     title: "Hair Care",
     href: "/shop?category=hair-care",
-    items: ["Shampoo", "Conditioner", "Hair Oils", "Hair Masks", "Hair Growth", "Styling"],
+    items: ["Shampoo", "Conditioner", "Hair Oils", "Hair Masks", "Hair Growth Products", "Styling Products", "Anti Hair Loss", "Dandruff Care"],
   },
   {
-    title: "Body & Wellness",
-    href: "/shop?category=body-care",
-    items: ["Body Lotion", "Body Butter", "Scrubs", "Hand Creams", "Foot Care", "Gift Sets"],
+    title: "Targeted Care",
+    href: "/shop",
+    items: ["Acne & Blemishes", "Anti-Aging", "Sensitive Skin", "Sunscreens", "Lip Care", "Eye Care", "Foot Care"],
   },
 ];
 
 const brandLinks = [
-  { name: "Bioxcin", href: "/shop?brand=bioxcin", copy: "Hair strengthening" },
-  { name: "Restorex", href: "/shop?brand=restorex", copy: "Repair routines" },
-  { name: "Procsin", href: "/shop?brand=procsin", copy: "Dermatological care" },
-  { name: "Bioblas", href: "/shop?brand=bioblas", copy: "Herbal hair care" },
-  { name: "Thalia", href: "/shop?brand=thalia", copy: "Natural body care" },
-  { name: "Rain", href: "/shop?brand=rain", copy: "Wellness skincare" },
+  { name: "Procsin", href: "/shop?brand=procsin", logo: "/brand-logos/procsin-logo.jpg" },
+  { name: "Rain", href: "/shop?brand=rain", logo: "/brand-logos/rain-logo.jpg" },
+  { name: "Sera", href: "/shop?brand=sera", logo: "/brand-logos/sera-logo.jpg" },
+  { name: "Bioxcin", href: "/shop?brand=bioxcin" },
+  { name: "Thalia", href: "/shop?brand=thalia" },
+  { name: "Restorex", href: "/shop?brand=restorex" },
+  { name: "Bioblas", href: "/shop?brand=bioblas" },
+  { name: "Nice & Lovely", href: "/shop?brand=nice-and-lovely" },
+  { name: "Dove", href: "/shop?brand=dove" },
+  { name: "Garnier", href: "/shop?brand=garnier" },
+];
+
+const conditionLinks = [
+  { title: "Skin Concerns", items: ["Acne & Blemishes", "Dry Skin", "Oily Skin", "Sensitive Skin", "Hyperpigmentation", "Anti-Aging"] },
+  { title: "Hair Concerns", items: ["Hair Loss", "Dandruff", "Dry Hair", "Damaged Hair", "Weak Hair", "Curly Hair Care"] },
+  { title: "Body Concerns", items: ["Stretch Marks", "Dark Spots", "Uneven Skin Tone", "Dry Skin"] },
+];
+
+const serviceLinks = [
+  { title: "Customer Support", href: "/contact" },
+  { title: "Order Tracking", href: "/contact" },
+  { title: "Delivery Information", href: "/contact" },
+  { title: "Returns & Exchanges", href: "/contact" },
+  { title: "Beauty Consultation", href: "/shop" },
+];
+
+const healthCenterLinks = [
+  { title: "Skin Care Guides", href: "/shop?category=skincare" },
+  { title: "Hair Care Guides", href: "/shop?category=hair-care" },
+  { title: "Sun Protection", href: "/shop?category=sunscreens" },
+  { title: "Body Wellness", href: "/shop?category=body-care" },
 ];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const [megaOpen, setMegaOpen] = useState(false);
+  const [activeMega, setActiveMega] = useState<MegaMenuKey | null>(null);
   const [accountOpen, setAccountOpen] = useState(false);
   const [search, setSearch] = useState("");
   const { data: session, status } = useSession();
@@ -80,7 +135,7 @@ export function Navbar() {
   return (
     <header
       className="sticky inset-x-0 top-0 z-50 bg-[#a81723] text-white shadow-[0_12px_34px_rgba(34,34,34,0.16)]"
-      onMouseLeave={() => setMegaOpen(false)}
+      onMouseLeave={() => setActiveMega(null)}
     >
       <div className="bg-[#7d111b] text-white/90">
         <div className="container-page grid min-h-8 grid-cols-1 items-center gap-2 py-2 text-[11px] font-bold sm:grid-cols-3">
@@ -265,106 +320,157 @@ export function Navbar() {
       </div>
 
       <nav className="hidden bg-[#8f1420] lg:block">
-        <div className="container-page flex min-h-[50px] items-center justify-center gap-7 text-[12px] font-extrabold uppercase tracking-[0.12em] text-white xl:gap-9">
-          {links.map((link) => (
-            <Link
-              key={`${link.href}-${link.label}`}
-              href={link.href}
+        <div className="container-page flex min-h-[50px] items-center justify-center gap-9 text-sm font-semibold normal-case tracking-normal text-white">
+          {megaMenus.map((menu) => (
+            <button
+              key={menu.key}
               className="group relative inline-flex items-center gap-1 whitespace-nowrap py-4 transition duration-300 hover:text-[#F5E6D3]"
-              onMouseEnter={() => setMegaOpen(Boolean(link.hasMega))}
+              onMouseEnter={() => setActiveMega(menu.key)}
+              onFocus={() => setActiveMega(menu.key)}
+              type="button"
             >
-              {link.label}
-              {link.hasMega ? (
-                <ChevronDown className={cn("h-4 w-4 transition duration-300", megaOpen && "rotate-180")} />
-              ) : null}
+              {menu.label}
+              <ChevronDown className={cn("h-4 w-4 transition duration-300", activeMega === menu.key && "rotate-180")} />
               <span className="absolute bottom-2 left-0 h-0.5 w-full origin-left scale-x-0 bg-[#F5E6D3] transition-transform duration-300 group-hover:scale-x-100" />
-            </Link>
+            </button>
           ))}
         </div>
       </nav>
 
-      {megaOpen ? (
-        <div className="hidden border-t border-white/10 bg-white/95 text-charcoal shadow-[0_30px_90px_rgba(34,34,34,0.16)] backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200 lg:block">
-          <div className="container-page grid gap-8 py-8 lg:grid-cols-[1.15fr_0.9fr_340px]">
-            <div className="rounded-[28px] border border-[#a81723]/10 bg-[#FAF8F5] p-6">
-              <div className="flex items-end justify-between gap-4">
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-gold">
-                    Shop by category
-                  </p>
-                  <h2 className="mt-2 text-3xl font-semibold text-[#222222]">Beauty departments</h2>
-                </div>
-                <Link href="/shop" className="fine-link">
-                  View all
-                </Link>
-              </div>
-              <div className="mt-6 grid gap-5 md:grid-cols-3">
-                {categoryGroups.map((group) => (
-                  <div key={group.title}>
-                    <Link
-                      href={group.href}
-                      className="group/category inline-flex items-center gap-2 text-base font-bold text-[#a81723] transition hover:text-charcoal"
-                    >
-                      {group.title}
-                      <ChevronDown className="h-4 w-4 -rotate-90 transition group-hover/category:translate-x-1" />
-                    </Link>
-                    <div className="mt-4 grid gap-2">
-                      {group.items.map((item) => (
-                        <Link
-                          key={item}
-                          href={`${group.href}&q=${encodeURIComponent(item)}`}
-                          className="group/item flex items-center justify-between rounded-2xl px-3 py-2 text-sm font-medium text-charcoal/68 transition duration-300 hover:bg-white hover:text-[#a81723] hover:shadow-[0_10px_28px_rgba(168,23,35,0.08)]"
-                        >
-                          <span>{item}</span>
-                          <span className="h-px w-0 bg-[#a81723] transition-all duration-300 group-hover/item:w-5" />
-                        </Link>
+      {activeMega ? (
+        <div className="hidden bg-transparent text-charcoal animate-in fade-in slide-in-from-top-2 duration-200 lg:block">
+          <div className="container-page">
+            <div className="mx-auto max-h-[70vh] max-w-[1120px] overflow-hidden rounded-b-[18px] border border-[#e7edf3] bg-white shadow-[0_26px_80px_rgba(34,34,34,0.14)]">
+              {activeMega === "category" ? (
+                <div className="grid max-h-[70vh] grid-cols-[260px_1fr]">
+                  <div className="overflow-y-auto border-r border-[#e7edf3] bg-[#fbfcfd] p-3">
+                    {categorySidebar.map((category) => (
+                      <Link
+                        key={category.title}
+                        href={category.href}
+                        className="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-[#243041] transition hover:bg-white hover:text-[#e4005b]"
+                      >
+                        <span className={cn("grid h-9 w-9 shrink-0 place-items-center rounded-lg text-[11px]", category.accent)}>
+                          {category.title.slice(0, 1)}
+                        </span>
+                        <span className="flex-1 leading-4">{category.title}</span>
+                        <ChevronRight className="h-3.5 w-3.5 text-[#9aa5b1] transition group-hover:text-[#e4005b]" />
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="overflow-y-auto p-6">
+                    <div className="mb-5 flex items-center justify-between border-b border-[#edf1f5] pb-4">
+                      <h2 className="text-base font-bold text-[#243041]">Beauty And Skin Care</h2>
+                      <Link href="/shop" className="rounded-full border border-[#ffc9dd] px-5 py-2 text-xs font-bold text-[#e4005b] transition hover:bg-[#fff2f7]">
+                        View all
+                      </Link>
+                    </div>
+                    <div className="grid gap-8 md:grid-cols-2">
+                      {categoryColumns.map((group) => (
+                        <div key={group.title}>
+                          <Link href={group.href} className="mb-4 inline-flex items-center gap-1 text-sm font-bold text-[#243041] hover:text-[#e4005b]">
+                            {group.title}
+                            <ChevronRight className="h-3.5 w-3.5" />
+                          </Link>
+                          <div className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
+                            {group.items.map((item) => (
+                              <Link
+                                key={`${group.title}-${item}`}
+                                href={`${group.href}&q=${encodeURIComponent(item)}`}
+                                className="text-xs font-medium text-[#667085] transition hover:text-[#e4005b]"
+                              >
+                                {item}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
+              ) : null}
 
-            <div className="rounded-[28px] border border-[#a81723]/10 bg-white p-6 shadow-[0_18px_55px_rgba(34,34,34,0.06)]">
-              <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-gold">
-                Trusted brands
-              </p>
-              <div className="mt-5 grid grid-cols-2 gap-3">
-                {brandLinks.map((brand) => (
-                  <Link
-                    key={brand.name}
-                    href={brand.href}
-                    className="group/brand rounded-[22px] border border-[#a81723]/10 bg-[#FAF8F5] p-4 transition duration-300 hover:-translate-y-1 hover:border-[#a81723]/30 hover:bg-[#a81723] hover:shadow-[0_18px_45px_rgba(168,23,35,0.18)]"
-                  >
-                    <span className="grid h-9 w-9 place-items-center rounded-full bg-white text-sm font-bold text-[#a81723] shadow-sm transition group-hover/brand:bg-[#F5E6D3]">
-                      {brand.name.slice(0, 1)}
-                    </span>
-                    <span className="mt-3 block font-bold text-charcoal transition group-hover/brand:text-white">
-                      {brand.name}
-                    </span>
-                    <span className="mt-1 block text-xs leading-5 text-charcoal/55 transition group-hover/brand:text-white/78">
-                      {brand.copy}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
+              {activeMega === "brand" ? (
+                <div className="max-h-[70vh] overflow-y-auto p-6">
+                  <div className="mb-6 flex items-center justify-between">
+                    <h2 className="text-base font-bold text-[#243041]">Featured Brands</h2>
+                    <Link href="/shop" className="rounded-full border border-[#ffc9dd] px-5 py-2 text-xs font-bold text-[#e4005b] transition hover:bg-[#fff2f7]">
+                      View all brands
+                    </Link>
+                  </div>
+                  <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-5">
+                    {brandLinks.map((brand) => (
+                      <Link
+                        key={brand.name}
+                        href={brand.href}
+                        className="group grid min-h-[84px] place-items-center rounded-xl border border-[#e3e9f0] bg-[#fbfcfd] px-3 py-3 text-center transition hover:-translate-y-0.5 hover:border-[#e4005b] hover:bg-white hover:shadow-[0_14px_32px_rgba(228,0,91,0.09)]"
+                      >
+                        {brand.logo ? (
+                          <span className="relative h-9 w-full">
+                            <Image src={brand.logo} alt={`${brand.name} logo`} fill sizes="160px" className="object-contain" />
+                          </span>
+                        ) : (
+                          <span className="text-lg font-extrabold text-[#243041] group-hover:text-[#e4005b]">{brand.name}</span>
+                        )}
+                        <span className="mt-2 text-[10px] font-extrabold uppercase text-[#243041]">{brand.name}</span>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="mt-6 text-center">
+                    <Link href="/shop" className="inline-flex rounded-lg bg-[#d9005b] px-6 py-3 text-xs font-bold text-white transition hover:bg-[#a81723]">
+                      Browse all brands
+                    </Link>
+                  </div>
+                </div>
+              ) : null}
 
-            <Link
-              href="/shop?max=2000"
-              className="group relative isolate min-h-[320px] overflow-hidden rounded-[28px] bg-charcoal p-7 text-white shadow-[0_24px_70px_rgba(34,34,34,0.18)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(168,23,35,0.22)]"
-            >
-              <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(245,230,211,0.2),transparent_34%),linear-gradient(135deg,#222222,#7d111b)]" />
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-gold">
-                This week
-              </p>
-              <p className="mt-3 text-3xl font-semibold leading-tight">
-                Beauty deals curated for your shelf.
-              </p>
-              <span className="mt-6 inline-flex rounded-full bg-white px-5 py-3 text-xs font-bold uppercase tracking-[0.2em] text-[#a81723] transition group-hover:bg-[#F5E6D3]">
-                View offers
-              </span>
-            </Link>
+              {activeMega === "condition" ? (
+                <div className="max-h-[70vh] overflow-y-auto p-6">
+                  <div className="mb-5 flex items-center justify-between border-b border-[#edf1f5] pb-4">
+                    <h2 className="text-base font-bold text-[#243041]">Shop by Condition</h2>
+                    <Link href="/shop" className="rounded-full border border-[#ffc9dd] px-5 py-2 text-xs font-bold text-[#e4005b] transition hover:bg-[#fff2f7]">
+                      View all
+                    </Link>
+                  </div>
+                  <div className="grid gap-5 md:grid-cols-3">
+                    {conditionLinks.map((group) => (
+                      <div key={group.title} className="rounded-xl border border-[#e3e9f0] bg-[#fbfcfd] p-5">
+                        <h3 className="font-bold text-[#243041]">{group.title}</h3>
+                        <div className="mt-4 grid gap-2">
+                          {group.items.map((item) => (
+                            <Link key={item} href={`/shop?q=${encodeURIComponent(item)}`} className="text-sm text-[#667085] transition hover:text-[#e4005b]">
+                              {item}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+
+              {(activeMega === "services" || activeMega === "health") ? (
+                <div className="max-h-[70vh] overflow-y-auto p-6">
+                  <div className="mb-5 border-b border-[#edf1f5] pb-4">
+                    <h2 className="text-base font-bold text-[#243041]">
+                      {activeMega === "services" ? "Services" : "My Health Center"}
+                    </h2>
+                  </div>
+                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {(activeMega === "services" ? serviceLinks : healthCenterLinks).map((item) => (
+                      <Link
+                        key={item.title}
+                        href={item.href}
+                        className="flex items-center justify-between rounded-xl border border-[#e3e9f0] bg-[#fbfcfd] px-4 py-4 text-sm font-bold text-[#243041] transition hover:border-[#e4005b] hover:bg-white hover:text-[#e4005b]"
+                      >
+                        {item.title}
+                        <ChevronRight className="h-4 w-4" />
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
       ) : null}
@@ -411,7 +517,7 @@ export function Navbar() {
                 Login
               </Link>
             )}
-            {links.map((link) => (
+            {mobileLinks.map((link) => (
               <Link
                 key={`${link.href}-${link.label}`}
                 href={link.href}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ProductCard } from "@/components/product/product-card";
 import { ShopFilters } from "@/components/shop/shop-filters";
+import { ShopToolbar } from "@/components/shop/shop-toolbar";
 import {
   FEATURED_BRANDS,
   SHOP_CATEGORIES,
@@ -16,7 +17,7 @@ export const dynamic = "force-dynamic";
 export default async function ShopPage({
   searchParams,
 }: {
-  searchParams: { q?: string; brand?: string; category?: string; min?: string; max?: string; page?: string };
+  searchParams: { q?: string; brand?: string; category?: string; min?: string; max?: string; page?: string; take?: string; sort?: string };
 }) {
   let listing = getFallbackProductListing(searchParams);
   let categories = SHOP_CATEGORIES;
@@ -40,34 +41,18 @@ export default async function ShopPage({
   }
 
   return (
-    <div className="bg-cream pb-24 pt-32">
+    <div className="bg-[#f7fafc] pb-20 pt-28">
       <div className="container-page">
-        <div className="mb-10 overflow-hidden rounded-[34px] bg-white p-7 shadow-[0_18px_60px_rgba(77,12,18,0.06)] sm:p-10">
-          <p className="eyebrow">Boutique store</p>
-          <div className="mt-3 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <h1 className="text-5xl font-semibold leading-tight text-charcoal sm:text-6xl">
-                Shop Rodina Naturals
-              </h1>
-              <p className="mt-5 max-w-2xl leading-8 text-ink/68">
-                Beauty, skincare, haircare, and body essentials selected for a premium Kenyan
-                ecommerce experience.
-              </p>
-            </div>
-            <p className="rounded-full bg-cream px-5 py-3 text-sm font-semibold text-maroon">
-              {listing.total} products available
-            </p>
-          </div>
-        </div>
-        <div className="grid gap-8 lg:grid-cols-[300px_1fr]">
+        <div className="grid gap-7 lg:grid-cols-[260px_1fr]">
           <ShopFilters brands={brands} categories={categories} />
           <div>
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 xl:grid-cols-3">
+            <ShopToolbar total={listing.total} pageSize={listing.products.length} sort={searchParams.sort || "recommended"} />
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
               {listing.products.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard key={product.id} product={product} variant="shop" />
               ))}
             </div>
-            <div className="mt-10 flex items-center justify-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
               {Array.from({ length: listing.pages }).map((_, index) => {
                 const next = new URLSearchParams(searchParams as Record<string, string>);
                 next.set("page", String(index + 1));
@@ -75,10 +60,10 @@ export default async function ShopPage({
                   <Link
                     key={index}
                     href={`/shop?${next.toString()}`}
-                    className={`grid h-10 w-10 place-items-center rounded-full border text-sm font-semibold ${
+                    className={`grid h-10 w-10 place-items-center rounded-lg border text-sm font-semibold ${
                       listing.page === index + 1
-                        ? "border-maroon bg-maroon text-white"
-                        : "border-maroon/20 bg-ivory text-maroon transition hover:border-gold"
+                        ? "border-[#66b345] bg-[#66b345] text-white"
+                        : "border-[#d7e0ea] bg-white text-[#374151] transition hover:border-[#66b345]"
                     }`}
                   >
                     {index + 1}
