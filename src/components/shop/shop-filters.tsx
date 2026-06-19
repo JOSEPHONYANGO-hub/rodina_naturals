@@ -50,9 +50,9 @@ export function ShopFilters({
 
   return (
     <aside className="h-fit overflow-hidden rounded-[12px] border border-[#d7e0ea] bg-white shadow-[0_10px_30px_rgba(34,34,34,0.04)]">
-      <div className="flex items-center justify-between border-b border-[#e5ebf1] bg-[#fbfdfb] px-4 py-3">
-        <p className="text-xs font-semibold text-[#148016]">Category</p>
-        <ChevronUp className="h-4 w-4 text-[#148016]" />
+      <div className="flex items-center justify-between border-b border-[#e5ebf1] bg-[#F5E6D3] px-4 py-3">
+        <p className="text-xs font-semibold text-[#a81723]">Category</p>
+        <ChevronUp className="h-4 w-4 text-[#a81723]" />
       </div>
       <div className="p-4">
         <button
@@ -89,7 +89,7 @@ export function ShopFilters({
             <label key={category.slug} className="flex cursor-pointer items-center gap-2">
               <input
                 type="checkbox"
-                className="h-4 w-4 rounded border-[#cfd8e3] text-[#66b345]"
+                className="h-4 w-4 rounded border-[#cfd8e3] text-[#a81723] focus:ring-[#a81723]"
                 checked={selectedCategory === category.slug}
                 onChange={() => setFilter("category", selectedCategory === category.slug ? "" : category.slug)}
               />
@@ -99,13 +99,13 @@ export function ShopFilters({
         </div>
 
         <div className="mt-6 border-t border-[#e5ebf1] pt-4">
-          <p className="mb-3 text-xs font-semibold text-[#148016]">Brand</p>
+          <p className="mb-3 text-xs font-semibold text-[#a81723]">Brand</p>
           <div className="grid gap-3 text-sm text-[#4b5563]">
             {brands.map((brand) => (
               <label key={brand.slug} className="flex cursor-pointer items-center gap-2">
                 <input
                   type="checkbox"
-                  className="h-4 w-4 rounded border-[#cfd8e3] text-[#66b345]"
+                  className="h-4 w-4 rounded border-[#cfd8e3] text-[#a81723] focus:ring-[#a81723]"
                   checked={selectedBrand === brand.slug}
                   onChange={() => setFilter("brand", selectedBrand === brand.slug ? "" : brand.slug)}
                 />
@@ -116,7 +116,7 @@ export function ShopFilters({
         </div>
 
         <div className="mt-6 border-t border-[#e5ebf1] pt-4">
-          <p className="mb-3 text-xs font-semibold text-[#148016]">Price</p>
+          <p className="mb-3 text-xs font-semibold text-[#a81723]">Price</p>
           <div className="grid grid-cols-2 gap-2">
             <input
               className="field h-10 rounded-lg text-sm"

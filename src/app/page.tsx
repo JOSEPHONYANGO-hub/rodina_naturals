@@ -166,7 +166,7 @@ function ProductRail({
         <h3 className="text-[26px] font-extrabold tracking-tight text-[#222222]">{title}</h3>
         <Link
           href="/shop"
-          className="inline-flex h-10 items-center rounded-full border border-[#ed0b68]/18 bg-white px-5 text-xs font-bold text-[#ed0b68] shadow-sm transition hover:border-[#ed0b68] hover:bg-[#ed0b68] hover:text-white"
+          className="inline-flex h-10 items-center rounded-full border border-[#a81723]/18 bg-white px-5 text-xs font-bold text-[#a81723] shadow-sm transition hover:border-[#a81723] hover:bg-[#a81723] hover:text-white"
         >
           {cta}
         </Link>

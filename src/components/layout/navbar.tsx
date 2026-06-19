@@ -24,20 +24,17 @@ import { CATEGORIES, CONTACT_DETAILS, SOCIAL_LINKS } from "@/config/brand";
 import { useCart } from "@/lib/cart-store";
 import { cn } from "@/lib/utils";
 
-type MegaMenuKey = "category" | "condition" | "brand" | "services" | "health";
+type MegaMenuKey = "category" | "concern" | "brand";
 
 const megaMenus: { key: MegaMenuKey; label: string }[] = [
   { key: "category", label: "Shop by Category" },
-  { key: "condition", label: "Shop by Condition" },
+  { key: "concern", label: "Shop by Concern" },
   { key: "brand", label: "Shop by Brand" },
-  { key: "services", label: "Services" },
-  { key: "health", label: "My Health Center" },
 ];
 
-const mobileLinks = [
+const directNavLinks = [
   { href: "/", label: "Home" },
   { href: "/shop", label: "Shop" },
-  { href: "/shop?brand=procsin", label: "Brands" },
   { href: "/shop?category=skincare", label: "Skincare" },
   { href: "/shop?category=hair-care", label: "Haircare" },
   { href: "/shop?category=body-care", label: "Body Care" },
@@ -45,17 +42,22 @@ const mobileLinks = [
   { href: "/contact", label: "Contact Us" },
 ];
 
+const mobileLinks = [
+  ...directNavLinks,
+  { href: "/shop?brand=procsin", label: "Brands" },
+];
+
 const categorySidebar = [
-  { title: "Beauty And Skin Care", href: "/shop?category=skincare", accent: "bg-pink-100 text-pink-700" },
-  { title: "Dermatological Skincare", href: "/shop?category=acne-and-blemishes", accent: "bg-orange-100 text-orange-700" },
-  { title: "Hair Care", href: "/shop?category=hair-care", accent: "bg-purple-100 text-purple-700" },
-  { title: "Body Care", href: "/shop?category=body-care", accent: "bg-green-100 text-green-700" },
-  { title: "Sun Care", href: "/shop?category=sunscreens", accent: "bg-yellow-100 text-yellow-700" },
-  { title: "Lip Care", href: "/shop?category=lip-care", accent: "bg-rose-100 text-rose-700" },
-  { title: "Eye Care", href: "/shop?category=eye-care", accent: "bg-sky-100 text-sky-700" },
-  { title: "Mum And Baby", href: "/shop?q=kids", accent: "bg-blue-100 text-blue-700" },
-  { title: "Men's Grooming", href: "/shop?category=mens-grooming", accent: "bg-slate-100 text-slate-700" },
-  { title: "Foot Care", href: "/shop?category=foot-care", accent: "bg-emerald-100 text-emerald-700" },
+  { title: "Beauty And Skin Care", href: "/shop?category=skincare" },
+  { title: "Dermatological Skincare", href: "/shop?category=acne-and-blemishes" },
+  { title: "Hair Care", href: "/shop?category=hair-care" },
+  { title: "Body Care", href: "/shop?category=body-care" },
+  { title: "Sun Care", href: "/shop?category=sunscreens" },
+  { title: "Lip Care", href: "/shop?category=lip-care" },
+  { title: "Eye Care", href: "/shop?category=eye-care" },
+  { title: "Mum And Baby", href: "/shop?q=kids" },
+  { title: "Men's Grooming", href: "/shop?category=mens-grooming" },
+  { title: "Foot Care", href: "/shop?category=foot-care" },
 ];
 
 const categoryColumns = [
@@ -94,25 +96,10 @@ const brandLinks = [
   { name: "Garnier", href: "/shop?brand=garnier" },
 ];
 
-const conditionLinks = [
+const concernLinks = [
   { title: "Skin Concerns", items: ["Acne & Blemishes", "Dry Skin", "Oily Skin", "Sensitive Skin", "Hyperpigmentation", "Anti-Aging"] },
   { title: "Hair Concerns", items: ["Hair Loss", "Dandruff", "Dry Hair", "Damaged Hair", "Weak Hair", "Curly Hair Care"] },
   { title: "Body Concerns", items: ["Stretch Marks", "Dark Spots", "Uneven Skin Tone", "Dry Skin"] },
-];
-
-const serviceLinks = [
-  { title: "Customer Support", href: "/contact" },
-  { title: "Order Tracking", href: "/contact" },
-  { title: "Delivery Information", href: "/contact" },
-  { title: "Returns & Exchanges", href: "/contact" },
-  { title: "Beauty Consultation", href: "/shop" },
-];
-
-const healthCenterLinks = [
-  { title: "Skin Care Guides", href: "/shop?category=skincare" },
-  { title: "Hair Care Guides", href: "/shop?category=hair-care" },
-  { title: "Sun Protection", href: "/shop?category=sunscreens" },
-  { title: "Body Wellness", href: "/shop?category=body-care" },
 ];
 
 export function Navbar() {
@@ -321,6 +308,18 @@ export function Navbar() {
 
       <nav className="hidden bg-[#8f1420] lg:block">
         <div className="container-page flex min-h-[50px] items-center justify-center gap-9 text-sm font-semibold normal-case tracking-normal text-white">
+          {directNavLinks.map((link) => (
+            <Link
+              key={`${link.href}-${link.label}`}
+              href={link.href}
+              className="group relative inline-flex items-center gap-1 whitespace-nowrap py-4 transition duration-300 hover:text-[#F5E6D3]"
+              onMouseEnter={() => setActiveMega(null)}
+              onFocus={() => setActiveMega(null)}
+            >
+              {link.label}
+              <span className="absolute bottom-2 left-0 h-0.5 w-full origin-left scale-x-0 bg-[#F5E6D3] transition-transform duration-300 group-hover:scale-x-100" />
+            </Link>
+          ))}
           {megaMenus.map((menu) => (
             <button
               key={menu.key}
@@ -348,27 +347,27 @@ export function Navbar() {
                       <Link
                         key={category.title}
                         href={category.href}
-                        className="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-[#243041] transition hover:bg-white hover:text-[#e4005b]"
+                        className="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-[#243041] transition hover:bg-white hover:text-[#a81723]"
                       >
-                        <span className={cn("grid h-9 w-9 shrink-0 place-items-center rounded-lg text-[11px]", category.accent)}>
+                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[#F5E6D3] text-[11px] text-[#a81723] transition group-hover:bg-[#a81723] group-hover:text-white">
                           {category.title.slice(0, 1)}
                         </span>
                         <span className="flex-1 leading-4">{category.title}</span>
-                        <ChevronRight className="h-3.5 w-3.5 text-[#9aa5b1] transition group-hover:text-[#e4005b]" />
+                        <ChevronRight className="h-3.5 w-3.5 text-[#9aa5b1] transition group-hover:text-[#a81723]" />
                       </Link>
                     ))}
                   </div>
                   <div className="overflow-y-auto p-6">
                     <div className="mb-5 flex items-center justify-between border-b border-[#edf1f5] pb-4">
                       <h2 className="text-base font-bold text-[#243041]">Beauty And Skin Care</h2>
-                      <Link href="/shop" className="rounded-full border border-[#ffc9dd] px-5 py-2 text-xs font-bold text-[#e4005b] transition hover:bg-[#fff2f7]">
+                      <Link href="/shop" className="rounded-full border border-[#a81723]/20 px-5 py-2 text-xs font-bold text-[#a81723] transition hover:bg-[#F5E6D3]">
                         View all
                       </Link>
                     </div>
                     <div className="grid gap-8 md:grid-cols-2">
                       {categoryColumns.map((group) => (
                         <div key={group.title}>
-                          <Link href={group.href} className="mb-4 inline-flex items-center gap-1 text-sm font-bold text-[#243041] hover:text-[#e4005b]">
+                          <Link href={group.href} className="mb-4 inline-flex items-center gap-1 text-sm font-bold text-[#243041] hover:text-[#a81723]">
                             {group.title}
                             <ChevronRight className="h-3.5 w-3.5" />
                           </Link>
@@ -377,7 +376,7 @@ export function Navbar() {
                               <Link
                                 key={`${group.title}-${item}`}
                                 href={`${group.href}&q=${encodeURIComponent(item)}`}
-                                className="text-xs font-medium text-[#667085] transition hover:text-[#e4005b]"
+                                className="text-xs font-medium text-[#667085] transition hover:text-[#a81723]"
                               >
                                 {item}
                               </Link>
@@ -394,7 +393,7 @@ export function Navbar() {
                 <div className="max-h-[70vh] overflow-y-auto p-6">
                   <div className="mb-6 flex items-center justify-between">
                     <h2 className="text-base font-bold text-[#243041]">Featured Brands</h2>
-                    <Link href="/shop" className="rounded-full border border-[#ffc9dd] px-5 py-2 text-xs font-bold text-[#e4005b] transition hover:bg-[#fff2f7]">
+                    <Link href="/shop" className="rounded-full border border-[#a81723]/20 px-5 py-2 text-xs font-bold text-[#a81723] transition hover:bg-[#F5E6D3]">
                       View all brands
                     </Link>
                   </div>
@@ -403,69 +402,47 @@ export function Navbar() {
                       <Link
                         key={brand.name}
                         href={brand.href}
-                        className="group grid min-h-[84px] place-items-center rounded-xl border border-[#e3e9f0] bg-[#fbfcfd] px-3 py-3 text-center transition hover:-translate-y-0.5 hover:border-[#e4005b] hover:bg-white hover:shadow-[0_14px_32px_rgba(228,0,91,0.09)]"
+                        className="group grid min-h-[84px] place-items-center rounded-xl border border-[#e3e9f0] bg-[#fbfcfd] px-3 py-3 text-center transition hover:-translate-y-0.5 hover:border-[#a81723] hover:bg-white hover:shadow-[0_14px_32px_rgba(168,23,35,0.1)]"
                       >
                         {brand.logo ? (
                           <span className="relative h-9 w-full">
                             <Image src={brand.logo} alt={`${brand.name} logo`} fill sizes="160px" className="object-contain" />
                           </span>
                         ) : (
-                          <span className="text-lg font-extrabold text-[#243041] group-hover:text-[#e4005b]">{brand.name}</span>
+                          <span className="text-lg font-extrabold text-[#243041] group-hover:text-[#a81723]">{brand.name}</span>
                         )}
                         <span className="mt-2 text-[10px] font-extrabold uppercase text-[#243041]">{brand.name}</span>
                       </Link>
                     ))}
                   </div>
                   <div className="mt-6 text-center">
-                    <Link href="/shop" className="inline-flex rounded-lg bg-[#d9005b] px-6 py-3 text-xs font-bold text-white transition hover:bg-[#a81723]">
+                    <Link href="/shop" className="inline-flex rounded-lg bg-[#a81723] px-6 py-3 text-xs font-bold text-white transition hover:bg-[#7d111b]">
                       Browse all brands
                     </Link>
                   </div>
                 </div>
               ) : null}
 
-              {activeMega === "condition" ? (
+              {activeMega === "concern" ? (
                 <div className="max-h-[70vh] overflow-y-auto p-6">
                   <div className="mb-5 flex items-center justify-between border-b border-[#edf1f5] pb-4">
-                    <h2 className="text-base font-bold text-[#243041]">Shop by Condition</h2>
-                    <Link href="/shop" className="rounded-full border border-[#ffc9dd] px-5 py-2 text-xs font-bold text-[#e4005b] transition hover:bg-[#fff2f7]">
+                    <h2 className="text-base font-bold text-[#243041]">Shop by Concern</h2>
+                    <Link href="/shop" className="rounded-full border border-[#a81723]/20 px-5 py-2 text-xs font-bold text-[#a81723] transition hover:bg-[#F5E6D3]">
                       View all
                     </Link>
                   </div>
                   <div className="grid gap-5 md:grid-cols-3">
-                    {conditionLinks.map((group) => (
+                    {concernLinks.map((group) => (
                       <div key={group.title} className="rounded-xl border border-[#e3e9f0] bg-[#fbfcfd] p-5">
                         <h3 className="font-bold text-[#243041]">{group.title}</h3>
                         <div className="mt-4 grid gap-2">
                           {group.items.map((item) => (
-                            <Link key={item} href={`/shop?q=${encodeURIComponent(item)}`} className="text-sm text-[#667085] transition hover:text-[#e4005b]">
+                            <Link key={item} href={`/shop?q=${encodeURIComponent(item)}`} className="text-sm text-[#667085] transition hover:text-[#a81723]">
                               {item}
                             </Link>
                           ))}
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
-
-              {(activeMega === "services" || activeMega === "health") ? (
-                <div className="max-h-[70vh] overflow-y-auto p-6">
-                  <div className="mb-5 border-b border-[#edf1f5] pb-4">
-                    <h2 className="text-base font-bold text-[#243041]">
-                      {activeMega === "services" ? "Services" : "My Health Center"}
-                    </h2>
-                  </div>
-                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    {(activeMega === "services" ? serviceLinks : healthCenterLinks).map((item) => (
-                      <Link
-                        key={item.title}
-                        href={item.href}
-                        className="flex items-center justify-between rounded-xl border border-[#e3e9f0] bg-[#fbfcfd] px-4 py-4 text-sm font-bold text-[#243041] transition hover:border-[#e4005b] hover:bg-white hover:text-[#e4005b]"
-                      >
-                        {item.title}
-                        <ChevronRight className="h-4 w-4" />
-                      </Link>
                     ))}
                   </div>
                 </div>

@@ -37,9 +37,9 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
   if (variant === "shop") {
     return (
       <>
-        <article className="group relative overflow-hidden rounded-[8px] border border-[#d7e0ea] bg-white p-3 shadow-[0_10px_24px_rgba(34,34,34,0.03)] transition duration-300 hover:-translate-y-0.5 hover:border-[#ed0b68] hover:shadow-[0_18px_38px_rgba(237,11,104,0.08)]">
+        <article className="group relative overflow-hidden rounded-[8px] border border-[#d7e0ea] bg-white p-3 shadow-[0_10px_24px_rgba(34,34,34,0.03)] transition duration-300 hover:-translate-y-0.5 hover:border-[#a81723] hover:shadow-[0_18px_38px_rgba(168,23,35,0.1)]">
           {hasOffer ? (
-            <span className="absolute left-4 top-0 z-10 rounded-b-[4px] bg-[#ed0b68] px-3 py-1.5 text-[11px] font-bold text-white">
+            <span className="absolute left-4 top-0 z-10 rounded-b-[4px] bg-[#a81723] px-3 py-1.5 text-[11px] font-bold text-white">
               {offerPercent}% Off
             </span>
           ) : soldOut ? (
@@ -60,7 +60,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
           </Link>
           <div className="absolute right-3 top-3 flex flex-col gap-2">
             <button
-              className="grid h-9 w-9 place-items-center rounded-full border border-[#9ca3af] bg-white text-[#6b7280] transition hover:border-[#ed0b68] hover:text-[#ed0b68]"
+              className="grid h-9 w-9 place-items-center rounded-full border border-[#9ca3af] bg-white text-[#6b7280] transition hover:border-[#a81723] hover:text-[#a81723]"
               aria-label={`Quick view ${product.name}`}
               onClick={() => setQuickViewOpen(true)}
               type="button"
@@ -69,33 +69,36 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
             </button>
             <Link
               href="/shop"
-              className="grid h-9 w-9 place-items-center rounded-full border border-[#ed0b68] bg-white text-[#ed0b68] transition hover:bg-[#ed0b68] hover:text-white"
+              className="grid h-9 w-9 place-items-center rounded-full border border-[#a81723] bg-white text-[#a81723] transition hover:bg-[#a81723] hover:text-white"
               aria-label="Wishlist"
             >
               <Heart className="h-4 w-4" />
             </Link>
           </div>
-          <div className="pt-3">
-            <p className="text-xs text-[#8a94a6]">{product.category?.name || product.brand?.name}</p>
+          <div className="-mx-3 -mb-3 px-3 pb-3 pt-3 transition duration-300 group-hover:bg-[#a81723]">
+            <p className="text-xs text-[#8a94a6] transition group-hover:text-[#F5E6D3]">{product.category?.name || product.brand?.name}</p>
             <Link href={`/products/${product.slug}`}>
-              <h3 className="mt-1 line-clamp-2 min-h-[2.55rem] text-[14px] font-bold leading-snug text-[#111827] transition hover:text-[#ed0b68]">
+              <h3 className="mt-1 line-clamp-2 min-h-[2.55rem] text-[14px] font-bold leading-snug text-[#111827] transition hover:text-[#a81723] group-hover:text-white group-hover:hover:text-[#F5E6D3]">
                 {product.name}
               </h3>
             </Link>
-            <div className="mt-3 flex min-h-5 items-center gap-2 text-sm">
-              {hasOffer ? (
-                <span className="font-medium text-[#9ca3af] line-through">{formatCurrency(product.price)}</span>
-              ) : null}
-              <span className="font-semibold text-[#111827]">{formatCurrency(displayPrice)}</span>
+            <div className="mt-3 flex min-h-10 items-center justify-between gap-3 border-t border-maroon/10 pt-3 transition group-hover:border-white/18">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+                {hasOffer ? (
+                  <span className="font-medium text-[#9ca3af] line-through transition group-hover:text-white/60">{formatCurrency(product.price)}</span>
+                ) : null}
+                <span className="font-semibold text-[#111827] transition group-hover:text-white">{formatCurrency(displayPrice)}</span>
+              </div>
+              <button
+                onClick={addProduct}
+                className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-charcoal text-white transition hover:bg-[#a81723] group-hover:bg-white group-hover:text-[#a81723] group-hover:hover:bg-[#F5E6D3] disabled:cursor-not-allowed disabled:bg-charcoal/20"
+                disabled={soldOut}
+                type="button"
+                aria-label={`Add ${product.name} to cart`}
+              >
+                <ShoppingCart className="h-5 w-5" />
+              </button>
             </div>
-            <button
-              onClick={addProduct}
-              className="mt-3 h-9 w-full rounded-full bg-[#f4f3fb] text-sm font-bold text-[#111827] transition hover:bg-[#66b345] hover:text-white disabled:cursor-not-allowed disabled:bg-[#eef0f5] disabled:text-[#9ca3af]"
-              disabled={soldOut}
-              type="button"
-            >
-              + {soldOut ? "Out Of Stock" : "Add To Cart"}
-            </button>
           </div>
         </article>
 
@@ -178,7 +181,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
           </Link>
           {hasOffer || soldOut ? (
             <div className="absolute left-4 top-0">
-              <span className={cn("rounded-b-[4px] px-3 py-1.5 text-[11px] font-bold text-white shadow", soldOut ? "bg-[#222222]" : "bg-[#ed0b68]")}>
+              <span className={cn("rounded-b-[4px] px-3 py-1.5 text-[11px] font-bold text-white shadow", soldOut ? "bg-[#222222]" : "bg-[#a81723]")}>
                 {soldOut ? "Sold Out" : `${offerPercent}% Off`}
               </span>
             </div>

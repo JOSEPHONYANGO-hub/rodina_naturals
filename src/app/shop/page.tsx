@@ -62,8 +62,8 @@ export default async function ShopPage({
                     href={`/shop?${next.toString()}`}
                     className={`grid h-10 w-10 place-items-center rounded-lg border text-sm font-semibold ${
                       listing.page === index + 1
-                        ? "border-[#66b345] bg-[#66b345] text-white"
-                        : "border-[#d7e0ea] bg-white text-[#374151] transition hover:border-[#66b345]"
+                        ? "border-[#a81723] bg-[#a81723] text-white"
+                        : "border-[#d7e0ea] bg-white text-[#374151] transition hover:border-[#a81723] hover:text-[#a81723]"
                     }`}
                   >
                     {index + 1}
