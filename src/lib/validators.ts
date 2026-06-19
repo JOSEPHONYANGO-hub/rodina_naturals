@@ -22,7 +22,7 @@ const optionalPositiveNumber = z.preprocess(
 );
 
 const productImage = z.string().trim().refine((value) => {
-  if (/^\/uploads\/[a-z0-9-]+\.(jpg|jpeg|png|webp|gif)$/i.test(value)) return true;
+  if (/^\/uploads\/(?:[a-z0-9-]+\/)*[a-z0-9-]+\.(jpg|jpeg|png|webp|gif)$/i.test(value)) return true;
 
   try {
     const url = new URL(value);
@@ -38,7 +38,7 @@ export const registerSchema = z.object({
   password: z.string().min(8),
 });
 
-export const productSchema = z.object({
+const productBaseSchema = z.object({
   name: z.string().min(2),
   sku: optionalSku,
   slug: optionalText,
@@ -67,7 +67,17 @@ export const productSchema = z.object({
   isVirtual: z.coerce.boolean().optional(),
   isFeatured: z.coerce.boolean().optional(),
   isBestSeller: z.coerce.boolean().optional(),
-}).refine((data) => !data.salePrice || data.salePrice < data.price, {
+});
+
+export const productSchema = productBaseSchema.refine((data) => !data.salePrice || data.salePrice < data.price, {
+  message: "Sale price must be lower than regular price.",
+  path: ["salePrice"],
+});
+
+export const productUpdateSchema = productBaseSchema.partial().refine((data) => {
+  if (!data.salePrice || data.price === undefined) return true;
+  return data.salePrice < data.price;
+}, {
   message: "Sale price must be lower than regular price.",
   path: ["salePrice"],
 });

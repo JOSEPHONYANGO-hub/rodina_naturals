@@ -4,7 +4,7 @@ import { ZodError } from "zod";
 import { badRequest, ok, unauthorized } from "@/lib/api-response";
 import { requireAdmin } from "@/lib/authz";
 import { prisma } from "@/lib/prisma";
-import { productSchema } from "@/lib/validators";
+import { productUpdateSchema } from "@/lib/validators";
 import { updateProduct } from "@/services/catalog";
 
 export async function GET(_: Request, { params }: { params: { id: string } }) {
@@ -26,7 +26,7 @@ export async function PATCH(request: Request, { params }: { params: { id: string
   if (!session) return unauthorized();
 
   try {
-    const body = productSchema.partial().parse(await request.json());
+    const body = productUpdateSchema.parse(await request.json());
     const product = await updateProduct(params.id, body);
     return ok(product);
   } catch (error) {

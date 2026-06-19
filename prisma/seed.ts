@@ -1,4 +1,4 @@
-import { PrismaClient, Role } from "@prisma/client";
+import { PrismaClient, Role, StockStatus } from "@prisma/client";
 import { hash } from "bcryptjs";
 
 const prisma = new PrismaClient();
@@ -104,47 +104,34 @@ const FEATURED_BRANDS = [
   { name: "Rain", slug: "rain" },
 ];
 
-const imagePool = [
-  "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=80",
+const TEST_PRODUCT_SLUGS = [
+  "bioxcin-signature-care",
+  "restorex-signature-care",
+  "procsin-signature-care",
+  "bioblas-signature-care",
+  "thalia-signature-care",
+  "rain-signature-care",
 ];
 
-const brandCategoryMap: Record<string, { category: string; product: string; description: string }> = {
-  bioxcin: {
-    category: "hair-care",
-    product: "Bioxcin Forte Hair Strengthening Shampoo",
-    description: "Bioxcin hair loss prevention and hair strengthening care for fuller-looking hair.",
-  },
-  restorex: {
-    category: "hair-care",
-    product: "Restorex Intensive Hair Repair Mask",
-    description: "Restorex hair care and hair restoration solution for dry, damaged lengths.",
-  },
-  procsin: {
-    category: "skincare",
-    product: "Procsin Vitamin C Radiance Serum",
-    description: "Procsin professional skincare and dermatological radiance treatment.",
-  },
-  bioblas: {
-    category: "hair-care",
-    product: "Bioblas Herbal Hair Growth Serum",
-    description: "Bioblas herbal hair care and hair growth support for weak hair.",
-  },
-  thalia: {
-    category: "body-care",
-    product: "Thalia Natural Beauty Soap Collection",
-    description: "Thalia natural beauty, soap and body care for everyday rituals.",
-  },
-  rain: {
-    category: "skincare",
-    product: "Rain Wellness Daily Moisturizer",
-    description: "Rain premium skincare and wellness hydration for a polished routine.",
-  },
-};
+const FEATURED_PRODUCT_SLUGS = [
+  "bioxcin-skin-vitamin-c",
+  "bioxcin-forte",
+  "bioxcin-men-and-sport",
+  "procsin-sun-cream-spf50-face-body-50-ml",
+  "procsin-hydrosolution-sebum-duo-gel",
+  "thalia-aloe-vera-body-lotion",
+  "thalia-spf50-daily-face-moisturizer",
+];
+
+const BEST_SELLER_PRODUCT_SLUGS = [
+  "bioxcin-acnium",
+  "bioxcin-collagen-and-biotin",
+  "bioxcin-anti-wrinkle",
+  "procsin-c-vitamin-skincare-set",
+  "procsin-hydrosynol-aha-bha-serum-30-ml",
+  "thalia-the-curea-foot-care-cream-75-ml-psd",
+  "thalia-bubble-soap-vitamin-c",
+];
 
 async function main() {
   await Promise.all(
@@ -167,46 +154,28 @@ async function main() {
     ),
   );
 
-  const [brands, categories] = await Promise.all([
-    prisma.brand.findMany(),
-    prisma.category.findMany(),
-  ]);
-  const brandBySlug = new Map(brands.map((brand) => [brand.slug, brand]));
-  const categoryBySlug = new Map(categories.map((category) => [category.slug, category]));
+  await prisma.product.deleteMany({
+    where: { slug: { in: TEST_PRODUCT_SLUGS } },
+  });
 
-  for (let index = 0; index < FEATURED_BRANDS.length; index += 1) {
-    const brand = FEATURED_BRANDS[index];
-    const seed = brandCategoryMap[brand.slug];
-    const category = categoryBySlug.get(seed.category);
-    const databaseBrand = brandBySlug.get(brand.slug);
+  await prisma.product.updateMany({
+    where: { stock: { lt: 10 } },
+    data: { stock: 10, stockStatus: StockStatus.IN_STOCK },
+  });
 
-    if (!category || !databaseBrand) {
-      throw new Error(`Missing seed category: ${seed.category}`);
-    }
+  await prisma.product.updateMany({
+    data: { isFeatured: false, isBestSeller: false },
+  });
 
-    await prisma.product.upsert({
-      where: { slug: `${brand.slug}-signature-care` },
-      update: {
-        name: seed.product,
-        description: seed.description,
-        brandId: databaseBrand.id,
-        categoryId: category.id,
-      },
-      create: {
-        name: seed.product,
-        slug: `${brand.slug}-signature-care`,
-        description: seed.description,
-        ingredients: "Aqua, botanical extracts, glycerin, panthenol, vitamin complex, fragrance.",
-        price: 1800 + index * 250,
-        images: [imagePool[index % imagePool.length], imagePool[(index + 1) % imagePool.length]],
-        brandId: databaseBrand.id,
-        categoryId: category.id,
-        stock: 24 + index,
-        isFeatured: index < 4,
-        isBestSeller: index % 2 === 0,
-      },
-    });
-  }
+  await prisma.product.updateMany({
+    where: { slug: { in: FEATURED_PRODUCT_SLUGS } },
+    data: { isFeatured: true, stock: 10, stockStatus: StockStatus.IN_STOCK },
+  });
+
+  await prisma.product.updateMany({
+    where: { slug: { in: BEST_SELLER_PRODUCT_SLUGS } },
+    data: { isBestSeller: true, stock: 10, stockStatus: StockStatus.IN_STOCK },
+  });
 
   await prisma.user.upsert({
     where: { email: "admin@rodinanaturals.co.ke" },

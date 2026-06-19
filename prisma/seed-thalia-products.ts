@@ -5,6 +5,16 @@ const prisma = new PrismaClient();
 
 type ThaliaProductSeed = (typeof products)[number];
 
+const FEATURED_PRODUCT_SLUGS = new Set([
+  "thalia-aloe-vera-body-lotion",
+  "thalia-spf50-daily-face-moisturizer",
+]);
+
+const BEST_SELLER_PRODUCT_SLUGS = new Set([
+  "thalia-the-curea-foot-care-cream-75-ml-psd",
+  "thalia-bubble-soap-vitamin-c",
+]);
+
 function slugify(name: string) {
   return name
     .toLowerCase()
@@ -66,12 +76,16 @@ async function main() {
         existing.price.toString() === "1" ||
         existing.description.includes("Full product details and pricing will be updated soon.");
 
-      if (isPlaceholder) {
-        await prisma.product.update({
-          where: { id: existing.id },
-          data: { price: product.price, stockStatus: StockStatus.IN_STOCK },
-        });
-      }
+      await prisma.product.update({
+        where: { id: existing.id },
+        data: {
+          ...(isPlaceholder ? { price: product.price } : {}),
+          stock: 10,
+          stockStatus: StockStatus.IN_STOCK,
+          isFeatured: FEATURED_PRODUCT_SLUGS.has(product.slug),
+          isBestSeller: BEST_SELLER_PRODUCT_SLUGS.has(product.slug),
+        },
+      });
 
       skipped += 1;
       continue;
@@ -96,11 +110,13 @@ async function main() {
         images: product.images,
         categoryId: category.id,
         brandId: brand.id,
+        stock: 10,
+        stockStatus: StockStatus.IN_STOCK,
         tags: Array.from(new Set(["Thalia", categoryName, ...product.tags])),
         metaTitle: product.metaTitle,
         metaDescription: product.metaDescription,
-        isFeatured: false,
-        isBestSeller: false,
+        isFeatured: FEATURED_PRODUCT_SLUGS.has(product.slug),
+        isBestSeller: BEST_SELLER_PRODUCT_SLUGS.has(product.slug),
       },
     });
 

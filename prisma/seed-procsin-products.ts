@@ -3,6 +3,16 @@ import products from "./procsin-products.json";
 
 const prisma = new PrismaClient();
 
+const FEATURED_PRODUCT_SLUGS = new Set([
+  "procsin-sun-cream-spf50-face-body-50-ml",
+  "procsin-hydrosolution-sebum-duo-gel",
+]);
+
+const BEST_SELLER_PRODUCT_SLUGS = new Set([
+  "procsin-c-vitamin-skincare-set",
+  "procsin-hydrosynol-aha-bha-serum-30-ml",
+]);
+
 function slugify(name: string) {
   return name
     .toLowerCase()
@@ -39,25 +49,33 @@ async function main() {
         existing.price.toString() === "1" ||
         existing.description.includes("Full product details and pricing will be updated soon.");
 
+      await prisma.product.update({
+        where: { id: existing.id },
+        data: {
+          ...(isPlaceholder
+            ? {
+                name: product.name,
+                shortDescription: product.shortDescription,
+                description: product.description,
+                ingredients: product.ingredients,
+                price: product.price,
+                currency: product.currency,
+                images: product.images,
+                categoryId: category.id,
+                brandId: brand.id,
+                tags: Array.from(new Set(["Procsin", product.category, ...product.tags])),
+                metaTitle: product.metaTitle,
+                metaDescription: product.metaDescription,
+              }
+            : {}),
+          stock: 10,
+          stockStatus: StockStatus.IN_STOCK,
+          isFeatured: FEATURED_PRODUCT_SLUGS.has(product.slug),
+          isBestSeller: BEST_SELLER_PRODUCT_SLUGS.has(product.slug),
+        },
+      });
+
       if (isPlaceholder) {
-        await prisma.product.update({
-          where: { id: existing.id },
-          data: {
-            name: product.name,
-            shortDescription: product.shortDescription,
-            description: product.description,
-            ingredients: product.ingredients,
-            price: product.price,
-            currency: product.currency,
-            images: product.images,
-            categoryId: category.id,
-            brandId: brand.id,
-            stockStatus: StockStatus.IN_STOCK,
-            tags: Array.from(new Set(["Procsin", product.category, ...product.tags])),
-            metaTitle: product.metaTitle,
-            metaDescription: product.metaDescription,
-          },
-        });
         updated += 1;
       }
 
@@ -76,11 +94,13 @@ async function main() {
         images: product.images,
         categoryId: category.id,
         brandId: brand.id,
+        stock: 10,
+        stockStatus: StockStatus.IN_STOCK,
         tags: Array.from(new Set(["Procsin", product.category, ...product.tags])),
         metaTitle: product.metaTitle,
         metaDescription: product.metaDescription,
-        isFeatured: false,
-        isBestSeller: false,
+        isFeatured: FEATURED_PRODUCT_SLUGS.has(product.slug),
+        isBestSeller: BEST_SELLER_PRODUCT_SLUGS.has(product.slug),
       },
     });
 

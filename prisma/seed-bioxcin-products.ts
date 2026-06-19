@@ -3,6 +3,18 @@ import products from "./bioxcin-products.json";
 
 const prisma = new PrismaClient();
 
+const FEATURED_PRODUCT_SLUGS = new Set([
+  "bioxcin-skin-vitamin-c",
+  "bioxcin-forte",
+  "bioxcin-men-and-sport",
+]);
+
+const BEST_SELLER_PRODUCT_SLUGS = new Set([
+  "bioxcin-acnium",
+  "bioxcin-collagen-and-biotin",
+  "bioxcin-anti-wrinkle",
+]);
+
 function slugify(name: string) {
   return name
     .toLowerCase()
@@ -44,12 +56,13 @@ async function main() {
       images: product.images,
       categoryId: category.id,
       brandId: brand.id,
+      stock: 10,
       stockStatus: StockStatus.IN_STOCK,
       tags: Array.from(new Set(["Bioxcin", product.category, ...product.tags])),
       metaTitle: product.metaTitle,
       metaDescription: product.metaDescription,
-      isFeatured: false,
-      isBestSeller: false,
+      isFeatured: FEATURED_PRODUCT_SLUGS.has(product.slug),
+      isBestSeller: BEST_SELLER_PRODUCT_SLUGS.has(product.slug),
     };
 
     if (existing) {
