@@ -29,61 +29,55 @@ const categoryShowcase = [
   {
     title: "Skincare",
     href: "/shop?category=skincare",
-    image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=85",
+    image: "/category-images/skincare.jpg",
     subcategories: ["Cleansers", "Toners", "Serums", "Moisturizers", "Face Masks", "Sunscreens", "Eye Care", "Lip Care"],
   },
   {
     title: "Hair Care",
     href: "/shop?category=hair-care",
-    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85",
+    image: "/category-images/hair-care.jpg",
     subcategories: ["Shampoo", "Conditioner", "Hair Oils", "Hair Masks", "Hair Serums", "Hair Growth Products", "Styling Products"],
   },
   {
     title: "Body Care",
     href: "/shop?category=body-care",
-    image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1200&q=85",
+    image: "/category-images/body-care.jpg",
     subcategories: ["Body Wash", "Body Lotion", "Body Butter", "Body Scrubs", "Hand Creams"],
   },
   {
     title: "Foot Care",
     href: "/shop?category=foot-care",
-    image: "https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?auto=format&fit=crop&w=1200&q=85",
+    image: "/category-images/foot-care.jpg",
     subcategories: ["Foot Creams", "Heel Repair", "Foot Scrubs", "Foot Masks"],
   },
   {
     title: "Eye Care",
     href: "/shop?category=eye-care",
-    image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=85",
+    image: "/category-images/eye-care.png",
     subcategories: ["Eye Serums", "Eye Oils", "Eyelash Care", "Eye Contour Care"],
   },
   {
     title: "Lip Care",
     href: "/shop?category=lip-care",
-    image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1200&q=85",
+    image: "/category-images/lip-care.jpg",
     subcategories: ["Lip Balms", "Lip Masks", "Lip Peels"],
-  },
-  {
-    title: "Men's Grooming",
-    href: "/shop?category=mens-grooming",
-    image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1200&q=85",
-    subcategories: ["Beard Care", "Shaving", "Face Care", "Hair Styling"],
   },
   {
     title: "Sunscreens",
     href: "/shop?category=sunscreens",
-    image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1200&q=85",
+    image: "/category-images/sunscreens.jpg",
     subcategories: ["SPF50", "Face & Body Sunscreen", "Sun Protection"],
   },
   {
     title: "Face Masks",
     href: "/shop?category=face-masks",
-    image: "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1200&q=85",
+    image: "/category-images/face-masks.jpg",
     subcategories: ["Brightening Masks", "Skincare Treatments", "Targeted Care"],
   },
   {
-    title: "Hand Creams",
+    title: "Hand Care",
     href: "/shop?category=hand-creams",
-    image: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=1200&q=85",
+    image: "/category-images/hand-care.jpg",
     subcategories: ["Hand Cream", "Vitamin C Care", "Daily Moisture"],
   },
 ];
@@ -292,41 +286,6 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="bg-[#F5E6D3] py-16 sm:py-24">
-          <div className="container-page space-y-10">
-            <SectionBanner
-              eyebrow="Brand discovery"
-              title="Shop Trusted Brands"
-              copy="Explore premium products from internationally recognized beauty brands."
-              image="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1800&q=88"
-              align="center"
-            />
-            <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-              {brands.map((brand) => (
-                <Link
-                  key={brand.name}
-                  href={`/shop?brand=${encodeURIComponent(brand.slug)}`}
-                  className="group grid min-h-[220px] place-items-center overflow-hidden rounded-[32px] border border-white/70 bg-white/82 p-6 shadow-[0_24px_70px_rgba(168,23,35,0.12)] backdrop-blur transition duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-[0_30px_90px_rgba(168,23,35,0.18)]"
-                >
-                  <div className="relative h-28 w-full max-w-[340px]">
-                    <Image
-                      src={brand.logo}
-                      alt={`${brand.name} logo`}
-                      fill
-                      sizes="(min-width: 1280px) 28vw, (min-width: 640px) 44vw, 90vw"
-                      className="object-contain transition duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <span className="mt-6 inline-flex items-center rounded-full bg-[#222222] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white transition group-hover:bg-[#a81723]">
-                    Shop {brand.name}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="bg-white py-16 sm:py-24">
           <div className="container-page">
             <SectionBanner
@@ -389,6 +348,41 @@ export default async function Home() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#F5E6D3] py-16 sm:py-24">
+          <div className="container-page space-y-10">
+            <SectionBanner
+              eyebrow="Brand discovery"
+              title="Shop Trusted Brands"
+              copy="Explore premium products from internationally recognized beauty brands."
+              image="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1800&q=88"
+              align="center"
+            />
+            <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+              {brands.map((brand) => (
+                <Link
+                  key={brand.name}
+                  href={`/shop?brand=${encodeURIComponent(brand.slug)}`}
+                  className="group grid min-h-[220px] place-items-center overflow-hidden rounded-[32px] border border-white/70 bg-white/82 p-6 shadow-[0_24px_70px_rgba(168,23,35,0.12)] backdrop-blur transition duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-[0_30px_90px_rgba(168,23,35,0.18)]"
+                >
+                  <div className="relative h-28 w-full max-w-[340px]">
+                    <Image
+                      src={brand.logo}
+                      alt={`${brand.name} logo`}
+                      fill
+                      sizes="(min-width: 1280px) 28vw, (min-width: 640px) 44vw, 90vw"
+                      className="object-contain transition duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <span className="mt-6 inline-flex items-center rounded-full bg-[#222222] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white transition group-hover:bg-[#a81723]">
+                    Shop {brand.name}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </span>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
