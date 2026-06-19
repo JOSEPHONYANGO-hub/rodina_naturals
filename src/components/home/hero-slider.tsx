@@ -8,19 +8,29 @@ import { cn } from "@/lib/utils";
 
 const slides = [
   {
-    title: "The future of skincare",
-    image: "/hero-banner-3.jpg",
-    href: "/shop?category=thalia",
+    title: "Sun Protection Collection",
+    image: "/hero-banners/sun-protection-collection.png",
+    href: "/shop?category=sunscreens",
   },
   {
-    title: "Beauty products seasonal sale",
-    image: "/hero-banner-1.jpg",
-    href: "/shop?max=2000",
+    title: "Pink Aloe Vera Series",
+    image: "/hero-banners/pink-aloe-vera-series.png",
+    href: "/shop?q=pink%20aloe%20vera",
   },
   {
-    title: "Special offer new product",
-    image: "/hero-banner-2.jpg",
-    href: "/shop",
+    title: "Beauty Deals Scrubs",
+    image: "/hero-banners/beauty-deals-scrubs.png",
+    href: "/shop?q=scrub",
+  },
+  {
+    title: "Bioxcin Age Reversal",
+    image: "/hero-banners/bioxcin-age-reversal.png",
+    href: "/shop?brand=bioxcin",
+  },
+  {
+    title: "Bioxcin Hair Grow and Repair",
+    image: "/hero-banners/bioxcin-hair-grow-repair.png",
+    href: "/shop?category=hair-care",
   },
 ];
 
@@ -46,7 +56,7 @@ export function HeroSlider() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative aspect-[24/8] w-full overflow-hidden bg-brandPurple shadow-[0_12px_36px_rgba(36,22,23,0.1)]">
+      <div className="relative aspect-[2/1] w-full overflow-hidden bg-brandPurple shadow-[0_12px_36px_rgba(36,22,23,0.1)]">
         {slides.map((slide, index) => (
           <Link
             key={slide.title}
@@ -63,7 +73,7 @@ export function HeroSlider() {
               fill
               priority={index === 0}
               sizes="100vw"
-              className="h-full w-full object-fill"
+              className="h-full w-full object-cover"
             />
           </Link>
         ))}

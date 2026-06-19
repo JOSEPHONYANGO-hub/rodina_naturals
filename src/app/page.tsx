@@ -108,40 +108,19 @@ const concernGroups = [
 
 const brands = [
   {
-    name: "Bioxcin",
-    count: "42 products",
-    focus: "Hair loss prevention and hair strengthening products.",
-    image: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=900&q=85",
-  },
-  {
-    name: "Restorex",
-    count: "36 products",
-    focus: "Hair care and hair restoration solutions.",
-    image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=900&q=85",
-  },
-  {
     name: "Procsin",
-    count: "58 products",
-    focus: "Professional skincare and dermatological products.",
-    image: "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=900&q=85",
-  },
-  {
-    name: "Bioblas",
-    count: "44 products",
-    focus: "Herbal hair care and hair growth support.",
-    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=85",
-  },
-  {
-    name: "Thalia",
-    count: "63 products",
-    focus: "Natural beauty, soaps and body care.",
-    image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=85",
+    slug: "procsin",
+    logo: "/brand-logos/procsin-logo.jpg",
   },
   {
     name: "Rain",
-    count: "28 products",
-    focus: "Premium skincare and wellness products.",
-    image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=85",
+    slug: "rain",
+    logo: "/brand-logos/rain-logo.jpg",
+  },
+  {
+    name: "Sera Cosmetics",
+    slug: "sera",
+    logo: "/brand-logos/sera-logo.jpg",
   },
 ];
 
@@ -309,35 +288,26 @@ export default async function Home() {
               image="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1800&q=88"
               align="center"
             />
-            <ProductRail title="Featured brand products" products={featuredCards} />
-            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
               {brands.map((brand) => (
                 <Link
                   key={brand.name}
-                  href={`/shop?brand=${encodeURIComponent(brand.name.toLowerCase())}`}
-                  className="group overflow-hidden rounded-[32px] border border-white/60 bg-white/78 shadow-[0_24px_70px_rgba(168,23,35,0.12)] backdrop-blur transition duration-500 hover:-translate-y-1 hover:bg-white"
+                  href={`/shop?brand=${encodeURIComponent(brand.slug)}`}
+                  className="group grid min-h-[220px] place-items-center overflow-hidden rounded-[32px] border border-white/70 bg-white/82 p-6 shadow-[0_24px_70px_rgba(168,23,35,0.12)] backdrop-blur transition duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-[0_30px_90px_rgba(168,23,35,0.18)]"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image src={brand.image} alt={`${brand.name} featured product`} fill sizes="(min-width: 1280px) 33vw, 100vw" className="object-cover transition duration-700 group-hover:scale-110" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#222222]/75 to-transparent" />
-                    <div className="absolute bottom-5 left-5 rounded-2xl bg-white/16 px-5 py-3 text-white shadow backdrop-blur-md">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#F5E6D3]">Brand</p>
-                      <h3 className="text-3xl font-semibold text-white">{brand.name}</h3>
-                    </div>
+                  <div className="relative h-28 w-full max-w-[340px]">
+                    <Image
+                      src={brand.logo}
+                      alt={`${brand.name} logo`}
+                      fill
+                      sizes="(min-width: 1280px) 28vw, (min-width: 640px) 44vw, 90vw"
+                      className="object-contain transition duration-500 group-hover:scale-105"
+                    />
                   </div>
-                  <div className="p-6">
-                    <div className="flex items-center justify-between gap-4">
-                      <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#a81723]">{brand.count}</p>
-                      <span className="rounded-full border border-[#a81723]/20 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[#a81723]">
-                        Logo
-                      </span>
-                    </div>
-                    <p className="mt-3 min-h-14 text-sm leading-7 text-[#222222]/68">{brand.focus}</p>
-                    <span className="mt-5 inline-flex items-center rounded-full bg-[#222222] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white transition group-hover:bg-[#a81723]">
-                      Explore Brand
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </span>
-                  </div>
+                  <span className="mt-6 inline-flex items-center rounded-full bg-[#222222] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white transition group-hover:bg-[#a81723]">
+                    Shop {brand.name}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </span>
                 </Link>
               ))}
             </div>
@@ -352,7 +322,7 @@ export default async function Home() {
               copy="Premium product cards with quick view, wishlisting, ratings and smooth shopping actions."
               image="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&w=1800&q=88"
             />
-            <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+            <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-5">
               {bestSellerCards.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

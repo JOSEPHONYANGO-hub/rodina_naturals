@@ -210,13 +210,13 @@ export async function getHomeCatalog() {
       where: { isFeatured: true },
       include: { brand: true, category: true },
       orderBy: { createdAt: "desc" },
-      take: 4,
+      take: 5,
     }),
     prisma.product.findMany({
       where: { isBestSeller: true },
       include: { brand: true, category: true },
       orderBy: { createdAt: "desc" },
-      take: 4,
+      take: 5,
     }),
     prisma.category.findMany({ orderBy: { name: "asc" } }),
   ]);
