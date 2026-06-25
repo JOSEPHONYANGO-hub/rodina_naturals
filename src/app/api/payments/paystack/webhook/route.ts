@@ -6,8 +6,9 @@ export async function POST(request: Request) {
   const body = await request.text();
   const signature = request.headers.get("x-paystack-signature") ?? "";
 
+  // Paystack signs webhooks with your secret key (not a separate webhook secret)
   const expectedSignature = crypto
-    .createHmac("sha512", process.env.PAYSTACK_WEBHOOK_SECRET ?? process.env.PAYSTACK_SECRET_KEY!)
+    .createHmac("sha512", process.env.PAYSTACK_SECRET_KEY!)
     .update(body)
     .digest("hex");
 
