@@ -1,26 +1,6 @@
 import { NextResponse } from "next/server";
-import { initiateStkPush } from "@/lib/payments/mpesa";
-import { prisma } from "@/lib/prisma";
 
-export async function POST(request: Request) {
-  try {
-    const { orderId, phone } = await request.json();
-    const order = await prisma.order.findUnique({ where: { id: orderId } });
-    if (!order) return NextResponse.json({ error: "Order not found." }, { status: 404 });
-
-    const response = await initiateStkPush({
-      phone: phone || order.customerPhone,
-      amount: Number(order.total),
-      orderId: order.id,
-    });
-
-    await prisma.order.update({
-      where: { id: order.id },
-      data: { mpesaCheckoutRequestId: response.CheckoutRequestID },
-    });
-
-    return NextResponse.json(response);
-  } catch {
-    return NextResponse.json({ error: "Unable to start M-Pesa STK push." }, { status: 500 });
-  }
+// Direct M-Pesa integration replaced by Paystack (which handles M-Pesa as mobile_money channel).
+export async function POST() {
+  return NextResponse.json({ error: "Direct M-Pesa is no longer supported. Use /api/payments/paystack." }, { status: 410 });
 }

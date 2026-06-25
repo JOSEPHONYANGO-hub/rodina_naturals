@@ -1,58 +1,70 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useCart } from "@/lib/cart-store";
 import { formatCurrency } from "@/lib/utils";
 
 export default function CheckoutPage() {
-  const router = useRouter();
   const { items, total, clear } = useCart();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({
     customerName: "",
     customerEmail: "",
     customerPhone: "",
     shippingAddress: "",
-    paymentMethod: "MPESA",
+    paymentMethod: "CARD",
   });
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
     setLoading(true);
+    setError("");
 
-    const orderResponse = await fetch("/api/orders", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...form,
-        items: items.map((item) => ({ productId: item.id, quantity: item.quantity })),
-      }),
-    });
-    const order = await orderResponse.json();
-
-    if (form.paymentMethod === "STRIPE") {
-      const response = await fetch("/api/payments/stripe", {
+    try {
+      // 1. Create the order
+      const orderResponse = await fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ orderId: order.id }),
+        body: JSON.stringify({
+          ...form,
+          items: items.map((item) => ({ productId: item.id, quantity: item.quantity })),
+        }),
       });
-      const data = await response.json();
-      if (data.url) window.location.href = data.url;
-    } else if (form.paymentMethod === "MPESA") {
-      await fetch("/api/payments/mpesa", {
+
+      if (!orderResponse.ok) {
+        const data = await orderResponse.json();
+        throw new Error(data.error || "Could not create order.");
+      }
+
+      const order = await orderResponse.json();
+
+      if (form.paymentMethod === "CASH_ON_DELIVERY") {
+        clear();
+        window.location.href = `/checkout/success?order=${order.id}&method=cod`;
+        return;
+      }
+
+      // 2. Initialize Paystack transaction
+      const payResponse = await fetch("/api/payments/paystack", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ orderId: order.id, phone: form.customerPhone }),
+        body: JSON.stringify({ orderId: order.id, paymentMethod: form.paymentMethod }),
       });
+
+      const payData = await payResponse.json();
+
+      if (!payData.url) {
+        throw new Error(payData.error || "Could not initialize payment.");
+      }
+
+      // 3. Clear cart and redirect to Paystack hosted payment page
       clear();
-      router.push(`/checkout/success?order=${order.id}`);
-    } else {
-      clear();
-      router.push(`/checkout/success?order=${order.id}`);
+      window.location.href = payData.url;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong.");
+      setLoading(false);
     }
-
-    setLoading(false);
   }
 
   return (
@@ -64,8 +76,8 @@ export default function CheckoutPage() {
             {(["customerName", "customerEmail", "customerPhone"] as const).map((key) => {
               const label = {
                 customerName: "Full name",
-                customerEmail: "Email",
-                customerPhone: "Phone number",
+                customerEmail: "Email address",
+                customerPhone: "Phone number (e.g. 0712345678)",
               }[key];
 
               return (
@@ -91,15 +103,26 @@ export default function CheckoutPage() {
               value={form.paymentMethod}
               onChange={(event) => setForm({ ...form, paymentMethod: event.target.value })}
             >
-              <option value="MPESA">M-Pesa STK Push</option>
-              <option value="STRIPE">Card payment</option>
-              <option value="CASH_ON_DELIVERY">Cash on delivery</option>
+              <option value="CARD">Pay by Card (Visa / Mastercard)</option>
+              <option value="MPESA">Pay via M-Pesa</option>
+              <option value="CASH_ON_DELIVERY">Cash on Delivery</option>
             </select>
+
+            {form.paymentMethod !== "CASH_ON_DELIVERY" && (
+              <p className="text-xs text-ink/60">
+                You will be redirected to Paystack&apos;s secure payment page to complete your payment.
+              </p>
+            )}
+
+            {error && (
+              <p className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>
+            )}
           </div>
           <button className="btn-primary mt-8" disabled={loading || !items.length}>
-            {loading ? "Processing..." : "Place Order"}
+            {loading ? "Processing..." : form.paymentMethod === "CASH_ON_DELIVERY" ? "Place Order" : "Proceed to Payment"}
           </button>
         </form>
+
         <aside className="soft-card h-fit p-6">
           <h2 className="text-2xl">Summary</h2>
           <div className="mt-5 space-y-3">
@@ -113,6 +136,12 @@ export default function CheckoutPage() {
           <div className="mt-6 flex justify-between border-t border-maroon/10 pt-5 font-semibold">
             <span>Total</span>
             <span className="text-maroon">{formatCurrency(total())}</span>
+          </div>
+          <div className="mt-4 flex items-center gap-2 text-xs text-ink/50">
+            <svg className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            Secured by Paystack
           </div>
         </aside>
       </div>

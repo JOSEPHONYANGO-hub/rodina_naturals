@@ -20,7 +20,7 @@ enum OrderStatus {
 }
 
 enum PaymentMethod {
-  STRIPE
+  CARD
   MPESA
   CASH_ON_DELIVERY
 }
@@ -151,8 +151,7 @@ model Order {
   total          Decimal       @db.Decimal(10, 2)
   status         OrderStatus   @default(PENDING)
   paymentMethod  PaymentMethod
-  stripeSessionId String?
-  mpesaCheckoutRequestId String?
+  paystackReference String?
   items          OrderItem[]
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
