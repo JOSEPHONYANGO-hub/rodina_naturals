@@ -31,22 +31,31 @@ export type PaystackVerification = {
 
 export async function initializeTransaction(params: {
   email: string;
-  amount: number; // in KES (will be converted to cents)
+  amount: number; // in KES — converted to smallest unit (×100) internally
   reference: string;
   orderId: string;
   callbackUrl: string;
   channels?: string[];
+  phone?: string; // required for mobile_money (M-Pesa) in Kenya
 }): Promise<PaystackTransaction> {
+  // Normalise Kenyan phone: 0712345678 → 254712345678
+  const normalisePhone = (p: string) =>
+    p.startsWith("0") ? `254${p.slice(1)}` : p.replace(/^\+/, "");
+
   return paystackFetch<PaystackTransaction>("/transaction/initialize", {
     method: "POST",
     body: JSON.stringify({
       email: params.email,
-      amount: Math.round(params.amount * 100), // kobo/cents
+      amount: Math.round(params.amount * 100), // Paystack KES uses cents (×100)
       currency: "KES",
       reference: params.reference,
       callback_url: params.callbackUrl,
       channels: params.channels ?? ["card", "mobile_money"],
-      metadata: { orderId: params.orderId },
+      ...(params.phone ? { mobile_number: normalisePhone(params.phone) } : {}),
+      metadata: {
+        orderId: params.orderId,
+        ...(params.phone ? { phone: params.phone } : {}),
+      },
     }),
   });
 }

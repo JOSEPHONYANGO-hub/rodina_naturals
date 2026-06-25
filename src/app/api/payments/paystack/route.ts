@@ -12,8 +12,8 @@ export async function POST(request: Request) {
     const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
     const reference = `rodina-${orderId}-${Date.now()}`;
 
-    // For MPESA, restrict to mobile_money channel only
-    const channels = paymentMethod === "MPESA" ? ["mobile_money"] : ["card"];
+    const isMpesa = paymentMethod === "MPESA";
+    const channels = isMpesa ? ["mobile_money"] : ["card"];
 
     const transaction = await initializeTransaction({
       email: order.customerEmail,
@@ -22,6 +22,8 @@ export async function POST(request: Request) {
       orderId,
       callbackUrl: `${appUrl}/checkout/success?reference=${reference}&order=${orderId}`,
       channels,
+      // Pass phone for M-Pesa so Paystack can pre-fill the STK push number
+      ...(isMpesa ? { phone: order.customerPhone } : {}),
     });
 
     await prisma.order.update({
