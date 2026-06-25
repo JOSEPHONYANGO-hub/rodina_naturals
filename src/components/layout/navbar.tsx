@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import {
   ChevronDown,
   ChevronRight,
@@ -102,13 +103,38 @@ const concernLinks = [
   { title: "Body Concerns", items: ["Stretch Marks", "Dark Spots", "Uneven Skin Tone", "Dry Skin"] },
 ];
 
+const categorySlugOverrides: Record<string, string> = {
+  "Body Lotions": "body-lotion",
+  "Creams & Moisturisers": "moisturizers",
+  "Face Mask": "face-masks",
+  "Face Scrub": "face-scrubs",
+  "Face Soaps & Cleansers": "cleansers",
+  "Anti Hair Loss": "hair-loss",
+  "Dandruff Care": "dandruff",
+};
+
+function categoryFilterHref(label: string) {
+  const slug = categorySlugOverrides[label] || label
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/'/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+  return `/shop?category=${slug}&page=1`;
+}
+
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [activeMega, setActiveMega] = useState<MegaMenuKey | null>(null);
   const [accountOpen, setAccountOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const [mounted, setMounted] = useState(false);
   const { data: session, status } = useSession();
   const count = useCart((state) => state.count());
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  React.useEffect(() => { setMounted(true); }, []);
   const suggestions = CATEGORIES.filter((category) =>
     category.toLowerCase().includes(search.toLowerCase()),
   ).slice(0, 4);
@@ -196,8 +222,9 @@ export function Navbar() {
               {suggestions.map((category) => (
                 <Link
                   key={category}
-                  href={`/shop?brand=${category.toLowerCase()}`}
+                  href={categoryFilterHref(category)}
                   className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm hover:bg-cream"
+                  onClick={() => setSearch("")}
                 >
                   <Sparkles className="h-3.5 w-3.5 text-gold" />
                   {category}
@@ -289,7 +316,7 @@ export function Navbar() {
             aria-label="Cart"
           >
             <ShoppingCart size={20} />
-            {count > 0 ? (
+            {mounted && count > 0 ? (
               <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-[#F5E6D3] text-[10px] font-semibold text-[#a81723]">
                 {count}
               </span>
@@ -337,17 +364,18 @@ export function Navbar() {
       </nav>
 
       {activeMega ? (
-        <div className="hidden bg-transparent text-charcoal animate-in fade-in slide-in-from-top-2 duration-200 lg:block">
+        <div className="absolute inset-x-0 top-full z-50 hidden bg-transparent px-5 pt-2 text-charcoal animate-in fade-in slide-in-from-top-3 duration-300 lg:block">
           <div className="container-page">
-            <div className="mx-auto max-h-[70vh] max-w-[1120px] overflow-hidden rounded-b-[18px] border border-[#e7edf3] bg-white shadow-[0_26px_80px_rgba(34,34,34,0.14)]">
+            <div className="mx-auto max-h-[min(54vh,470px)] max-w-[1000px] overflow-hidden rounded-[14px] border border-[#e7edf3] bg-white shadow-[0_28px_80px_rgba(34,34,34,0.22)]">
               {activeMega === "category" ? (
-                <div className="grid max-h-[70vh] grid-cols-[260px_1fr]">
-                  <div className="overflow-y-auto border-r border-[#e7edf3] bg-[#fbfcfd] p-3">
+                <div className="grid h-[min(54vh,470px)] grid-cols-[230px_1fr]">
+                  <div className="overscroll-contain overflow-y-auto border-r border-[#e7edf3] bg-[#fbfcfd] p-3 [scrollbar-color:#a81723_#f5e6d3] [scrollbar-width:thin]">
                     {categorySidebar.map((category) => (
                       <Link
                         key={category.title}
                         href={category.href}
                         className="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-[#243041] transition hover:bg-white hover:text-[#a81723]"
+                        onClick={() => setActiveMega(null)}
                       >
                         <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[#F5E6D3] text-[11px] text-[#a81723] transition group-hover:bg-[#a81723] group-hover:text-white">
                           {category.title.slice(0, 1)}
@@ -357,17 +385,17 @@ export function Navbar() {
                       </Link>
                     ))}
                   </div>
-                  <div className="overflow-y-auto p-6">
+                  <div className="overscroll-contain overflow-y-auto p-5 [scrollbar-color:#a81723_#f5e6d3] [scrollbar-width:thin]">
                     <div className="mb-5 flex items-center justify-between border-b border-[#edf1f5] pb-4">
                       <h2 className="text-base font-bold text-[#243041]">Beauty And Skin Care</h2>
-                      <Link href="/shop" className="rounded-full border border-[#a81723]/20 px-5 py-2 text-xs font-bold text-[#a81723] transition hover:bg-[#F5E6D3]">
+                      <Link href="/shop" onClick={() => setActiveMega(null)} className="rounded-full border border-[#a81723]/20 px-5 py-2 text-xs font-bold text-[#a81723] transition hover:bg-[#F5E6D3]">
                         View all
                       </Link>
                     </div>
                     <div className="grid gap-8 md:grid-cols-2">
                       {categoryColumns.map((group) => (
                         <div key={group.title}>
-                          <Link href={group.href} className="mb-4 inline-flex items-center gap-1 text-sm font-bold text-[#243041] hover:text-[#a81723]">
+                          <Link href={group.href} onClick={() => setActiveMega(null)} className="mb-4 inline-flex items-center gap-1 text-sm font-bold text-[#243041] hover:text-[#a81723]">
                             {group.title}
                             <ChevronRight className="h-3.5 w-3.5" />
                           </Link>
@@ -375,8 +403,9 @@ export function Navbar() {
                             {group.items.map((item) => (
                               <Link
                                 key={`${group.title}-${item}`}
-                                href={`${group.href}&q=${encodeURIComponent(item)}`}
-                                className="text-xs font-medium text-[#667085] transition hover:text-[#a81723]"
+                                href={categoryFilterHref(item)}
+                                onClick={() => setActiveMega(null)}
+                                className="text-xs font-medium text-[#667085] transition duration-200 hover:translate-x-0.5 hover:text-[#a81723]"
                               >
                                 {item}
                               </Link>
@@ -390,10 +419,10 @@ export function Navbar() {
               ) : null}
 
               {activeMega === "brand" ? (
-                <div className="max-h-[70vh] overflow-y-auto p-6">
+                <div className="max-h-[min(54vh,470px)] overscroll-contain overflow-y-auto p-5 [scrollbar-color:#a81723_#f5e6d3] [scrollbar-width:thin]">
                   <div className="mb-6 flex items-center justify-between">
                     <h2 className="text-base font-bold text-[#243041]">Featured Brands</h2>
-                    <Link href="/shop" className="rounded-full border border-[#a81723]/20 px-5 py-2 text-xs font-bold text-[#a81723] transition hover:bg-[#F5E6D3]">
+                    <Link href="/shop" onClick={() => setActiveMega(null)} className="rounded-full border border-[#a81723]/20 px-5 py-2 text-xs font-bold text-[#a81723] transition hover:bg-[#F5E6D3]">
                       View all brands
                     </Link>
                   </div>
@@ -402,7 +431,8 @@ export function Navbar() {
                       <Link
                         key={brand.name}
                         href={brand.href}
-                        className="group grid min-h-[84px] place-items-center rounded-xl border border-[#e3e9f0] bg-[#fbfcfd] px-3 py-3 text-center transition hover:-translate-y-0.5 hover:border-[#a81723] hover:bg-white hover:shadow-[0_14px_32px_rgba(168,23,35,0.1)]"
+                        onClick={() => setActiveMega(null)}
+                        className="group grid min-h-[78px] place-items-center rounded-xl border border-[#e3e9f0] bg-[#fbfcfd] px-3 py-2 text-center transition duration-300 hover:-translate-y-0.5 hover:border-[#a81723] hover:bg-white hover:shadow-[0_14px_32px_rgba(168,23,35,0.1)]"
                       >
                         {brand.logo ? (
                           <span className="relative h-9 w-full">
@@ -416,7 +446,7 @@ export function Navbar() {
                     ))}
                   </div>
                   <div className="mt-6 text-center">
-                    <Link href="/shop" className="inline-flex rounded-lg bg-[#a81723] px-6 py-3 text-xs font-bold text-white transition hover:bg-[#7d111b]">
+                    <Link href="/shop" onClick={() => setActiveMega(null)} className="inline-flex rounded-lg bg-[#a81723] px-6 py-3 text-xs font-bold text-white transition hover:bg-[#7d111b]">
                       Browse all brands
                     </Link>
                   </div>
@@ -424,10 +454,10 @@ export function Navbar() {
               ) : null}
 
               {activeMega === "concern" ? (
-                <div className="max-h-[70vh] overflow-y-auto p-6">
+                <div className="max-h-[min(54vh,470px)] overscroll-contain overflow-y-auto p-5 [scrollbar-color:#a81723_#f5e6d3] [scrollbar-width:thin]">
                   <div className="mb-5 flex items-center justify-between border-b border-[#edf1f5] pb-4">
                     <h2 className="text-base font-bold text-[#243041]">Shop by Concern</h2>
-                    <Link href="/shop" className="rounded-full border border-[#a81723]/20 px-5 py-2 text-xs font-bold text-[#a81723] transition hover:bg-[#F5E6D3]">
+                    <Link href="/shop" onClick={() => setActiveMega(null)} className="rounded-full border border-[#a81723]/20 px-5 py-2 text-xs font-bold text-[#a81723] transition hover:bg-[#F5E6D3]">
                       View all
                     </Link>
                   </div>
@@ -437,7 +467,7 @@ export function Navbar() {
                         <h3 className="font-bold text-[#243041]">{group.title}</h3>
                         <div className="mt-4 grid gap-2">
                           {group.items.map((item) => (
-                            <Link key={item} href={`/shop?q=${encodeURIComponent(item)}`} className="text-sm text-[#667085] transition hover:text-[#a81723]">
+                            <Link key={item} href={categoryFilterHref(item)} onClick={() => setActiveMega(null)} className="text-sm text-[#667085] transition duration-200 hover:translate-x-0.5 hover:text-[#a81723]">
                               {item}
                             </Link>
                           ))}
