@@ -29,6 +29,27 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+@keyframes brand-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.brand-tile {
+  animation: brand-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-tile {
+    animation: none;
+  }
+}
+
 ::selection {
   background: var(--maroon);
   color: #fffaf6;

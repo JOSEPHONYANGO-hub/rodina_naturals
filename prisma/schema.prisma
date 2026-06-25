@@ -15,6 +15,9 @@ enum Role {
 enum OrderStatus {
   PENDING
   PAID
+  PROCESSING
+  SHIPPED
+  DELIVERED
   FAILED
   CANCELLED
 }
@@ -152,6 +155,8 @@ model Order {
   status         OrderStatus   @default(PENDING)
   paymentMethod  PaymentMethod
   paystackReference String?
+  trackingNumber    String?
+  adminNotes        String?  @db.Text
   items          OrderItem[]
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt

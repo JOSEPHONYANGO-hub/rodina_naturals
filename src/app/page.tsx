@@ -352,34 +352,38 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="bg-[#F5E6D3] py-16 sm:py-24">
-          <div className="container-page space-y-10">
-            <SectionBanner
-              eyebrow="Brand discovery"
-              title="Shop Trusted Brands"
-              copy="Explore premium products from internationally recognized beauty brands."
-              image="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1800&q=88"
-              align="center"
-            />
-            <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-              {brands.map((brand) => (
+        <section className="border-y border-[#a81723]/10 bg-white py-16 sm:py-20">
+          <div className="container-page">
+            <div className="mx-auto mb-10 max-w-2xl text-center">
+              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#a81723]">Brand discovery</p>
+              <h2 className="mt-3 text-3xl font-semibold text-[#222222] sm:text-4xl">Shop Trusted Brands</h2>
+              <div className="mx-auto mt-4 h-1 w-14 rounded-full bg-[#a81723]" />
+              <p className="mt-5 text-sm leading-7 text-[#222222]/65 sm:text-base">
+                Explore genuine beauty essentials from brands chosen for quality, care and dependable results.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {brands.map((brand, index) => (
                 <Link
                   key={brand.name}
                   href={`/shop?brand=${encodeURIComponent(brand.slug)}`}
-                  className="group grid min-h-[220px] place-items-center overflow-hidden rounded-[32px] border border-white/70 bg-white/82 p-6 shadow-[0_24px_70px_rgba(168,23,35,0.12)] backdrop-blur transition duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-[0_30px_90px_rgba(168,23,35,0.18)]"
+                  className="brand-tile group relative grid min-h-[190px] place-items-center overflow-hidden rounded-lg border border-[#a81723]/12 bg-[#fffaf6] p-6 text-center shadow-[0_12px_36px_rgba(34,34,34,0.06)] transition duration-500 hover:-translate-y-1 hover:border-[#a81723]/45 hover:bg-white hover:shadow-[0_20px_50px_rgba(168,23,35,0.12)]"
+                  style={{ animationDelay: `${index * 110}ms` }}
                 >
-                  <div className="relative h-28 w-full max-w-[340px]">
+                  <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-[#a81723] transition-transform duration-500 group-hover:scale-x-100" />
+                  <div className="relative h-24 w-full max-w-[300px]">
                     <Image
                       src={brand.logo}
                       alt={`${brand.name} logo`}
                       fill
+                      loading="eager"
                       sizes="(min-width: 1280px) 28vw, (min-width: 640px) 44vw, 90vw"
-                      className="object-contain transition duration-500 group-hover:scale-105"
+                      className="object-contain transition duration-500 ease-out group-hover:scale-[1.04]"
                     />
                   </div>
-                  <span className="mt-6 inline-flex items-center rounded-full bg-[#222222] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white transition group-hover:bg-[#a81723]">
+                  <span className="mt-5 inline-flex items-center border-b border-[#a81723]/25 pb-1 text-[11px] font-bold uppercase tracking-[0.16em] text-[#a81723] transition duration-300 group-hover:border-[#a81723] group-hover:text-[#7d111b]">
                     Shop {brand.name}
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
                 </Link>
               ))}

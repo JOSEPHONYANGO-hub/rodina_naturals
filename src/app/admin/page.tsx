@@ -34,6 +34,7 @@ const mainMenu = [
   { label: "Analytics", icon: BarChart3, href: "#analytics" },
   { label: "Products", icon: Boxes, href: "#products" },
   { label: "Sales", icon: ShoppingBag, href: "#orders" },
+  { label: "Manage Orders", icon: PackageCheck, href: "/admin/orders" },
 ];
 
 const transactionMenu = [
@@ -292,8 +293,15 @@ export default async function AdminPage() {
 
             <section id="orders" className="mt-6 grid gap-6 xl:grid-cols-[1fr_1fr]">
               <div className="rounded-[30px] border border-maroon/10 bg-white p-5 shadow-[0_18px_60px_rgba(34,34,34,0.06)] sm:p-6">
-                <p className="text-[11px] font-bold uppercase tracking-[0.26em] text-gold">Sales</p>
-                <h2 className="mt-2 text-3xl font-semibold text-charcoal">Recent Orders</h2>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.26em] text-gold">Sales</p>
+                    <h2 className="mt-2 text-3xl font-semibold text-charcoal">Recent Orders</h2>
+                  </div>
+                  <Link href="/admin/orders" className="rounded-full border border-maroon/20 px-4 py-2 text-xs font-bold text-maroon transition hover:bg-cream">
+                    View all →
+                  </Link>
+                </div>
                 <div className="mt-5 grid gap-4">
                   {orders.length ? (
                     orders.slice(0, 6).map((order) => (
