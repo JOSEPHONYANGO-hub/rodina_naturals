@@ -47,7 +47,7 @@ const transactionMenu = [
 const generalMenu = [
   { label: "Notifications", icon: Bell, href: "#notifications" },
   { label: "Feedback", icon: MessageSquare, href: "#feedback" },
-  { label: "Settings", icon: Settings, href: "#settings" },
+  { label: "Settings", icon: Settings, href: "/admin/settings" },
   { label: "Support", icon: LifeBuoy, href: "#support" },
 ];
 

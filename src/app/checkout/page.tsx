@@ -266,10 +266,10 @@ export default function CheckoutPage() {
                 </div>
                 <div className="flex justify-between text-sm text-ink/60">
                   <span>Delivery</span>
-                  <span className="font-medium text-green-600">Free</span>
+                  <span className="font-medium text-ink/50">Calculated on delivery</span>
                 </div>
                 <div className="flex justify-between border-t border-maroon/10 pt-3 text-lg font-bold">
-                  <span>Total</span>
+                  <span>Subtotal</span>
                   <span className="text-maroon">{formatCurrency(total())}</span>
                 </div>
               </div>

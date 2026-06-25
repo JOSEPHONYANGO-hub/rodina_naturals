@@ -266,7 +266,7 @@ export function Navbar() {
               </Link>
             )}
             {accountOpen && status === "authenticated" ? (
-              <div className="absolute right-0 top-12 w-72 overflow-hidden rounded-[24px] border border-maroon/10 bg-white text-maroon shadow-[0_24px_70px_rgba(77,12,18,0.16)]">
+              <div className="absolute right-0 top-12 z-[60] w-72 overflow-hidden rounded-[24px] border border-maroon/10 bg-white text-maroon shadow-[0_24px_70px_rgba(77,12,18,0.16)]">
                 <div className="border-b border-maroon/10 bg-cream p-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">
                     Signed in
@@ -310,12 +310,12 @@ export function Navbar() {
           </div>
           <Link
             href="/cart"
-            className="relative p-2 text-white transition hover:text-[#F5E6D3]"
+            className="relative flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20 hover:text-[#F5E6D3]"
             aria-label="Cart"
           >
-            <ShoppingCart size={20} />
+            <ShoppingCart size={22} />
             {mounted && count > 0 ? (
-              <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-[#F5E6D3] text-[10px] font-semibold text-[#a81723]">
+              <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-[#F5E6D3] text-[10px] font-bold text-[#a81723]">
                 {count}
               </span>
             ) : null}
