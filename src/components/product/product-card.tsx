@@ -1,6 +1,6 @@
 "use client";
 
-import { Eye, Heart, ShoppingCart, X } from "lucide-react";
+import { Check, Eye, Heart, ShoppingCart, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -18,6 +18,7 @@ const PRODUCT_IMAGE_FALLBACK = "/rodina-logo.jpeg";
 export function ProductCard({ product, variant = "default" }: ProductCardProps) {
   const add = useCart((state) => state.add);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
+  const [added, setAdded] = useState(false);
   const soldOut = product.stock < 1;
   const image = product.images[0] || PRODUCT_IMAGE_FALLBACK;
   const price = Number(product.price);
@@ -26,13 +27,11 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
   const displayPrice = hasOffer ? salePrice : price;
   const offerPercent = hasOffer ? Math.round(((price - salePrice) / price) * 100) : 0;
 
-  const addProduct = () =>
-    add({
-      id: product.id,
-      name: product.name,
-      price: displayPrice,
-      image,
-    });
+  const addProduct = () => {
+    add({ id: product.id, name: product.name, price: displayPrice, image });
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
+  };
 
   if (variant === "shop") {
     return (
@@ -96,7 +95,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
                 type="button"
                 aria-label={`Add ${product.name} to cart`}
               >
-                <ShoppingCart className="h-5 w-5" />
+                {added ? <Check className="h-5 w-5" /> : <ShoppingCart className="h-5 w-5" />}
               </button>
             </div>
           </div>
@@ -139,8 +138,8 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
                     disabled={soldOut}
                     className={cn("btn-primary", soldOut && "cursor-not-allowed opacity-45")}
                   >
-                    <ShoppingCart className="mr-2 h-4 w-4" />
-                    {soldOut ? "Out Of Stock" : "Add To Cart"}
+                    {added ? <Check className="mr-2 h-4 w-4" /> : <ShoppingCart className="mr-2 h-4 w-4" />}
+                    {soldOut ? "Out Of Stock" : added ? "Added!" : "Add To Cart"}
                   </button>
                   <Link href={`/products/${product.slug}`} className="btn-secondary">
                     View Details
@@ -229,7 +228,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
               aria-label={`Add ${product.name} to cart`}
               disabled={soldOut}
             >
-              <ShoppingCart className="h-5 w-5" />
+              {added ? <Check className="h-5 w-5" /> : <ShoppingCart className="h-5 w-5" />}
             </button>
           </div>
         </div>
@@ -272,8 +271,8 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
                   disabled={soldOut}
                   className={cn("btn-primary", soldOut && "cursor-not-allowed opacity-45")}
                 >
-                  <ShoppingCart className="mr-2 h-4 w-4" />
-                  {soldOut ? "Out Of Stock" : "Add To Cart"}
+                  {added ? <Check className="mr-2 h-4 w-4" /> : <ShoppingCart className="mr-2 h-4 w-4" />}
+                  {soldOut ? "Out Of Stock" : added ? "Added!" : "Add To Cart"}
                 </button>
                 <Link href={`/products/${product.slug}`} className="btn-secondary">
                   View Details

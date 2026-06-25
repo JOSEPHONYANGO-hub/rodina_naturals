@@ -6,9 +6,9 @@ import { useCart } from "@/lib/cart-store";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    // Rehydrate the Zustand cart store from localStorage after the client mounts.
-    // This avoids SSR/client hydration mismatches that break add-to-cart.
-    useCart.persist.rehydrate();
+    // Trigger Zustand persist rehydration from localStorage after first client render.
+    // This prevents SSR/client hydration mismatches that can break React event handlers.
+    void useCart.persist.rehydrate();
   }, []);
 
   return <SessionProvider>{children}</SessionProvider>;
