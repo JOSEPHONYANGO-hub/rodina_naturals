@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import {
   ChevronDown,
   ChevronRight,
@@ -17,8 +16,8 @@ import {
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
-import { useState } from "react";
 import { Logo } from "@/components/layout/logo";
 import { SocialIcon } from "@/components/social-icons";
 import { CATEGORIES, CONTACT_DETAILS, SOCIAL_LINKS } from "@/config/brand";
@@ -133,8 +132,7 @@ export function Navbar() {
   const { data: session, status } = useSession();
   const count = useCart((state) => state.count());
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  React.useEffect(() => { setMounted(true); }, []);
+  useEffect(() => { setMounted(true); }, []);
   const suggestions = CATEGORIES.filter((category) =>
     category.toLowerCase().includes(search.toLowerCase()),
   ).slice(0, 4);

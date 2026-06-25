@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useCart } from "@/lib/cart-store";
@@ -243,9 +242,6 @@ export default function CheckoutPage() {
               <div className="mt-5 space-y-4">
                 {items.length ? items.map((item) => (
                   <div key={item.id} className="flex items-center gap-3">
-                    <div className="relative h-14 w-12 shrink-0 overflow-hidden rounded-lg bg-cream">
-                      <Image src={item.image} alt={item.name} fill sizes="48px" className="object-cover" />
-                    </div>
                     <div className="flex-1 min-w-0">
                       <p className="truncate text-sm font-semibold text-charcoal">{item.name}</p>
                       <p className="text-xs text-ink/50">Qty: {item.quantity}</p>

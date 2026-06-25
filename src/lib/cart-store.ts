@@ -50,6 +50,6 @@ export const useCart = create<CartStore>()(
       count: () => get().items.reduce((sum, item) => sum + item.quantity, 0),
       total: () => get().items.reduce((sum, item) => sum + item.price * item.quantity, 0),
     }),
-    { name: "rodina-cart", skipHydration: true },
+    { name: "rodina-cart" },
   ),
 );
