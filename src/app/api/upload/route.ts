@@ -55,8 +55,7 @@ export async function POST(request: Request) {
   );
 
   if (!hasCloudinaryConfig) {
-    const localUpload = await saveLocalImage(file, bytes);
-    return ok(localUpload);
+    return badRequest("Cloudinary credentials are not configured. Set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET environment variables.");
   }
 
   try {
