@@ -70,11 +70,8 @@ export async function POST(request: Request) {
     });
     return ok(uploaded);
   } catch (error) {
-    console.error("Image upload failed:", error);
-
-    const localUpload = await saveLocalImage(file, bytes);
-    if (localUpload) return ok(localUpload);
-
-    return badRequest("Image upload failed. Choose another image file and try again.");
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("Cloudinary upload failed:", message);
+    return badRequest(`Cloudinary upload failed: ${message}`);
   }
 }
