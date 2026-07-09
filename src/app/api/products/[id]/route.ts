@@ -55,6 +55,14 @@ export async function DELETE(_: Request, { params }: { params: { id: string } })
   const session = await requireAdmin();
   if (!session) return unauthorized();
 
-  await prisma.product.delete({ where: { id: params.id } });
-  return ok({ ok: true });
+  try {
+    await prisma.product.delete({ where: { id: params.id } });
+    return ok({ ok: true });
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2003") {
+      return badRequest("This product is referenced by existing orders and cannot be deleted.");
+    }
+    console.error("Product delete failed:", error);
+    return badRequest("Product could not be deleted.");
+  }
 }
