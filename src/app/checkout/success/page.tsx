@@ -113,7 +113,7 @@ export default async function CheckoutSuccessPage({
             <div className="mt-5 space-y-3">
               {order.items.map((item) => (
                 <div key={item.id} className="flex justify-between gap-4 rounded-2xl bg-cream px-5 py-4 text-sm">
-                  <span className="font-semibold text-charcoal">{item.product.name}</span>
+                  <span className="font-semibold text-charcoal">{item.product?.name ?? "Deleted product"}</span>
                   <span className="shrink-0 text-ink/60">
                     {item.quantity} × {formatCurrency(Number(item.price))}
                   </span>

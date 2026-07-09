@@ -64,7 +64,7 @@ export default async function AdminOrderDetailPage({ params }: { params: { id: s
                 {order.items.map((item) => (
                   <div key={item.id} className="flex items-center justify-between gap-4 rounded-2xl bg-cream px-5 py-4">
                     <div>
-                      <p className="font-semibold text-charcoal">{item.product.name}</p>
+                      <p className="font-semibold text-charcoal">{item.product?.name ?? "Deleted product"}</p>
                       <p className="mt-0.5 text-sm text-ink/55">Qty: {item.quantity} × {formatCurrency(Number(item.price))}</p>
                     </div>
                     <p className="font-bold text-maroon">{formatCurrency(Number(item.price) * item.quantity)}</p>
