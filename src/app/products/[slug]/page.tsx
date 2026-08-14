@@ -35,53 +35,53 @@ export default async function ProductPage({ params }: { params: { slug: string }
   });
 
   return (
-    <div className="bg-cream pb-24 pt-32">
+    <div className="bg-cream pb-16 pt-28">
       <div className="container-page">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="grid gap-4">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border border-maroon/10 bg-rose/35 shadow-[0_22px_70px_rgba(77,12,18,0.08)]">
+        <div className="grid gap-6 lg:grid-cols-[340px_1fr]">
+          <div className="grid gap-3">
+            <div className="relative aspect-square overflow-hidden rounded-[22px] border border-maroon/10 bg-rose/35 shadow-[0_12px_40px_rgba(77,12,18,0.08)]">
               <Image
                 src={productImage}
                 alt={product.name}
                 fill
                 priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
+                sizes="(min-width: 1024px) 340px, 100vw"
                 className="object-cover"
               />
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-3">
               {product.images.slice(1, 4).map((image) => (
                 <div
                   key={image}
-                  className="relative aspect-square overflow-hidden rounded-[22px] border border-maroon/10 bg-white"
+                  className="relative aspect-square overflow-hidden rounded-[14px] border border-maroon/10 bg-white"
                 >
-                  <Image src={image} alt="" fill sizes="20vw" className="object-cover" />
+                  <Image src={image} alt="" fill sizes="110px" className="object-cover" />
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="h-fit rounded-[34px] border border-maroon/10 bg-white p-7 shadow-[0_24px_80px_rgba(77,12,18,0.07)] sm:p-9 lg:p-11">
-            <p className="eyebrow">{product.category.name}</p>
-            <h1 className="mt-4 text-2xl font-semibold leading-tight text-charcoal sm:text-4xl">
+          <div className="h-fit rounded-[24px] border border-maroon/10 bg-white p-5 shadow-[0_12px_40px_rgba(77,12,18,0.07)] sm:p-6">
+            <p className="eyebrow text-xs">{product.category.name}</p>
+            <h1 className="mt-2 text-xl font-semibold leading-snug text-charcoal sm:text-2xl">
               {product.name}
             </h1>
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <p className="text-2xl font-bold tracking-[0.04em] text-maroon">
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              <p className="text-xl font-bold tracking-[0.04em] text-maroon">
                 {formatCurrency(product.price.toString())}
               </p>
-              <span className="rounded-full bg-cream px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-maroon">
+              <span className="rounded-full bg-cream px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-maroon">
                 {product.stock > 0 ? `${product.stock} in stock` : "Out of stock"}
               </span>
             </div>
-            <p className="mt-7 leading-8 text-ink/70">{product.description}</p>
+            <p className="mt-4 text-sm leading-7 text-ink/70">{product.description}</p>
 
-            <div className="mt-8 rounded-[26px] border border-maroon/10 bg-cream p-6">
-              <h2 className="text-2xl font-semibold text-charcoal">Ingredients</h2>
-              <p className="mt-3 leading-7 text-ink/70">{product.ingredients}</p>
+            <div className="mt-4 rounded-[18px] border border-maroon/10 bg-cream p-4">
+              <h2 className="text-base font-semibold text-charcoal">Ingredients</h2>
+              <p className="mt-2 text-sm leading-6 text-ink/70">{product.ingredients}</p>
             </div>
 
-            <div className="mt-6">
+            <div className="mt-4">
               <AddToCartButton
                 product={{
                   id: product.id,
@@ -93,9 +93,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
               />
             </div>
 
-            <div className="mt-10 rounded-[26px] border border-maroon/10 p-6">
+            <div className="mt-4 rounded-[18px] border border-maroon/10 p-4">
               <div className="flex items-center justify-between gap-4">
-                <h2 className="text-2xl font-semibold text-charcoal">Reviews</h2>
+                <h2 className="text-base font-semibold text-charcoal">Reviews</h2>
                 <span className="text-xs font-bold uppercase tracking-[0.18em] text-gold">
                   {product.reviews.length} total
                 </span>
