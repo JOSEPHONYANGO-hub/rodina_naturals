@@ -86,16 +86,15 @@ const categoryColumns = [
 ];
 
 const brandLinks = [
-  { name: "Procsin", href: "/shop?brand=procsin", logo: "/brand-logos/procsin-logo.jpg" },
-  { name: "Rain", href: "/shop?brand=rain", logo: "/brand-logos/rain-logo.jpg" },
-  { name: "Sera", href: "/shop?brand=sera", logo: "/brand-logos/sera-logo.jpg" },
-  { name: "Bioxcin", href: "/shop?brand=bioxcin" },
-  { name: "Thalia", href: "/shop?brand=thalia" },
-  { name: "Restorex", href: "/shop?brand=restorex" },
-  { name: "Bioblas", href: "/shop?brand=bioblas" },
+  { name: "Procsin",     href: "/shop?brand=procsin",       logo: "/brands/procsin.png" },
+  { name: "Rain",        href: "/shop?brand=rain",          logo: "/brands/rain.png" },
+  { name: "Bioxcin",    href: "/shop?brand=bioxcin",       logo: "/brands/bioxcin.png" },
+  { name: "Thalia",     href: "/shop?brand=thalia",        logo: "/brands/thalia.png" },
+  { name: "Restorex",   href: "/shop?brand=restorex",      logo: "/brands/restorex.png" },
+  { name: "Bioblas",    href: "/shop?brand=bioblas",       logo: "/brands/bioblas.png" },
   { name: "Nice & Lovely", href: "/shop?brand=nice-and-lovely" },
-  { name: "Dove", href: "/shop?brand=dove" },
-  { name: "Garnier", href: "/shop?brand=garnier" },
+  { name: "Dove",       href: "/shop?brand=dove" },
+  { name: "Garnier",    href: "/shop?brand=garnier" },
 ];
 
 const concernLinks = [
