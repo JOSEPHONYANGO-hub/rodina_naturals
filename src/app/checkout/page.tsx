@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useCart } from "@/lib/cart-store";
+import { calculateShipping, TOWN_OPTIONS } from "@/lib/shipping";
 import { formatCurrency } from "@/lib/utils";
 
 type PaymentMethod = "CARD" | "MPESA" | "CASH_ON_DELIVERY";
@@ -11,55 +12,88 @@ const paymentOptions: {
   id: PaymentMethod;
   label: string;
   description: string;
-  icon: string;
 }[] = [
   {
     id: "CARD",
     label: "Debit / Credit Card",
     description: "Visa, Mastercard — secure payment via Paystack",
-    icon: "/payment-icons/card.svg",
   },
   {
     id: "MPESA",
     label: "M-Pesa",
     description: "Pay via M-Pesa STK push to your phone",
-    icon: "/payment-icons/mpesa.svg",
   },
   {
     id: "CASH_ON_DELIVERY",
     label: "Cash on Delivery",
     description: "Pay when your order arrives",
-    icon: "/payment-icons/cod.svg",
   },
 ];
+
+// Each beauty product assumed ~0.4 kg; minimum 1 kg billed.
+function estimatedWeight(itemCount: number) {
+  return Math.max(1, itemCount * 0.4);
+}
 
 export default function CheckoutPage() {
   const { items, total, clear } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [townSearch, setTownSearch] = useState("");
+  const [showTownList, setShowTownList] = useState(false);
+  const townInputRef = useRef<HTMLInputElement>(null);
+
   const [form, setForm] = useState({
     customerName: "",
     customerEmail: "",
     customerPhone: "",
     shippingAddress: "",
+    shippingTownKey: "",
+    shippingTownName: "",
     paymentMethod: "CARD" as PaymentMethod,
   });
 
   const selectedOption = paymentOptions.find((o) => o.id === form.paymentMethod)!;
 
+  const filteredTowns = useMemo(() => {
+    const q = townSearch.toLowerCase();
+    return q ? TOWN_OPTIONS.filter((t) => t.name.toLowerCase().includes(q)) : TOWN_OPTIONS;
+  }, [townSearch]);
+
+  const totalItemQty = items.reduce((s, i) => s + i.quantity, 0);
+  const weight = estimatedWeight(totalItemQty);
+  const shippingCost = form.shippingTownKey
+    ? calculateShipping(form.shippingTownKey, weight)
+    : null;
+  const grandTotal = total() + (shippingCost ?? 0);
+
+  function selectTown(key: string, name: string) {
+    setForm({ ...form, shippingTownKey: key, shippingTownName: name });
+    setTownSearch(name);
+    setShowTownList(false);
+  }
+
   async function submit(event: React.FormEvent) {
     event.preventDefault();
     if (!items.length) return;
+    if (!form.shippingTownKey) {
+      setError("Please select a delivery town.");
+      return;
+    }
     setLoading(true);
     setError("");
 
     try {
-      // Step 1 — create the order
       const orderRes = await fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...form,
+          customerName: form.customerName,
+          customerEmail: form.customerEmail,
+          customerPhone: form.customerPhone,
+          shippingAddress: `${form.shippingTownName} — ${form.shippingAddress}`,
+          paymentMethod: form.paymentMethod,
+          shippingCost: shippingCost ?? 0,
           items: items.map((item) => ({ productId: item.id, quantity: item.quantity })),
         }),
       });
@@ -67,14 +101,12 @@ export default function CheckoutPage() {
       const order = await orderRes.json();
       if (!orderRes.ok) throw new Error(order.error || "Could not create order.");
 
-      // Step 2 — cash on delivery: done
       if (form.paymentMethod === "CASH_ON_DELIVERY") {
         clear();
         window.location.href = `/checkout/success?order=${order.id}&method=cod`;
         return;
       }
 
-      // Step 3 — initialise Paystack transaction (card or M-Pesa)
       const payRes = await fetch("/api/payments/paystack", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -84,7 +116,6 @@ export default function CheckoutPage() {
       const payData = await payRes.json();
       if (!payData.url) throw new Error(payData.error || "Could not initialise payment.");
 
-      // Step 4 — redirect to Paystack hosted payment page
       clear();
       window.location.href = payData.url;
     } catch (err) {
@@ -129,13 +160,63 @@ export default function CheckoutPage() {
                   onChange={(e) => setForm({ ...form, customerPhone: e.target.value })}
                   required
                 />
+
+                {/* Town / G4S branch selector */}
+                <div className="relative sm:col-span-2">
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.14em] text-ink/50">
+                    Delivery Town
+                  </label>
+                  <input
+                    ref={townInputRef}
+                    className="field w-full"
+                    placeholder="Search town (e.g. Nairobi, Mombasa, Kisumu…)"
+                    value={townSearch}
+                    autoComplete="off"
+                    onChange={(e) => {
+                      setTownSearch(e.target.value);
+                      setForm({ ...form, shippingTownKey: "", shippingTownName: "" });
+                      setShowTownList(true);
+                    }}
+                    onFocus={() => setShowTownList(true)}
+                    onBlur={() => setTimeout(() => setShowTownList(false), 150)}
+                  />
+                  {showTownList && filteredTowns.length > 0 && (
+                    <ul className="absolute z-40 mt-1 max-h-56 w-full overflow-y-auto rounded-2xl border border-maroon/10 bg-white shadow-xl">
+                      {filteredTowns.map((town) => (
+                        <li key={town.key}>
+                          <button
+                            type="button"
+                            className="flex w-full items-center justify-between px-4 py-2.5 text-sm text-charcoal hover:bg-cream"
+                            onMouseDown={() => selectTown(town.key, town.name)}
+                          >
+                            <span>{town.name}</span>
+                            <span className="text-xs font-semibold text-maroon">
+                              KES {calculateShipping(town.key, weight).toLocaleString()}
+                            </span>
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {townSearch && !form.shippingTownKey && (
+                    <p className="mt-1.5 text-xs text-red-500">Select a town from the list to confirm.</p>
+                  )}
+                </div>
+
                 <textarea
                   className="field min-h-24 sm:col-span-2"
-                  placeholder="Delivery address (street, estate, city)"
+                  placeholder="Street / estate / building (optional detail)"
                   value={form.shippingAddress}
                   onChange={(e) => setForm({ ...form, shippingAddress: e.target.value })}
-                  required
                 />
+              </div>
+
+              {/* G4S info note */}
+              <div className="mt-4 flex items-start gap-2 rounded-xl bg-cream px-4 py-3 text-xs text-ink/60">
+                <svg className="mt-0.5 h-3.5 w-3.5 shrink-0 text-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Shipping via G4S Kenya. Rates cover up to 5 kg — excess weight charged per additional kg.
               </div>
             </section>
 
@@ -156,7 +237,6 @@ export default function CheckoutPage() {
                           : "border-maroon/10 bg-white hover:border-maroon/30"
                       }`}
                     >
-                      {/* radio circle */}
                       <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition ${
                         isActive ? "border-maroon" : "border-maroon/30"
                       }`}>
@@ -168,7 +248,6 @@ export default function CheckoutPage() {
                         <span className="mt-0.5 block text-sm text-ink/60">{option.description}</span>
                       </span>
 
-                      {/* payment logo / icon */}
                       <span className="hidden shrink-0 sm:block">
                         {option.id === "CARD" && (
                           <span className="flex items-center gap-1">
@@ -188,7 +267,6 @@ export default function CheckoutPage() {
                 })}
               </div>
 
-              {/* Contextual hint */}
               {form.paymentMethod !== "CASH_ON_DELIVERY" && (
                 <div className="mt-4 flex items-start gap-2 rounded-xl bg-cream px-4 py-3 text-xs text-ink/60">
                   <svg className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold" fill="currentColor" viewBox="0 0 20 20">
@@ -223,7 +301,7 @@ export default function CheckoutPage() {
               ) : form.paymentMethod === "CASH_ON_DELIVERY" ? (
                 "Place Order"
               ) : (
-                `Pay ${formatCurrency(total())} via ${selectedOption.label}`
+                `Pay ${formatCurrency(grandTotal)} via ${selectedOption.label}`
               )}
             </button>
 
@@ -265,12 +343,19 @@ export default function CheckoutPage() {
                   <span>{formatCurrency(total())}</span>
                 </div>
                 <div className="flex justify-between text-sm text-ink/60">
-                  <span>Delivery</span>
-                  <span className="font-medium text-ink/50">Calculated on delivery</span>
+                  <span>Shipping</span>
+                  {shippingCost !== null ? (
+                    <span className="font-semibold text-charcoal">{formatCurrency(shippingCost)}</span>
+                  ) : (
+                    <span className="text-ink/40">Select town above</span>
+                  )}
                 </div>
+                {form.shippingTownName && (
+                  <p className="text-right text-xs text-ink/40">via G4S — {form.shippingTownName}</p>
+                )}
                 <div className="flex justify-between border-t border-maroon/10 pt-3 text-lg font-bold">
-                  <span>Subtotal</span>
-                  <span className="text-maroon">{formatCurrency(total())}</span>
+                  <span>Total</span>
+                  <span className="text-maroon">{formatCurrency(grandTotal)}</span>
                 </div>
               </div>
             </div>
@@ -289,6 +374,12 @@ export default function CheckoutPage() {
                   </p>
                 </div>
               ))}
+            </div>
+
+            {/* G4S branding note */}
+            <div className="rounded-2xl border border-maroon/10 bg-white px-5 py-4 text-xs text-ink/50">
+              <p className="font-semibold text-charcoal">Courier Partner</p>
+              <p className="mt-1">G4S Kenya — 140+ branch locations nationwide. Rates from the 2026 tariff schedule.</p>
             </div>
           </aside>
         </div>

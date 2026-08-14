@@ -29,10 +29,11 @@ export async function createOrder(input: OrderInput, userId?: string) {
     }
   }
 
-  const total = input.items.reduce((sum, item) => {
+  const itemsTotal = input.items.reduce((sum, item) => {
     const product = productById.get(item.productId);
     return sum + Number(product?.price || 0) * item.quantity;
   }, 0);
+  const total = itemsTotal + (input.shippingCost ?? 0);
 
   return prisma.$transaction(async (tx) => {
     const order = await tx.order.create({

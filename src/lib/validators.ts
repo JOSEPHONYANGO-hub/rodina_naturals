@@ -92,6 +92,7 @@ export const orderSchema = z.object({
   customerPhone: z.string().min(9),
   shippingAddress: z.string().min(8),
   paymentMethod: z.enum(["CARD", "MPESA", "CASH_ON_DELIVERY"]),
+  shippingCost: z.coerce.number().min(0).default(0),
   items: z
     .array(
       z.object({
