@@ -5,7 +5,7 @@ import { AddToCartButton } from "@/components/product/add-to-cart";
 import { ProductCard } from "@/components/product/product-card";
 import { prisma } from "@/lib/prisma";
 import { formatCurrency } from "@/lib/utils";
-import { toProductCard } from "@/services/catalog";
+import { FEATURED_BRANDS, toProductCard } from "@/services/catalog";
 
 export const dynamic = "force-dynamic";
 
@@ -16,6 +16,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
     where: { slug: params.slug },
     include: {
       category: true,
+      brand: true,
       reviews: {
         include: { user: { select: { name: true } } },
         orderBy: { createdAt: "desc" },
@@ -26,6 +27,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
   if (!product) notFound();
 
   const productImage = product.images[0] || PRODUCT_IMAGE_FALLBACK;
+  const brandLogo = product.brand
+    ? FEATURED_BRANDS.find((b) => b.slug === product.brand!.slug)?.logo
+    : undefined;
 
   const related = await prisma.product.findMany({
     where: { categoryId: product.categoryId, id: { not: product.id } },
@@ -74,6 +78,30 @@ export default async function ProductPage({ params }: { params: { slug: string }
                 {product.stock > 0 ? `${product.stock} in stock` : "Out of stock"}
               </span>
             </div>
+            {product.brand && (
+              <div className="mt-3 flex items-center gap-3">
+                {brandLogo ? (
+                  <Link href={`/shop?brand=${product.brand.slug}`} className="group">
+                    <div className="relative h-9 w-28 overflow-hidden rounded-lg border border-maroon/10 bg-cream p-1 transition group-hover:border-maroon/30">
+                      <Image
+                        src={brandLogo}
+                        alt={product.brand.name}
+                        fill
+                        sizes="112px"
+                        className="object-contain p-0.5"
+                      />
+                    </div>
+                  </Link>
+                ) : (
+                  <Link
+                    href={`/shop?brand=${product.brand.slug}`}
+                    className="rounded-full border border-maroon/20 bg-cream px-3 py-1 text-xs font-semibold text-maroon hover:bg-maroon/5"
+                  >
+                    {product.brand.name}
+                  </Link>
+                )}
+              </div>
+            )}
             <p className="mt-4 text-sm leading-7 text-ink/70">{product.description}</p>
 
             <div className="mt-4 rounded-[18px] border border-maroon/10 bg-cream p-4">

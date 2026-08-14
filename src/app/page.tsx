@@ -101,21 +101,12 @@ const concernGroups = [
 ];
 
 const brands = [
-  {
-    name: "Procsin",
-    slug: "procsin",
-    logo: "/brand-logos/procsin-logo.jpg",
-  },
-  {
-    name: "Rain",
-    slug: "rain",
-    logo: "/brand-logos/rain-logo.jpg",
-  },
-  {
-    name: "Sera Cosmetics",
-    slug: "sera",
-    logo: "/brand-logos/sera-logo.jpg",
-  },
+  { name: "Bioxcin",  slug: "bioxcin",  logo: "/brands/bioxcin.png" },
+  { name: "Restorex", slug: "restorex", logo: "/brands/restorex.png" },
+  { name: "Procsin",  slug: "procsin",  logo: "/brands/procsin.png" },
+  { name: "Bioblas",  slug: "bioblas",  logo: "/brands/bioblas.png" },
+  { name: "Thalia",   slug: "thalia",   logo: "/brands/thalia.png" },
+  { name: "Rain",     slug: "rain",     logo: "/brands/rain.png" },
 ];
 
 const trustCards = [
@@ -361,25 +352,25 @@ export default async function Home() {
               image="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1800&q=88"
               align="center"
             />
-            <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {brands.map((brand) => (
                 <Link
                   key={brand.name}
                   href={`/shop?brand=${encodeURIComponent(brand.slug)}`}
-                  className="group grid min-h-[220px] place-items-center overflow-hidden rounded-[32px] border border-white/70 bg-white/82 p-6 shadow-[0_24px_70px_rgba(168,23,35,0.12)] backdrop-blur transition duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-[0_30px_90px_rgba(168,23,35,0.18)]"
+                  className="group flex flex-col items-center justify-between gap-5 overflow-hidden rounded-[28px] border border-white/70 bg-white/85 p-6 shadow-[0_20px_60px_rgba(168,23,35,0.10)] backdrop-blur transition duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-[0_28px_80px_rgba(168,23,35,0.18)]"
                 >
-                  <div className="relative h-28 w-full max-w-[340px]">
+                  <div className="relative h-24 w-full">
                     <Image
                       src={brand.logo}
                       alt={`${brand.name} logo`}
                       fill
-                      sizes="(min-width: 1280px) 28vw, (min-width: 640px) 44vw, 90vw"
+                      sizes="(min-width: 1024px) 30vw, (min-width: 640px) 44vw, 90vw"
                       className="object-contain transition duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <span className="mt-6 inline-flex items-center rounded-full bg-[#222222] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white transition group-hover:bg-[#a81723]">
+                  <span className="inline-flex items-center rounded-full bg-[#222222] px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white transition group-hover:bg-[#a81723]">
                     Shop {brand.name}
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-2 h-3.5 w-3.5" />
                   </span>
                 </Link>
               ))}

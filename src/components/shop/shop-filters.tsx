@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronUp, Search, X } from "lucide-react";
+import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -8,7 +9,7 @@ export function ShopFilters({
   brands,
   categories,
 }: {
-  brands: { name: string; slug: string }[];
+  brands: { name: string; slug: string; logo?: string }[];
   categories: { name: string; slug: string }[];
 }) {
   const params = useSearchParams();
@@ -100,18 +101,42 @@ export function ShopFilters({
 
         <div className="mt-6 border-t border-[#e5ebf1] pt-4">
           <p className="mb-3 text-xs font-semibold text-[#a81723]">Brand</p>
-          <div className="grid gap-3 text-sm text-[#4b5563]">
-            {brands.map((brand) => (
-              <label key={brand.slug} className="flex cursor-pointer items-center gap-2">
-                <input
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-[#cfd8e3] text-[#a81723] focus:ring-[#a81723]"
-                  checked={selectedBrand === brand.slug}
-                  onChange={() => setFilter("brand", selectedBrand === brand.slug ? "" : brand.slug)}
-                />
-                <span>{brand.name}</span>
-              </label>
-            ))}
+          <div className="grid gap-2">
+            {brands.map((brand) => {
+              const active = selectedBrand === brand.slug;
+              return (
+                <button
+                  key={brand.slug}
+                  type="button"
+                  onClick={() => setFilter("brand", active ? "" : brand.slug)}
+                  className={`flex items-center gap-3 rounded-xl border px-3 py-2 text-left transition ${
+                    active
+                      ? "border-[#a81723] bg-[#a81723]/5 ring-1 ring-[#a81723]/20"
+                      : "border-[#e5ebf1] bg-white hover:border-[#a81723]/30 hover:bg-[#F5E6D3]/40"
+                  }`}
+                >
+                  {brand.logo ? (
+                    <div className="relative h-7 w-16 shrink-0">
+                      <Image
+                        src={brand.logo}
+                        alt={brand.name}
+                        fill
+                        sizes="64px"
+                        className="object-contain"
+                      />
+                    </div>
+                  ) : null}
+                  <span className={`text-sm font-medium ${active ? "text-[#a81723]" : "text-[#4b5563]"}`}>
+                    {brand.name}
+                  </span>
+                  {active && (
+                    <span className="ml-auto h-4 w-4 shrink-0 rounded-full bg-[#a81723] text-white flex items-center justify-center">
+                      <X className="h-2.5 w-2.5" />
+                    </span>
+                  )}
+                </button>
+              );
+            })}
           </div>
         </div>
 

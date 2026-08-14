@@ -34,7 +34,9 @@ export default async function ShopPage({
       ...databaseListing,
       products: databaseListing.products.map((product) => toProductCard(product)),
     };
-    brands = databaseBrands.length ? databaseBrands : FEATURED_BRANDS;
+    const logoMap = Object.fromEntries(FEATURED_BRANDS.map((b) => [b.slug, b.logo]));
+    const brandsWithLogos = databaseBrands.map((b) => ({ ...b, logo: logoMap[b.slug] }));
+    brands = brandsWithLogos.length ? brandsWithLogos : FEATURED_BRANDS;
     categories = databaseCategories.length ? databaseCategories : SHOP_CATEGORIES;
   } catch (error) {
     console.warn("Using shop fallback products because catalog data is unavailable.", error);

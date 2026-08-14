@@ -22,12 +22,12 @@ export const SHOP_CATEGORIES = [
 ];
 
 export const FEATURED_BRANDS = [
-  { name: "Bioxcin", slug: "bioxcin" },
-  { name: "Restorex", slug: "restorex" },
-  { name: "Procsin", slug: "procsin" },
-  { name: "Bioblas", slug: "bioblas" },
-  { name: "Thalia", slug: "thalia" },
-  { name: "Rain", slug: "rain" },
+  { name: "Bioxcin",  slug: "bioxcin",  logo: "/brands/bioxcin.png" },
+  { name: "Restorex", slug: "restorex", logo: "/brands/restorex.png" },
+  { name: "Procsin",  slug: "procsin",  logo: "/brands/procsin.png" },
+  { name: "Bioblas",  slug: "bioblas",  logo: "/brands/bioblas.png" },
+  { name: "Thalia",   slug: "thalia",   logo: "/brands/thalia.png" },
+  { name: "Rain",     slug: "rain",     logo: "/brands/rain.png" },
 ];
 
 export const fallbackProducts: ProductCardData[] = [
