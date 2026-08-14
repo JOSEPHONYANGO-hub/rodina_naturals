@@ -23,6 +23,8 @@ const categoryLinks = [
   { href: "/shop?category=hair-care", label: "Haircare" },
   { href: "/shop?category=body-care", label: "Body Care" },
   { href: "/shop?q=makeup", label: "Makeup" },
+  { href: "/shop?category=nail-care", label: "Nail Care" },
+  { href: "/shop?category=oral-care", label: "Oral Care" },
 ];
 
 const legalLinks = [

@@ -37,9 +37,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
   return (
     <div className="bg-cream pb-24 pt-32">
       <div className="container-page">
-        <div className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr]">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="grid gap-4">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[34px] border border-maroon/10 bg-rose/35 shadow-[0_22px_70px_rgba(77,12,18,0.08)]">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border border-maroon/10 bg-rose/35 shadow-[0_22px_70px_rgba(77,12,18,0.08)]">
               <Image
                 src={productImage}
                 alt={product.name}
@@ -63,7 +63,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
           <div className="h-fit rounded-[34px] border border-maroon/10 bg-white p-7 shadow-[0_24px_80px_rgba(77,12,18,0.07)] sm:p-9 lg:p-11">
             <p className="eyebrow">{product.category.name}</p>
-            <h1 className="mt-4 text-4xl font-semibold leading-tight text-charcoal sm:text-6xl">
+            <h1 className="mt-4 text-2xl font-semibold leading-tight text-charcoal sm:text-4xl">
               {product.name}
             </h1>
             <div className="mt-6 flex flex-wrap items-center gap-3">

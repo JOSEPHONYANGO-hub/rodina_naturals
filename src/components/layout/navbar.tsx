@@ -58,6 +58,8 @@ const categorySidebar = [
   { title: "Mum And Baby", href: "/shop?q=kids" },
   { title: "Men's Grooming", href: "/shop?category=mens-grooming" },
   { title: "Foot Care", href: "/shop?category=foot-care" },
+  { title: "Nail Care", href: "/shop?category=nail-care" },
+  { title: "Oral Care", href: "/shop?category=oral-care" },
 ];
 
 const categoryColumns = [
@@ -79,7 +81,7 @@ const categoryColumns = [
   {
     title: "Targeted Care",
     href: "/shop",
-    items: ["Acne & Blemishes", "Anti-Aging", "Sensitive Skin", "Sunscreens", "Lip Care", "Eye Care", "Foot Care"],
+    items: ["Acne & Blemishes", "Anti-Aging", "Sensitive Skin", "Sunscreens", "Lip Care", "Eye Care", "Foot Care", "Nail Care", "Oral Care"],
   },
 ];
 

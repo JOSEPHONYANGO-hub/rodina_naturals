@@ -87,6 +87,14 @@ const categoryNames = [
   "Stretch Marks",
   "Dark Spots",
   "Uneven Skin Tone",
+  "Nail Care",
+  "Nail Polish",
+  "Nail Treatments",
+  "Nail Tools",
+  "Oral Care",
+  "Toothpaste",
+  "Mouthwash",
+  "Teeth Whitening",
 ];
 
 const brandNames = ["Bioxcin", "Restorex", "Procsin", "Bioblas", "Thalia", "Rain"];

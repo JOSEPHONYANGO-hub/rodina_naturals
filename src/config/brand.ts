@@ -9,5 +9,5 @@ export const SOCIAL_LINKS = {
 export const CONTACT_DETAILS = {
   location: "Kenafrica Business Park, Ruaraka, Tower B, 3rd Floor, Office 5, Nairobi",
   phone: "0793 200 000",
-  email: "mahjoorinternational@gmail.com",
+  email: "info@rodinabeauty.co.ke",
 };
