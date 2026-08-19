@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AddToCartButton } from "@/components/product/add-to-cart";
+import { ImageGallery } from "@/components/product/image-gallery";
 import { ProductCard } from "@/components/product/product-card";
 import { prisma } from "@/lib/prisma";
 import { formatCurrency } from "@/lib/utils";
@@ -42,28 +43,11 @@ export default async function ProductPage({ params }: { params: { slug: string }
     <div className="bg-cream pb-16 pt-28">
       <div className="container-page">
         <div className="grid gap-6 lg:grid-cols-[340px_1fr]">
-          <div className="grid gap-3">
-            <div className="relative aspect-square overflow-hidden rounded-[22px] border border-maroon/10 bg-rose/35 shadow-[0_12px_40px_rgba(77,12,18,0.08)]">
-              <Image
-                src={productImage}
-                alt={product.name}
-                fill
-                priority
-                sizes="(min-width: 1024px) 340px, 100vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="grid grid-cols-3 gap-3">
-              {product.images.slice(1, 4).map((image) => (
-                <div
-                  key={image}
-                  className="relative aspect-square overflow-hidden rounded-[14px] border border-maroon/10 bg-white"
-                >
-                  <Image src={image} alt="" fill sizes="110px" className="object-cover" />
-                </div>
-              ))}
-            </div>
-          </div>
+          <ImageGallery
+            images={product.images}
+            productName={product.name}
+            fallback={PRODUCT_IMAGE_FALLBACK}
+          />
 
           <div className="h-fit rounded-[24px] border border-maroon/10 bg-white p-5 shadow-[0_12px_40px_rgba(77,12,18,0.07)] sm:p-6">
             <p className="eyebrow text-xs">{product.category.name}</p>
