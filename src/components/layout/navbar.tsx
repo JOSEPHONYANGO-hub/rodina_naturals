@@ -92,9 +92,6 @@ const brandLinks = [
   { name: "Thalia",     href: "/shop?brand=thalia",        logo: "/brands/thalia.png" },
   { name: "Restorex",   href: "/shop?brand=restorex",      logo: "/brands/restorex.png" },
   { name: "Bioblas",    href: "/shop?brand=bioblas",       logo: "/brands/bioblas.png" },
-  { name: "Nice & Lovely", href: "/shop?brand=nice-and-lovely" },
-  { name: "Dove",       href: "/shop?brand=dove" },
-  { name: "Garnier",    href: "/shop?brand=garnier" },
 ];
 
 const concernLinks = [

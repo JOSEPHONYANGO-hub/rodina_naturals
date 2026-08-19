@@ -3,7 +3,7 @@
 import { ChevronUp, Search, X } from "lucide-react";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function ShopFilters({
   brands,
@@ -17,21 +17,25 @@ export function ShopFilters({
   const pathname = usePathname();
   const paramsString = params.toString();
   const [query, setQuery] = useState(params.get("q") || "");
+  // Track the last query value that was pushed to the URL so we only navigate when the user actually types.
+  const committedQuery = useRef(query);
   const suggestions = categories.filter((category) =>
     category.name.toLowerCase().includes(query.toLowerCase()),
   );
 
   useEffect(() => {
+    if (query === committedQuery.current) return;
     const timer = window.setTimeout(() => {
+      committedQuery.current = query;
       const next = new URLSearchParams(paramsString);
       if (query) next.set("q", query);
       else next.delete("q");
       next.set("page", "1");
       router.push(`${pathname}?${next.toString()}`);
     }, 350);
-
     return () => window.clearTimeout(timer);
-  }, [query, paramsString, pathname, router]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
 
   function setFilter(key: string, value: string) {
     const next = new URLSearchParams(paramsString);

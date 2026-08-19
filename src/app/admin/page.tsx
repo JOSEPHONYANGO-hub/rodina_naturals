@@ -19,15 +19,14 @@ import {
   Truck,
   WalletCards,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
+import { ProductsTable } from "@/components/admin/products-table";
 import { getCurrentSession } from "@/lib/authz";
 import { formatCurrency } from "@/lib/utils";
 import { getAdminDashboard } from "@/services/admin";
 
 export const dynamic = "force-dynamic";
 
-const PRODUCT_IMAGE_FALLBACK = "/rodina-logo.jpeg";
 
 const mainMenu = [
   { label: "Overview", icon: BarChart3, href: "#overview" },
@@ -218,52 +217,8 @@ export default async function AdminPage() {
                     Add Product
                   </Link>
                 </div>
-                <div className="mt-5 overflow-x-auto">
-                  <table className="w-full min-w-[860px] text-left text-sm">
-                    <thead className="text-xs uppercase tracking-[0.18em] text-ink/45">
-                      <tr>
-                        <th className="py-3">Product</th>
-                        <th>Category</th>
-                        <th>Brand</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>Status</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {products.map((product) => (
-                        <tr key={product.id} className="border-t border-maroon/10">
-                          <td className="py-4">
-                            <div className="flex items-center gap-3">
-                              <div className="relative h-12 w-12 overflow-hidden rounded-2xl bg-rose/25">
-                                <Image
-                                  src={product.images[0] || PRODUCT_IMAGE_FALLBACK}
-                                  alt={product.name}
-                                  fill
-                                  sizes="48px"
-                                  className="object-cover"
-                                />
-                              </div>
-                              <span className="font-semibold text-charcoal">{product.name}</span>
-                            </div>
-                          </td>
-                          <td>{product.category.name}</td>
-                          <td>{product.brand?.name || "Unbranded"}</td>
-                          <td>{formatCurrency(product.price.toString())}</td>
-                          <td>{product.stock}</td>
-                          <td>
-                            <StatusPill>{product.stock > 0 ? "Active" : "Out"}</StatusPill>
-                          </td>
-                          <td>
-                            <Link className="font-semibold text-maroon" href={`/admin/products/${product.id}`}>
-                              Edit
-                            </Link>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                <div className="mt-5">
+                  <ProductsTable products={products} />
                 </div>
               </div>
 
