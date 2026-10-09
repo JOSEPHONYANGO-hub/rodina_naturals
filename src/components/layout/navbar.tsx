@@ -24,11 +24,10 @@ import { CATEGORIES, CONTACT_DETAILS, SOCIAL_LINKS } from "@/config/brand";
 import { useCart } from "@/lib/cart-store";
 import { cn } from "@/lib/utils";
 
-type MegaMenuKey = "category" | "concern" | "brand";
+type MegaMenuKey = "category" | "brand";
 
 const megaMenus: { key: MegaMenuKey; label: string }[] = [
   { key: "category", label: "Shop by Category" },
-  { key: "concern", label: "Shop by Concern" },
   { key: "brand", label: "Shop by Brand" },
 ];
 
@@ -94,11 +93,6 @@ const brandLinks = [
   { name: "Bioblas",    href: "/shop?brand=bioblas",       logo: "/brands/bioblas.png" },
 ];
 
-const concernLinks = [
-  { title: "Skin Concerns", items: ["Acne & Blemishes", "Dry Skin", "Oily Skin", "Sensitive Skin", "Hyperpigmentation", "Anti-Aging"] },
-  { title: "Hair Concerns", items: ["Hair Loss", "Dandruff", "Dry Hair", "Damaged Hair", "Weak Hair", "Curly Hair Care"] },
-  { title: "Body Concerns", items: ["Stretch Marks", "Dark Spots", "Uneven Skin Tone", "Dry Skin"] },
-];
 
 const categorySlugOverrides: Record<string, string> = {
   "Body Lotions": "body-lotion",
@@ -449,30 +443,6 @@ export function Navbar() {
                 </div>
               ) : null}
 
-              {activeMega === "concern" ? (
-                <div className="max-h-[min(54vh,470px)] overscroll-contain overflow-y-auto p-5 [scrollbar-color:#a81723_#f5e6d3] [scrollbar-width:thin]">
-                  <div className="mb-5 flex items-center justify-between border-b border-[#edf1f5] pb-4">
-                    <h2 className="text-base font-bold text-[#243041]">Shop by Concern</h2>
-                    <Link href="/shop" onClick={() => setActiveMega(null)} className="rounded-full border border-[#a81723]/20 px-5 py-2 text-xs font-bold text-[#a81723] transition hover:bg-[#F5E6D3]">
-                      View all
-                    </Link>
-                  </div>
-                  <div className="grid gap-5 md:grid-cols-3">
-                    {concernLinks.map((group) => (
-                      <div key={group.title} className="rounded-xl border border-[#e3e9f0] bg-[#fbfcfd] p-5">
-                        <h3 className="font-bold text-[#243041]">{group.title}</h3>
-                        <div className="mt-4 grid gap-2">
-                          {group.items.map((item) => (
-                            <Link key={item} href={categoryFilterHref(item)} onClick={() => setActiveMega(null)} className="text-sm text-[#667085] transition duration-200 hover:translate-x-0.5 hover:text-[#a81723]">
-                              {item}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
             </div>
           </div>
         </div>

@@ -3,9 +3,6 @@ import {
   Award,
   BadgeCheck,
   CreditCard,
-  Droplets,
-  Scissors,
-  Sparkles,
   Truck,
 } from "lucide-react";
 import type { Metadata } from "next";
@@ -82,23 +79,6 @@ const categoryShowcase = [
   },
 ];
 
-const concernGroups = [
-  {
-    title: "Skin Concerns",
-    icon: Sparkles,
-    concerns: ["Acne & Blemishes", "Dry Skin", "Oily Skin", "Sensitive Skin", "Hyperpigmentation", "Anti-Aging"],
-  },
-  {
-    title: "Hair Concerns",
-    icon: Scissors,
-    concerns: ["Hair Loss", "Dandruff", "Dry Hair", "Damaged Hair", "Weak Hair", "Curly Hair Care"],
-  },
-  {
-    title: "Body Concerns",
-    icon: Droplets,
-    concerns: ["Stretch Marks", "Dark Spots", "Uneven Skin Tone", "Dry Skin"],
-  },
-];
 
 const brands = [
   { name: "Bioxcin",  slug: "bioxcin",  logo: "/brands/bioxcin.png" },
@@ -185,8 +165,6 @@ export default async function Home() {
     console.error("Homepage catalog unavailable:", error);
   }
 
-  const products = bestSellerCards.length ? bestSellerCards : featuredCards;
-
   return (
     <>
       <HeroSlider />
@@ -239,41 +217,6 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="bg-white pb-16 pt-8 sm:pb-24 sm:pt-10">
-          <div className="container-page space-y-10">
-            <SectionBanner
-              eyebrow="Shop by concern"
-              title="Find The Perfect Solution"
-              copy="Target your beauty concerns with carefully selected products."
-              image="https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=1800&q=88"
-            />
-            <ProductRail title="Concern-focused favorites" products={products} cta="Shop All" />
-            <CarouselFrame ariaLabel="Shop by concern carousel" className="gap-4 pb-3">
-              {concernGroups.flatMap((group) =>
-                group.concerns.map((concern) => (
-                  <Link
-                    key={`${group.title}-${concern}`}
-                    href={`/shop?q=${encodeURIComponent(concern)}`}
-                    className="group min-w-[210px] snap-start rounded-[24px] border border-[#a81723]/20 bg-[#7a111b] p-5 text-white shadow-[0_16px_45px_rgba(34,34,34,0.12)] transition duration-300 hover:-translate-y-1 hover:border-[#F5E6D3]/50 hover:bg-[#5f0d15] hover:shadow-[0_24px_65px_rgba(168,23,35,0.22)] sm:min-w-[240px]"
-                  >
-                    <div className="flex items-center justify-between gap-4">
-                      <span className="grid h-11 w-11 place-items-center rounded-full bg-[#F5E6D3] text-[#a81723] shadow-sm">
-                        <group.icon className="h-5 w-5" />
-                      </span>
-                      <ArrowRight className="h-4 w-4 text-[#F5E6D3] opacity-60 transition group-hover:translate-x-1 group-hover:opacity-100" />
-                    </div>
-                    <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.22em] text-[#F5E6D3]/78">
-                      {group.title}
-                    </p>
-                    <h3 className="mt-2 text-xl font-semibold leading-tight text-white">
-                      {concern}
-                    </h3>
-                  </Link>
-                )),
-              )}
-            </CarouselFrame>
-          </div>
-        </section>
 
         <section className="bg-white py-16 sm:py-24">
           <div className="container-page">
