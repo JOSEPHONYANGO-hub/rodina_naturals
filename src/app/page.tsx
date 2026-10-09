@@ -152,13 +152,11 @@ function ProductRail({
 }
 
 export default async function Home() {
-  let featuredCards: ProductCardData[] = [];
   let bestSellerCards: ProductCardData[] = [];
   let offerCards: ProductCardData[] = [];
 
   try {
-    const [featured, bestSellers, offers] = await getHomeCatalog();
-    featuredCards = featured.map((product) => toProductCard(product));
+    const [, bestSellers, offers] = await getHomeCatalog();
     bestSellerCards = bestSellers.map((product) => toProductCard(product));
     offerCards = offers.map((product) => toProductCard(product));
   } catch (error) {
