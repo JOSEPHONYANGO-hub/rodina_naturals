@@ -14,7 +14,7 @@ import Link from "next/link";
 import { CarouselFrame } from "@/components/home/carousel-frame";
 import { HeroSlider } from "@/components/home/hero-slider";
 import { ProductCard } from "@/components/product/product-card";
-import { fallbackProducts, getHomeCatalog, toProductCard } from "@/services/catalog";
+import { getHomeCatalog, toProductCard } from "@/services/catalog";
 import type { ProductCardData } from "@/types/catalog";
 
 export const dynamic = "force-dynamic";
@@ -172,19 +172,17 @@ function ProductRail({
 }
 
 export default async function Home() {
-  let featuredCards = fallbackProducts;
-  let bestSellerCards = fallbackProducts;
-  let offerCards: ProductCardData[] = fallbackProducts
-    .slice(0, 3)
-    .map((product, index) => ({ ...product, salePrice: String(Math.round(Number(product.price) * (index === 1 ? 0.8 : 0.85))) }));
+  let featuredCards: ProductCardData[] = [];
+  let bestSellerCards: ProductCardData[] = [];
+  let offerCards: ProductCardData[] = [];
 
   try {
     const [featured, bestSellers, offers] = await getHomeCatalog();
-    featuredCards = featured.length ? featured.map((product) => toProductCard(product)) : fallbackProducts;
-    bestSellerCards = bestSellers.length ? bestSellers.map((product) => toProductCard(product)) : featuredCards;
-    offerCards = offers.length ? offers.map((product) => toProductCard(product)) : offerCards;
+    featuredCards = featured.map((product) => toProductCard(product));
+    bestSellerCards = bestSellers.map((product) => toProductCard(product));
+    offerCards = offers.map((product) => toProductCard(product));
   } catch (error) {
-    console.warn("Using homepage fallback products because catalog data is unavailable.", error);
+    console.error("Homepage catalog unavailable:", error);
   }
 
   const products = bestSellerCards.length ? bestSellerCards : featuredCards;
