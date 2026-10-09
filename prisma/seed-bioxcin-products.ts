@@ -1,5 +1,8 @@
 import { PrismaClient, StockStatus } from "@prisma/client";
-import products from "./bioxcin-products.json";
+import rawProducts from "./bioxcin-products.json";
+
+type ProductEntry = { slug: string; name: string; shortDescription: string; description: string; ingredients: string; price: string; currency: string; images: string[]; category: string; tags: string[]; metaTitle: string; metaDescription: string; };
+const products = rawProducts as ProductEntry[];
 
 const prisma = new PrismaClient();
 
