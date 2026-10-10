@@ -2,17 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Eloria Beauty Design Tokens ──────────────────────────────── */
 :root {
-  --background: #f5ede6;
-  --foreground: #2f1d1e;
-  --maroon: #6f1219;
-  --maroon-dark: #4d0c12;
-  --gold: #c9a45c;
-  --cream: #f5ede6;
-  --ivory: #fffaf6;
-  --rose: #ead8cf;
-  --blush: #d8b6aa;
-  --charcoal: #241617;
+  /* Surfaces */
+  --background: #f5ede0;          /* warm cream page background     */
+  --foreground: #1e0e06;          /* deep ink body text             */
+  --surface-ivory: #fdfaf5;       /* lightest card / section fill   */
+
+  /* Primary dark – espresso/chocolate */
+  --espresso: #3c1a08;
+  --espresso-dark: #240e03;
+
+  /* Mid-tone warm brown */
+  --chestnut: #7d4a2a;
+  --chestnut-dark: #5e3318;
+
+  /* Accent – honey gold */
+  --gold: #c8a97a;
+  --gold-deep: #a8854a;
+
+  /* Neutral warm tones */
+  --cream: #f5ede0;
+  --ivory: #fdfaf5;
+  --sand: #d4b896;
+  --blush: #e8d9c8;
+
+  /* Text */
+  --ink: #1e0e06;
+  --muted: #7a5c42;
+
+  /* Legacy aliases – keep existing utility classes compiling  */
+  --maroon: #3c1a08;
+  --maroon-dark: #240e03;
+  --charcoal: #1e0e06;
+  --rose: #e8d9c8;
 }
 
 * {
@@ -30,8 +53,8 @@ body {
 }
 
 ::selection {
-  background: var(--maroon);
-  color: #fffaf6;
+  background: var(--espresso);
+  color: var(--ivory);
 }
 
 @layer base {
@@ -39,7 +62,7 @@ body {
   h2,
   h3,
   h4 {
-    @apply font-serif font-medium tracking-[0.04em] text-maroon;
+    @apply font-serif font-medium tracking-[0.04em] text-espresso;
   }
 }
 
@@ -48,22 +71,27 @@ body {
     @apply mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-10;
   }
 
+  /* Primary CTA – espresso fill, gold focus ring */
   .btn-primary {
-    @apply inline-flex min-h-12 items-center justify-center rounded-full bg-maroon px-8 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-[0_16px_34px_rgba(111,18,25,0.2)] transition duration-300 hover:bg-charcoal focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+    @apply inline-flex min-h-12 items-center justify-center rounded-full bg-espresso px-8 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-ivory shadow-[0_16px_34px_rgba(60,26,8,0.22)] transition duration-300 hover:bg-espressoDark focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
   }
 
+  /* Secondary CTA – outlined espresso, hover fills with espresso */
   .btn-secondary {
-    @apply inline-flex min-h-12 items-center justify-center rounded-full border border-maroon/25 bg-transparent px-8 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-maroon transition duration-300 hover:border-gold hover:bg-white hover:text-maroonDark;
+    @apply inline-flex min-h-12 items-center justify-center rounded-full border border-espresso/25 bg-transparent px-8 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-espresso transition duration-300 hover:border-gold hover:bg-cream hover:text-espressoDark;
   }
 
+  /* Form inputs – gold focus ring */
   .field {
-    @apply w-full border border-maroon/15 bg-white/95 px-4 py-3.5 text-sm outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/20;
+    @apply w-full border border-espresso/15 bg-white/95 px-4 py-3.5 text-sm outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/20;
   }
 
+  /* Card container */
   .soft-card {
-    @apply border border-maroon/10 bg-white shadow-[0_24px_80px_rgba(77,12,18,0.07)];
+    @apply border border-espresso/10 bg-white shadow-[0_24px_80px_rgba(60,26,8,0.07)];
   }
 
+  /* Section label – gold uppercase tracking */
   .eyebrow {
     @apply text-[11px] font-semibold uppercase tracking-[0.32em] text-gold;
   }
@@ -72,15 +100,17 @@ body {
     @apply mt-3 text-4xl leading-[1.02] sm:text-6xl;
   }
 
+  /* Horizontal rule band */
   .luxury-band {
-    @apply border-y border-maroon/10 bg-[#fffaf6];
+    @apply border-y border-espresso/10 bg-ivory;
   }
 
   .section-copy {
     @apply max-w-2xl text-sm leading-7 text-ink/65 sm:text-base sm:leading-8;
   }
 
+  /* Inline nav link – espresso → gold on hover */
   .fine-link {
-    @apply text-[11px] font-semibold uppercase tracking-[0.24em] text-maroon transition hover:text-gold;
+    @apply text-[11px] font-semibold uppercase tracking-[0.24em] text-espresso transition hover:text-gold;
   }
 }
