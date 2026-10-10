@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Eloria Beauty">
+  <title>Eloria Beauty</title>
+  <!-- Espresso background -->
+  <rect width="32" height="32" rx="6" fill="#3C1A08"/>
+  <!-- Gold monogram E -->
+  <text
+    x="16"
+    y="23"
+    font-family="'Cormorant Garamond', 'Playfair Display', 'Georgia', serif"
+    font-size="22"
+    font-weight="600"
+    text-anchor="middle"
+    fill="#C8A97A"
+  >E</text>
+</svg>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 100" role="img" aria-label="Eloria Beauty">
+  <title>Eloria Beauty</title>
+
+  <!-- Background: transparent so it sits on any surface -->
+
+  <!-- Decorative thin horizontal rule above wordmark -->
+  <line x1="20" y1="18" x2="340" y2="18" stroke="#C8A97A" stroke-width="0.6" opacity="0.7"/>
+
+  <!-- Primary wordmark: ELORIA — wide-tracked caps, espresso -->
+  <text
+    x="180"
+    y="58"
+    font-family="'Cormorant Garamond', 'Playfair Display', 'Georgia', serif"
+    font-size="42"
+    font-weight="600"
+    letter-spacing="10"
+    text-anchor="middle"
+    fill="#3C1A08"
+  >ELORIA</text>
+
+  <!-- Gold thin divider dot cluster centred between wordmark and sub-label -->
+  <circle cx="168" cy="67" r="1.1" fill="#C8A97A" opacity="0.8"/>
+  <circle cx="180" cy="67" r="1.1" fill="#C8A97A"/>
+  <circle cx="192" cy="67" r="1.1" fill="#C8A97A" opacity="0.8"/>
+
+  <!-- Sub-label: BEAUTY — smaller, wider tracking, gold -->
+  <text
+    x="180"
+    y="84"
+    font-family="'Cormorant Garamond', 'Playfair Display', 'Georgia', serif"
+    font-size="13"
+    font-weight="400"
+    letter-spacing="8"
+    text-anchor="middle"
+    fill="#C8A97A"
+  >BEAUTY</text>
+
+  <!-- Decorative thin rule below -->
+  <line x1="20" y1="93" x2="340" y2="93" stroke="#C8A97A" stroke-width="0.6" opacity="0.7"/>
+</svg>

@@ -10,7 +10,7 @@ import { FEATURED_BRANDS, toProductCard } from "@/services/catalog";
 
 export const dynamic = "force-dynamic";
 
-const PRODUCT_IMAGE_FALLBACK = "/eloria-logo.png";
+const PRODUCT_IMAGE_FALLBACK = "/eloria-logo.svg";
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
   const product = await prisma.product.findUnique({

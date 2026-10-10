@@ -5,15 +5,15 @@ export function Logo({ className = "" }: { className?: string }) {
   return (
     <Link
       href="/"
-      className={`inline-flex items-center rounded-2xl bg-white px-3 py-2 shadow-[0_10px_28px_rgba(122,44,115,0.14)] ring-1 ring-brandPurple/10 ${className}`}
+      className={`inline-flex items-center rounded-2xl bg-white px-3 py-2 shadow-[0_10px_28px_rgba(60,26,8,0.12)] ring-1 ring-espresso/10 ${className}`}
       aria-label="Eloria Beauty"
     >
       <Image
-        src="/eloria-logo.png"
+        src="/eloria-logo.svg"
         alt="Eloria Beauty"
-        width={720}
-        height={296}
-        className="h-16 w-auto object-contain contrast-125 saturate-150 md:h-20"
+        width={260}
+        height={72}
+        className="h-12 w-auto object-contain md:h-14"
         priority
       />
     </Link>

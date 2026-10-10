@@ -13,7 +13,7 @@ type ProductCardProps = {
   variant?: "default" | "shop";
 };
 
-const PRODUCT_IMAGE_FALLBACK = "/eloria-logo.png";
+const PRODUCT_IMAGE_FALLBACK = "/eloria-logo.svg";
 
 export function ProductCard({ product, variant = "default" }: ProductCardProps) {
   const add = useCart((state) => state.add);

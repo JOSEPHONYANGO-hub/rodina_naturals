@@ -17,11 +17,12 @@ export const metadata: Metadata = {
     "Luxury cosmetics and skincare products from Eloria Beauty in Nairobi.",
   icons: {
     icon: [
-      { url: "/eloria-logo.png", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/eloria-logo.svg", type: "image/svg+xml", sizes: "any" },
     ],
-    shortcut: "/eloria-logo.png",
+    shortcut: "/favicon.svg",
     apple: [
-      { url: "/eloria-logo.png", type: "image/png" },
+      { url: "/eloria-logo.svg", type: "image/svg+xml" },
     ],
   },
 };
