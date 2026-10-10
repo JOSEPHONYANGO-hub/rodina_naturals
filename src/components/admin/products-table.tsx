@@ -16,7 +16,7 @@ type Product = {
   brand?: { name: string } | null;
 };
 
-const FALLBACK = "/rodina-logo.jpeg";
+const FALLBACK = "/eloria-logo.png";
 
 function StatusPill({ children }: { children: React.ReactNode }) {
   return (

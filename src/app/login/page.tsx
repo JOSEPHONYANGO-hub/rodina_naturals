@@ -42,7 +42,7 @@ export default function LoginPage() {
       </div>
       <div className="flex items-center justify-center px-4 py-16">
         <form onSubmit={submit} className="w-full max-w-md bg-white p-8 shadow-[0_18px_60px_rgba(77,12,18,0.08)]">
-          <Image src="/rodina-logo.jpeg" alt="Rodina Naturals" width={190} height={100} className="mb-8 h-16 w-auto" />
+          <Image src="/eloria-logo.png" alt="Eloria Beauty" width={190} height={100} className="mb-8 h-16 w-auto" />
           <h1 className="text-4xl">Welcome Back</h1>
           <div className="mt-7 grid gap-4">
             <input className="field" name="email" type="email" placeholder="Email" required />
@@ -53,7 +53,7 @@ export default function LoginPage() {
             {loading ? "Signing in..." : "Login"}
           </button>
           <p className="mt-5 text-center text-sm text-ink/70">
-            New to Rodina? <Link className="text-maroon" href="/register">Create an account</Link>
+            New to Eloria? <Link className="text-maroon" href="/register">Create an account</Link>
           </p>
         </form>
       </div>

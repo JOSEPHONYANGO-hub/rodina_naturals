@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     if (!order) return badRequest("Order not found.");
 
     const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
-    const reference = `rodina-${orderId}-${Date.now()}`;
+    const reference = `eloria-${orderId}-${Date.now()}`;
 
     const isMpesa = paymentMethod === "MPESA";
     const channels = isMpesa ? ["mobile_money"] : ["card"];

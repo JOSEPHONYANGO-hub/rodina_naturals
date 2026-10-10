@@ -8,7 +8,7 @@ export default function ContactPage() {
       <div className="container-page grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           <p className="eyebrow">Contact</p>
-          <h1 className="mt-3 text-5xl leading-tight sm:text-6xl">Visit Rodina Naturals</h1>
+          <h1 className="mt-3 text-5xl leading-tight sm:text-6xl">Visit Eloria Beauty</h1>
           <p className="mt-5 max-w-xl leading-8 text-ink/68">
             Step into our Nairobi boutique office for product support, order assistance, and personal recommendations.
           </p>
@@ -23,13 +23,13 @@ export default function ContactPage() {
             </p>
             <Link className="flex items-center gap-3 text-maroon" href={SOCIAL_LINKS.instagram}>
               <span className="grid h-5 w-5 place-items-center text-xs font-semibold text-gold">IG</span>
-              @rodinanaturals
+              @eloriabeauty
             </Link>
           </div>
         </div>
         <div className="overflow-hidden border border-maroon/10 bg-ivory p-4 shadow-[0_24px_80px_rgba(77,12,18,0.06)]">
           <iframe
-            title="Rodina Naturals location"
+            title="Eloria Beauty location"
             className="h-[430px] w-full border-0"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

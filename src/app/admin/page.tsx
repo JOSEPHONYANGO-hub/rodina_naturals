@@ -82,7 +82,7 @@ export default async function AdminPage() {
               <code>npm run db:seed</code>
             </div>
             <p className="mt-5 text-sm leading-7 text-ink/60">
-              Then log in with admin@rodinanaturals.co.ke and password ChangeMe123!.
+              Then log in with admin@eloriabeauty.co.ke and password ChangeMe123!.
             </p>
             <Link href="/login" className="btn-primary mt-7">
               Go to Login
@@ -108,7 +108,7 @@ export default async function AdminPage() {
         <div className="grid gap-6 xl:grid-cols-[260px_1fr]">
           <aside className="h-fit rounded-[28px] border border-maroon/10 bg-white p-4 shadow-[0_18px_60px_rgba(34,34,34,0.06)] xl:sticky xl:top-36">
             <div className="rounded-[22px] bg-maroon px-5 py-5 text-white">
-              <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#F5E6D3]">Rodina</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#F5E6D3]">Eloria</p>
               <h1 className="mt-2 text-2xl font-semibold text-white">Admin Suite</h1>
               <p className="mt-2 text-xs leading-5 text-white/75">Beauty commerce operations</p>
             </div>
@@ -179,8 +179,8 @@ export default async function AdminPage() {
                   {(session?.user.name || session?.user.email || "A").slice(0, 1)}
                 </span>
                 <div>
-                  <p className="font-semibold text-charcoal">{session?.user.name || "Rodina Admin"}</p>
-                  <p className="text-sm text-ink/55">{session?.user.email || "admin@rodinanaturals.co.ke"}</p>
+                  <p className="font-semibold text-charcoal">{session?.user.name || "Eloria Admin"}</p>
+                  <p className="text-sm text-ink/55">{session?.user.email || "admin@eloriabeauty.co.ke"}</p>
                 </div>
                 <StatusPill>Admin</StatusPill>
               </div>

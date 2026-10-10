@@ -264,7 +264,7 @@ export function Navbar() {
                     Signed in
                   </p>
                   <p className="mt-2 truncate font-semibold text-charcoal">
-                    {session.user.name || "Rodina user"}
+                    {session.user.name || "Eloria user"}
                   </p>
                   <p className="mt-1 truncate text-sm text-ink/60">{session.user.email}</p>
                   {session.user.role === "ADMIN" ? (

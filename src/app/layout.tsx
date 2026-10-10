@@ -12,16 +12,16 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Rodina Naturals | Premium Skincare Boutique",
+  title: "Eloria Beauty | Premium Skincare Boutique",
   description:
-    "Luxury cosmetics and skincare products from Rodina Naturals in Nairobi.",
+    "Luxury cosmetics and skincare products from Eloria Beauty in Nairobi.",
   icons: {
     icon: [
-      { url: "/rodina-logo.jpeg", type: "image/jpeg" },
+      { url: "/eloria-logo.png", type: "image/png" },
     ],
-    shortcut: "/rodina-logo.jpeg",
+    shortcut: "/eloria-logo.png",
     apple: [
-      { url: "/rodina-logo.jpeg", type: "image/jpeg" },
+      { url: "/eloria-logo.png", type: "image/png" },
     ],
   },
 };

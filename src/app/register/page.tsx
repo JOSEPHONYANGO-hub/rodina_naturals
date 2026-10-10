@@ -41,7 +41,7 @@ export default function RegisterPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-cream px-4 pt-20">
       <form onSubmit={submit} className="w-full max-w-md bg-white p-8 shadow-[0_18px_60px_rgba(77,12,18,0.08)]">
-        <Image src="/rodina-logo.jpeg" alt="Rodina Naturals" width={190} height={100} className="mb-8 h-16 w-auto" />
+        <Image src="/eloria-logo.png" alt="Eloria Beauty" width={190} height={100} className="mb-8 h-16 w-auto" />
         <h1 className="text-4xl">Create Account</h1>
         <div className="mt-7 grid gap-4">
           <input className="field" name="name" placeholder="Full name" required />

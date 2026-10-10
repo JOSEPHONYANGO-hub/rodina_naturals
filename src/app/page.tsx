@@ -17,7 +17,7 @@ import type { ProductCardData } from "@/types/catalog";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Rodina Naturals | Luxury Beauty, Skincare and Personal Care",
+  title: "Eloria Beauty | Luxury Beauty, Skincare and Personal Care",
   description:
     "Shop premium skincare, haircare, wellness, makeup and personal care products from Bioxcin, Restorex, Procsin, Bioblas, Thalia and Rain.",
 };
@@ -220,7 +220,7 @@ export default async function Home() {
           <div className="container-page">
             <SectionBanner
               eyebrow="Best selling products"
-              title="The Rodina Best Seller Edit"
+              title="The Eloria Best Seller Edit"
               copy="Premium product cards with quick view, wishlisting and smooth shopping actions."
               image="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&w=1800&q=88"
             />
@@ -236,12 +236,12 @@ export default async function Home() {
           <div className="container-page">
             <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
               <div className="lg:sticky lg:top-28">
-                <p className="eyebrow">Why shop with Rodina</p>
+                <p className="eyebrow">Why shop with Eloria</p>
                 <h2 className="mt-3 max-w-xl text-4xl font-semibold leading-[1.02] text-[#7a111b] sm:text-5xl lg:text-6xl">
                   A premium beauty marketplace built on trust
                 </h2>
                 <p className="mt-5 max-w-lg text-sm leading-7 text-[#222222]/65 sm:text-base">
-                  Thoughtful product discovery, genuine brands and a polished shopping flow for skincare, haircare, body care and wellness essentials.
+                  Thoughtful product discovery, genuine brands and a polished shopping flow for skincare, haircare, body care and wellness essentials. Eloria Beauty — your premium Kenyan beauty destination.
                 </p>
                 <div className="mt-8 grid max-w-lg grid-cols-3 overflow-hidden rounded-[24px] border border-[#a81723]/10 bg-white shadow-[0_18px_55px_rgba(34,34,34,0.05)]">
                   {[

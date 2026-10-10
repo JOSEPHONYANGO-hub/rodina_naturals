@@ -48,7 +48,7 @@ export function Footer() {
           <div className="px-6 py-8 sm:px-10 lg:px-12">
             <p className="text-[11px] font-bold uppercase tracking-[0.34em] text-gold">Newsletter</p>
             <h2 className="mt-3 max-w-xl text-3xl font-semibold leading-tight text-white sm:text-4xl">
-              Join The Rodina Beauty Club
+              Join The Eloria Beauty Club
             </h2>
             <p className="mt-3 max-w-xl text-sm leading-6 text-white/78">
               Receive exclusive offers, beauty tips and early access to new collections.
@@ -79,7 +79,7 @@ export function Footer() {
           <div className="lg:pr-8">
             <Logo className="rounded-2xl bg-white px-3 py-2 shadow-none" />
             <p className="mt-5 max-w-sm text-sm leading-7 text-white/68">
-              Rodina Naturals is a modern Kenyan beauty destination for premium skincare,
+              Eloria Beauty is a modern Kenyan beauty destination for premium skincare,
               haircare, makeup, bath, and body essentials.
             </p>
             <div className="mt-6 flex gap-3">
@@ -126,7 +126,7 @@ export function Footer() {
       </div>
       <div className="border-t border-white/10 py-5">
         <div className="container-page flex flex-col gap-4 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>Copyright 2026 Rodina Naturals. All rights reserved.</p>
+          <p>Copyright 2026 Eloria Beauty. All rights reserved.</p>
           <div className="flex flex-wrap gap-5">
             {legalLinks.map((link) => (
               <Link key={link.label} href={link.href} className="transition hover:text-gold">

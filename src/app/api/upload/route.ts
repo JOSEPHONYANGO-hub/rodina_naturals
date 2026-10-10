@@ -44,7 +44,7 @@ export async function POST(request: Request) {
   try {
     const uploaded = await new Promise((resolve, reject) => {
       cloudinary.uploader
-        .upload_stream({ folder: "rodina-naturals" }, (error, result) => {
+        .upload_stream({ folder: "eloria-beauty" }, (error, result) => {
           if (error) reject(error);
           else resolve(result);
         })
