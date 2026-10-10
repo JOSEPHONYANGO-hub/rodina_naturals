@@ -62,8 +62,8 @@ export async function initiateStkPush(params: {
       PartyB: shortcode,
       PhoneNumber: normalizePhone(params.phone),
       CallBackURL: callbackUrl,
-      AccountReference: `Eloria-${params.orderId.slice(-8)}`,
-      TransactionDesc: "Eloria Beauty order payment",
+      AccountReference: `Rodina-${params.orderId.slice(-8)}`,
+      TransactionDesc: "Rodina Naturals order payment",
     },
     { headers: { Authorization: `Bearer ${token}` } },
   );
