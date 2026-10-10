@@ -54,21 +54,21 @@ export function ShopFilters({
   const selectedBrand = params.get("brand") || "";
 
   return (
-    <aside className="h-fit overflow-hidden rounded-[12px] border border-[#d7e0ea] bg-white shadow-[0_10px_30px_rgba(34,34,34,0.04)]">
-      <div className="flex items-center justify-between border-b border-[#e5ebf1] bg-[#F5E6D3] px-4 py-3">
-        <p className="text-xs font-semibold text-[#a81723]">Category</p>
-        <ChevronUp className="h-4 w-4 text-[#a81723]" />
+    <aside className="h-fit overflow-hidden rounded-[12px] border border-espresso/15 bg-white shadow-[0_10px_30px_rgba(34,34,34,0.04)]">
+      <div className="flex items-center justify-between border-b border-espresso/10 bg-cream px-4 py-3">
+        <p className="text-xs font-semibold text-espresso">Category</p>
+        <ChevronUp className="h-4 w-4 text-espresso" />
       </div>
       <div className="p-4">
         <button
           onClick={clearFilters}
-          className="mb-4 inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-ink/50 transition hover:text-maroon"
+          className="mb-4 inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-ink/50 transition hover:text-espresso"
         >
           <X className="h-3 w-3" />
           Clear
         </button>
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-maroon/50" />
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-espresso/50" />
           <input
             className="field h-10 rounded-lg pl-10 text-sm"
             placeholder="Search products"
@@ -76,12 +76,12 @@ export function ShopFilters({
             onChange={(event) => setQuery(event.target.value)}
           />
           {query && suggestions.length ? (
-            <div className="absolute left-0 right-0 top-14 z-20 rounded-2xl border border-maroon/10 bg-white p-2 shadow-[0_18px_50px_rgba(77,12,18,0.12)]">
+            <div className="absolute left-0 right-0 top-14 z-20 rounded-2xl border border-espresso/10 bg-white p-2 shadow-[0_18px_50px_rgba(60,26,8,0.12)]">
               {suggestions.slice(0, 4).map((category) => (
                 <button
                   key={category.slug}
                   onClick={() => setFilter("category", category.slug)}
-                  className="block w-full rounded-xl px-3 py-2 text-left text-sm text-maroon hover:bg-cream"
+                  className="block w-full rounded-xl px-3 py-2 text-left text-sm text-espresso hover:bg-cream"
                 >
                   {category.name}
                 </button>
@@ -89,12 +89,12 @@ export function ShopFilters({
             </div>
           ) : null}
         </div>
-        <div className="mt-5 grid max-h-[420px] gap-3 overflow-y-auto pr-1 text-sm text-[#4b5563]">
+        <div className="mt-5 grid max-h-[420px] gap-3 overflow-y-auto pr-1 text-sm text-ink/70">
           {categories.slice(0, 22).map((category) => (
             <label key={category.slug} className="flex cursor-pointer items-center gap-2">
               <input
                 type="checkbox"
-                className="h-4 w-4 rounded border-[#cfd8e3] text-[#a81723] focus:ring-[#a81723]"
+                className="h-4 w-4 rounded border-espresso/30 text-espresso focus:ring-espresso"
                 checked={selectedCategory === category.slug}
                 onChange={() => setFilter("category", selectedCategory === category.slug ? "" : category.slug)}
               />
@@ -103,8 +103,8 @@ export function ShopFilters({
           ))}
         </div>
 
-        <div className="mt-6 border-t border-[#e5ebf1] pt-4">
-          <p className="mb-3 text-xs font-semibold text-[#a81723]">Brand</p>
+        <div className="mt-6 border-t border-espresso/10 pt-4">
+          <p className="mb-3 text-xs font-semibold text-espresso">Brand</p>
           <div className="grid gap-2">
             {brands.map((brand) => {
               const active = selectedBrand === brand.slug;
@@ -115,8 +115,8 @@ export function ShopFilters({
                   onClick={() => setFilter("brand", active ? "" : brand.slug)}
                   className={`flex items-center gap-3 rounded-xl border px-3 py-2 text-left transition ${
                     active
-                      ? "border-[#a81723] bg-[#a81723]/5 ring-1 ring-[#a81723]/20"
-                      : "border-[#e5ebf1] bg-white hover:border-[#a81723]/30 hover:bg-[#F5E6D3]/40"
+                      ? "border-espresso bg-espresso/5 ring-1 ring-espresso/20"
+                      : "border-espresso/15 bg-white hover:border-espresso/30 hover:bg-cream/40"
                   }`}
                 >
                   {brand.logo ? (
@@ -130,11 +130,11 @@ export function ShopFilters({
                       />
                     </div>
                   ) : null}
-                  <span className={`text-sm font-medium ${active ? "text-[#a81723]" : "text-[#4b5563]"}`}>
+                  <span className={`text-sm font-medium ${active ? "text-espresso" : "text-ink/70"}`}>
                     {brand.name}
                   </span>
                   {active && (
-                    <span className="ml-auto h-4 w-4 shrink-0 rounded-full bg-[#a81723] text-white flex items-center justify-center">
+                    <span className="ml-auto h-4 w-4 shrink-0 rounded-full bg-espresso text-ivory flex items-center justify-center">
                       <X className="h-2.5 w-2.5" />
                     </span>
                   )}
@@ -144,8 +144,8 @@ export function ShopFilters({
           </div>
         </div>
 
-        <div className="mt-6 border-t border-[#e5ebf1] pt-4">
-          <p className="mb-3 text-xs font-semibold text-[#a81723]">Price</p>
+        <div className="mt-6 border-t border-espresso/10 pt-4">
+          <p className="mb-3 text-xs font-semibold text-espresso">Price</p>
           <div className="grid grid-cols-2 gap-2">
             <input
               className="field h-10 rounded-lg text-sm"

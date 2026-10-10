@@ -28,7 +28,7 @@ export function CarouselFrame({ ariaLabel, children, className = "" }: CarouselF
       <button
         type="button"
         onClick={() => scroll("left")}
-        className="absolute left-3 top-1/2 z-20 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white text-[#a81723] opacity-0 shadow-[0_14px_35px_rgba(34,34,34,0.18)] transition duration-300 hover:bg-[#F5E6D3] focus:opacity-100 group-hover/carousel:opacity-100"
+        className="absolute left-3 top-1/2 z-20 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white text-espresso opacity-0 shadow-[0_14px_35px_rgba(34,34,34,0.18)] transition duration-300 hover:bg-cream focus:opacity-100 group-hover/carousel:opacity-100"
         aria-label={`Previous ${ariaLabel}`}
       >
         <ChevronLeft className="h-5 w-5" />
@@ -43,7 +43,7 @@ export function CarouselFrame({ ariaLabel, children, className = "" }: CarouselF
       <button
         type="button"
         onClick={() => scroll("right")}
-        className="absolute right-3 top-1/2 z-20 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white text-[#a81723] opacity-0 shadow-[0_14px_35px_rgba(34,34,34,0.18)] transition duration-300 hover:bg-[#F5E6D3] focus:opacity-100 group-hover/carousel:opacity-100"
+        className="absolute right-3 top-1/2 z-20 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white text-espresso opacity-0 shadow-[0_14px_35px_rgba(34,34,34,0.18)] transition duration-300 hover:bg-cream focus:opacity-100 group-hover/carousel:opacity-100"
         aria-label={`Next ${ariaLabel}`}
       >
         <ChevronRight className="h-5 w-5" />

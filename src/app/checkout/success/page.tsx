@@ -68,7 +68,7 @@ export default async function CheckoutSuccessPage({
       <div className="container-page max-w-3xl">
 
         {/* ── Status card ── */}
-        <div className="rounded-[34px] bg-white p-8 shadow-[0_24px_80px_rgba(77,12,18,0.09)] sm:p-12 text-center">
+        <div className="rounded-[34px] bg-white p-8 shadow-[0_24px_80px_rgba(60,26,8,0.09)] sm:p-12 text-center">
           {paid ? (
             <>
               <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-green-100">
@@ -108,7 +108,7 @@ export default async function CheckoutSuccessPage({
 
         {/* ── Order items ── */}
         {order && order.items.length > 0 && (
-          <div className="mt-6 rounded-[34px] bg-white p-6 shadow-[0_24px_80px_rgba(77,12,18,0.07)] sm:p-8">
+          <div className="mt-6 rounded-[34px] bg-white p-6 shadow-[0_24px_80px_rgba(60,26,8,0.07)] sm:p-8">
             <h2 className="text-2xl font-semibold text-charcoal">Items Ordered</h2>
             <div className="mt-5 space-y-3">
               {order.items.map((item) => (
@@ -129,7 +129,7 @@ export default async function CheckoutSuccessPage({
 
         {/* ── Delivery timeline ── */}
         {paid && (
-          <div className="mt-6 rounded-[34px] bg-white p-6 shadow-[0_24px_80px_rgba(77,12,18,0.07)] sm:p-8">
+          <div className="mt-6 rounded-[34px] bg-white p-6 shadow-[0_24px_80px_rgba(60,26,8,0.07)] sm:p-8">
             <h2 className="text-2xl font-semibold text-charcoal">What Happens Next</h2>
             <div className="mt-6 space-y-5">
               {statusSteps.map((step, index) => {
@@ -156,34 +156,34 @@ export default async function CheckoutSuccessPage({
         )}
 
         {/* ── Contact & delivery info ── */}
-        <div className="mt-6 rounded-[34px] bg-maroon p-6 text-white shadow-[0_24px_80px_rgba(168,23,35,0.18)] sm:p-8">
+        <div className="mt-6 rounded-[34px] bg-espresso p-6 text-white shadow-[0_24px_80px_rgba(60,26,8,0.18)] sm:p-8">
           <h2 className="text-2xl font-semibold">Delivery Information</h2>
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <div className="flex gap-3">
-              <Truck className="mt-0.5 h-5 w-5 shrink-0 text-[#F5E6D3]" />
+              <Truck className="mt-0.5 h-5 w-5 shrink-0 text-cream" />
               <div>
-                <p className="font-semibold text-[#F5E6D3]">Nairobi Delivery</p>
+                <p className="font-semibold text-cream">Nairobi Delivery</p>
                 <p className="mt-1 text-sm text-white/70">Same-day or next-day delivery within Nairobi. Our team will contact you to confirm the time.</p>
               </div>
             </div>
             <div className="flex gap-3">
-              <Phone className="mt-0.5 h-5 w-5 shrink-0 text-[#F5E6D3]" />
+              <Phone className="mt-0.5 h-5 w-5 shrink-0 text-cream" />
               <div>
-                <p className="font-semibold text-[#F5E6D3]">We Will Call You</p>
+                <p className="font-semibold text-cream">We Will Call You</p>
                 <p className="mt-1 text-sm text-white/70">Our delivery team will call you on the phone number you provided to arrange the handover.</p>
               </div>
             </div>
             <div className="flex gap-3">
-              <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#F5E6D3]" />
+              <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-cream" />
               <div>
-                <p className="font-semibold text-[#F5E6D3]">Upcountry Delivery</p>
+                <p className="font-semibold text-cream">Upcountry Delivery</p>
                 <p className="mt-1 text-sm text-white/70">Orders outside Nairobi are shipped via courier. Expect 2–4 business days. Tracking number will be sent to your email.</p>
               </div>
             </div>
             <div className="flex gap-3">
-              <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-[#F5E6D3]" />
+              <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-cream" />
               <div>
-                <p className="font-semibold text-[#F5E6D3]">Questions?</p>
+                <p className="font-semibold text-cream">Questions?</p>
                 <p className="mt-1 text-sm text-white/70">WhatsApp or call us on 0793 200 000. Quote your Order ID when reaching out.</p>
               </div>
             </div>

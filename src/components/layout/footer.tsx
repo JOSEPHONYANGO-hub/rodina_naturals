@@ -39,7 +39,7 @@ export function Footer() {
     <footer className="bg-charcoal text-white">
       <div className="container-page pt-12">
         <div className="grid overflow-hidden rounded-[28px] bg-maroon shadow-[0_28px_90px_rgba(0,0,0,0.26)] lg:grid-cols-[0.85fr_1.15fr]">
-          <div className="relative hidden min-h-[220px] bg-[#7d111b] lg:block">
+          <div className="relative hidden min-h-[220px] bg-espressoDark lg:block">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_35%,rgba(245,230,211,0.18),transparent_32%),radial-gradient(circle_at_70%_70%,rgba(255,255,255,0.12),transparent_30%)]" />
             <div className="absolute inset-0 flex items-center justify-center">
               <Logo className="scale-125 rounded-[22px] px-4 py-3 shadow-[0_22px_65px_rgba(0,0,0,0.22)]" />

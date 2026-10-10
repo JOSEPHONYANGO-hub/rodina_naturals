@@ -27,7 +27,7 @@ export default function ContactPage() {
             </Link>
           </div>
         </div>
-        <div className="overflow-hidden border border-maroon/10 bg-ivory p-4 shadow-[0_24px_80px_rgba(77,12,18,0.06)]">
+        <div className="overflow-hidden border border-maroon/10 bg-ivory p-4 shadow-[0_24px_80px_rgba(60,26,8,0.06)]">
           <iframe
             title="Eloria Beauty location"
             className="h-[430px] w-full border-0"

@@ -137,31 +137,31 @@ export function Navbar() {
 
   return (
     <header
-      className="sticky inset-x-0 top-0 z-50 bg-[#a81723] text-white shadow-[0_12px_34px_rgba(34,34,34,0.16)]"
+      className="sticky inset-x-0 top-0 z-50 bg-espresso text-white shadow-[0_12px_34px_rgba(34,34,34,0.16)]"
       onMouseLeave={() => setActiveMega(null)}
     >
-      <div className="bg-[#7d111b] text-white/90">
+      <div className="bg-espressoDark text-white/90">
         <div className="container-page grid min-h-8 grid-cols-1 items-center gap-2 py-2 text-[11px] font-bold sm:grid-cols-3">
           <div className="hidden items-center gap-5 sm:flex">
             <span className="inline-flex items-center gap-2 truncate">
-              <MapPin className="h-3.5 w-3.5 text-[#F5E6D3]" />
+              <MapPin className="h-3.5 w-3.5 text-cream" />
               Location
             </span>
-            <a href={`tel:${CONTACT_DETAILS.phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-2 whitespace-nowrap hover:text-[#F5E6D3]">
-              <Phone className="h-3.5 w-3.5 text-[#F5E6D3]" />
+            <a href={`tel:${CONTACT_DETAILS.phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-2 whitespace-nowrap hover:text-cream">
+              <Phone className="h-3.5 w-3.5 text-cream" />
               {CONTACT_DETAILS.phone}
             </a>
           </div>
-          <p className="text-center uppercase tracking-[0.16em] text-[#F5E6D3]">
+          <p className="text-center uppercase tracking-[0.16em] text-cream">
             Mid-Season Sale Up to 50% Off.
           </p>
           <div className="hidden items-center justify-end gap-3 sm:flex">
-            <Link href="/shop" className="mr-1 hover:text-[#F5E6D3]">
+            <Link href="/shop" className="mr-1 hover:text-cream">
               Newsletter
             </Link>
             <Link
               href={SOCIAL_LINKS.facebook}
-              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-[#a81723]"
+              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-espresso"
               aria-label="Facebook"
               target="_blank"
             >
@@ -169,7 +169,7 @@ export function Navbar() {
             </Link>
             <Link
               href={SOCIAL_LINKS.instagram}
-              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-[#a81723]"
+              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-espresso"
               aria-label="Instagram"
               target="_blank"
             >
@@ -177,7 +177,7 @@ export function Navbar() {
             </Link>
             <Link
               href={SOCIAL_LINKS.tiktok}
-              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-[#a81723]"
+              className="grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-espresso"
               aria-label="TikTok"
               target="_blank"
             >
@@ -187,7 +187,7 @@ export function Navbar() {
         </div>
       </div>
 
-      <div className="border-y border-white/10 bg-[#a81723]">
+      <div className="border-y border-white/10 bg-espresso">
         <div className="container-page flex min-h-[82px] items-center justify-between gap-4 py-3">
         <Logo className="shrink-0 rounded-xl bg-white px-2 py-1 shadow-none ring-1 ring-white/20 [&_img]:h-12 md:[&_img]:h-14" />
         <form
@@ -198,17 +198,17 @@ export function Navbar() {
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Search..."
-            className="h-12 w-full rounded-l-full border border-white/25 bg-white pl-5 pr-4 text-sm font-medium text-charcoal outline-none transition placeholder:text-charcoal/45 focus:border-[#F5E6D3]"
+            className="h-12 w-full rounded-l-full border border-white/25 bg-white pl-5 pr-4 text-sm font-medium text-charcoal outline-none transition placeholder:text-charcoal/45 focus:border-cream"
           />
           <button
             type="submit"
-            className="grid h-12 w-14 place-items-center rounded-r-full bg-[#F5E6D3] text-[#a81723] transition hover:bg-white"
+            className="grid h-12 w-14 place-items-center rounded-r-full bg-cream text-espresso transition hover:bg-white"
             aria-label="Search products"
           >
             <Search className="h-5 w-5" />
           </button>
           {search && suggestions.length ? (
-            <div className="absolute left-0 right-0 top-14 z-50 overflow-hidden rounded-2xl border border-maroon/10 bg-white p-2 text-maroon shadow-[0_18px_50px_rgba(77,12,18,0.12)]">
+            <div className="absolute left-0 right-0 top-14 z-50 overflow-hidden rounded-2xl border border-espresso/10 bg-white p-2 text-espresso shadow-[0_18px_50px_rgba(60,26,8,0.12)]">
               {suggestions.map((category) => (
                 <Link
                   key={category}
@@ -226,7 +226,7 @@ export function Navbar() {
         <div className="flex items-center gap-2 text-white sm:gap-4">
           <Link
             href="/shop"
-            className="hidden p-2 transition hover:text-[#F5E6D3] sm:block"
+            className="hidden p-2 transition hover:text-cream sm:block"
             aria-label="Wishlist"
           >
             <Heart size={20} />
@@ -235,13 +235,13 @@ export function Navbar() {
             {status === "authenticated" ? (
               <button
                 className={cn(
-                  "flex items-center gap-2 rounded-full border px-2 py-1.5 text-xs font-semibold transition hover:border-[#F5E6D3]",
+                  "flex items-center gap-2 rounded-full border px-2 py-1.5 text-xs font-semibold transition hover:border-cream",
                   "border-white/20 bg-white/10 text-white",
                 )}
                 onClick={() => setAccountOpen((value) => !value)}
                 aria-label="Account menu"
               >
-                <span className="grid h-8 w-8 place-items-center rounded-full bg-[#F5E6D3] text-[11px] font-bold uppercase text-[#a81723]">
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-cream text-[11px] font-bold uppercase text-espresso">
                   {(session.user.name || session.user.email || "A").slice(0, 1)}
                 </span>
                 <span className="hidden max-w-28 truncate xl:inline">
@@ -251,15 +251,15 @@ export function Navbar() {
             ) : (
               <Link
                 href="/login"
-                className="p-2 text-white transition hover:text-[#F5E6D3]"
+                className="p-2 text-white transition hover:text-cream"
                 aria-label="Login"
               >
                 <UserRound size={20} />
               </Link>
             )}
             {accountOpen && status === "authenticated" ? (
-              <div className="absolute right-0 top-12 z-[60] w-72 overflow-hidden rounded-[24px] border border-maroon/10 bg-white text-maroon shadow-[0_24px_70px_rgba(77,12,18,0.16)]">
-                <div className="border-b border-maroon/10 bg-cream p-5">
+              <div className="absolute right-0 top-12 z-[60] w-72 overflow-hidden rounded-[24px] border border-espresso/10 bg-white text-espresso shadow-[0_24px_70px_rgba(60,26,8,0.16)]">
+                <div className="border-b border-espresso/10 bg-cream p-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">
                     Signed in
                   </p>
@@ -268,7 +268,7 @@ export function Navbar() {
                   </p>
                   <p className="mt-1 truncate text-sm text-ink/60">{session.user.email}</p>
                   {session.user.role === "ADMIN" ? (
-                    <span className="mt-3 inline-flex rounded-full bg-maroon px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
+                    <span className="mt-3 inline-flex rounded-full bg-espresso px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-ivory">
                       Admin
                     </span>
                   ) : null}
@@ -291,7 +291,7 @@ export function Navbar() {
                     View cart
                   </Link>
                   <button
-                    className="rounded-2xl px-4 py-3 text-left text-maroon transition hover:bg-cream"
+                    className="rounded-2xl px-4 py-3 text-left text-espresso transition hover:bg-cream"
                     onClick={() => signOut({ callbackUrl: "/" })}
                   >
                     Sign out
@@ -302,12 +302,12 @@ export function Navbar() {
           </div>
           <Link
             href="/cart"
-            className="relative flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20 hover:text-[#F5E6D3]"
+            className="relative flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20 hover:text-cream"
             aria-label="Cart"
           >
             <ShoppingCart size={22} />
             {mounted && count > 0 ? (
-              <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-[#F5E6D3] text-[10px] font-bold text-[#a81723]">
+              <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-cream text-[10px] font-bold text-espresso">
                 {count}
               </span>
             ) : null}
@@ -323,31 +323,31 @@ export function Navbar() {
       </div>
       </div>
 
-      <nav className="hidden bg-[#8f1420] lg:block">
+      <nav className="hidden bg-chestnutDark lg:block">
         <div className="container-page flex min-h-[50px] items-center justify-center gap-9 text-sm font-semibold normal-case tracking-normal text-white">
           {directNavLinks.map((link) => (
             <Link
               key={`${link.href}-${link.label}`}
               href={link.href}
-              className="group relative inline-flex items-center gap-1 whitespace-nowrap py-4 transition duration-300 hover:text-[#F5E6D3]"
+              className="group relative inline-flex items-center gap-1 whitespace-nowrap py-4 transition duration-300 hover:text-cream"
               onMouseEnter={() => setActiveMega(null)}
               onFocus={() => setActiveMega(null)}
             >
               {link.label}
-              <span className="absolute bottom-2 left-0 h-0.5 w-full origin-left scale-x-0 bg-[#F5E6D3] transition-transform duration-300 group-hover:scale-x-100" />
+              <span className="absolute bottom-2 left-0 h-0.5 w-full origin-left scale-x-0 bg-cream transition-transform duration-300 group-hover:scale-x-100" />
             </Link>
           ))}
           {megaMenus.map((menu) => (
             <button
               key={menu.key}
-              className="group relative inline-flex items-center gap-1 whitespace-nowrap py-4 transition duration-300 hover:text-[#F5E6D3]"
+              className="group relative inline-flex items-center gap-1 whitespace-nowrap py-4 transition duration-300 hover:text-cream"
               onMouseEnter={() => setActiveMega(menu.key)}
               onFocus={() => setActiveMega(menu.key)}
               type="button"
             >
               {menu.label}
               <ChevronDown className={cn("h-4 w-4 transition duration-300", activeMega === menu.key && "rotate-180")} />
-              <span className="absolute bottom-2 left-0 h-0.5 w-full origin-left scale-x-0 bg-[#F5E6D3] transition-transform duration-300 group-hover:scale-x-100" />
+              <span className="absolute bottom-2 left-0 h-0.5 w-full origin-left scale-x-0 bg-cream transition-transform duration-300 group-hover:scale-x-100" />
             </button>
           ))}
         </div>
@@ -359,33 +359,33 @@ export function Navbar() {
             <div className="mx-auto max-h-[min(54vh,470px)] max-w-[1000px] overflow-hidden rounded-[14px] border border-[#e7edf3] bg-white shadow-[0_28px_80px_rgba(34,34,34,0.22)]">
               {activeMega === "category" ? (
                 <div className="grid h-[min(54vh,470px)] grid-cols-[230px_1fr]">
-                  <div className="overscroll-contain overflow-y-auto border-r border-[#e7edf3] bg-[#fbfcfd] p-3 [scrollbar-color:#a81723_#f5e6d3] [scrollbar-width:thin]">
+                  <div className="overscroll-contain overflow-y-auto border-r border-[#e7edf3] bg-[#fbfcfd] p-3 [scrollbar-color:#3c1a08_#f5ede0] [scrollbar-width:thin]">
                     {categorySidebar.map((category) => (
                       <Link
                         key={category.title}
                         href={category.href}
-                        className="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-[#243041] transition hover:bg-white hover:text-[#a81723]"
+                        className="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-[#243041] transition hover:bg-white hover:text-espresso"
                         onClick={() => setActiveMega(null)}
                       >
-                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[#F5E6D3] text-[11px] text-[#a81723] transition group-hover:bg-[#a81723] group-hover:text-white">
+                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-cream text-[11px] text-espresso transition group-hover:bg-espresso group-hover:text-ivory">
                           {category.title.slice(0, 1)}
                         </span>
                         <span className="flex-1 leading-4">{category.title}</span>
-                        <ChevronRight className="h-3.5 w-3.5 text-[#9aa5b1] transition group-hover:text-[#a81723]" />
+                        <ChevronRight className="h-3.5 w-3.5 text-[#9aa5b1] transition group-hover:text-espresso" />
                       </Link>
                     ))}
                   </div>
-                  <div className="overscroll-contain overflow-y-auto p-5 [scrollbar-color:#a81723_#f5e6d3] [scrollbar-width:thin]">
+                  <div className="overscroll-contain overflow-y-auto p-5 [scrollbar-color:#3c1a08_#f5ede0] [scrollbar-width:thin]">
                     <div className="mb-5 flex items-center justify-between border-b border-[#edf1f5] pb-4">
                       <h2 className="text-base font-bold text-[#243041]">Beauty And Skin Care</h2>
-                      <Link href="/shop" onClick={() => setActiveMega(null)} className="rounded-full border border-[#a81723]/20 px-5 py-2 text-xs font-bold text-[#a81723] transition hover:bg-[#F5E6D3]">
+                      <Link href="/shop" onClick={() => setActiveMega(null)} className="rounded-full border border-espresso/20 px-5 py-2 text-xs font-bold text-espresso transition hover:bg-cream">
                         View all
                       </Link>
                     </div>
                     <div className="grid gap-8 md:grid-cols-2">
                       {categoryColumns.map((group) => (
                         <div key={group.title}>
-                          <Link href={group.href} onClick={() => setActiveMega(null)} className="mb-4 inline-flex items-center gap-1 text-sm font-bold text-[#243041] hover:text-[#a81723]">
+                          <Link href={group.href} onClick={() => setActiveMega(null)} className="mb-4 inline-flex items-center gap-1 text-sm font-bold text-[#243041] hover:text-espresso">
                             {group.title}
                             <ChevronRight className="h-3.5 w-3.5" />
                           </Link>
@@ -395,7 +395,7 @@ export function Navbar() {
                                 key={`${group.title}-${item}`}
                                 href={categoryFilterHref(item)}
                                 onClick={() => setActiveMega(null)}
-                                className="text-xs font-medium text-[#667085] transition duration-200 hover:translate-x-0.5 hover:text-[#a81723]"
+                                className="text-xs font-medium text-[#667085] transition duration-200 hover:translate-x-0.5 hover:text-espresso"
                               >
                                 {item}
                               </Link>
@@ -409,10 +409,10 @@ export function Navbar() {
               ) : null}
 
               {activeMega === "brand" ? (
-                <div className="max-h-[min(54vh,470px)] overscroll-contain overflow-y-auto p-5 [scrollbar-color:#a81723_#f5e6d3] [scrollbar-width:thin]">
+                <div className="max-h-[min(54vh,470px)] overscroll-contain overflow-y-auto p-5 [scrollbar-color:#3c1a08_#f5ede0] [scrollbar-width:thin]">
                   <div className="mb-6 flex items-center justify-between">
                     <h2 className="text-base font-bold text-[#243041]">Featured Brands</h2>
-                    <Link href="/shop" onClick={() => setActiveMega(null)} className="rounded-full border border-[#a81723]/20 px-5 py-2 text-xs font-bold text-[#a81723] transition hover:bg-[#F5E6D3]">
+                    <Link href="/shop" onClick={() => setActiveMega(null)} className="rounded-full border border-espresso/20 px-5 py-2 text-xs font-bold text-espresso transition hover:bg-cream">
                       View all brands
                     </Link>
                   </div>
@@ -422,21 +422,21 @@ export function Navbar() {
                         key={brand.name}
                         href={brand.href}
                         onClick={() => setActiveMega(null)}
-                        className="group grid min-h-[78px] place-items-center rounded-xl border border-[#e3e9f0] bg-[#fbfcfd] px-3 py-2 text-center transition duration-300 hover:-translate-y-0.5 hover:border-[#a81723] hover:bg-white hover:shadow-[0_14px_32px_rgba(168,23,35,0.1)]"
+                        className="group grid min-h-[78px] place-items-center rounded-xl border border-[#e3e9f0] bg-[#fbfcfd] px-3 py-2 text-center transition duration-300 hover:-translate-y-0.5 hover:border-espresso hover:bg-white hover:shadow-[0_14px_32px_rgba(60,26,8,0.1)]"
                       >
                         {brand.logo ? (
                           <span className="relative h-9 w-full">
                             <Image src={brand.logo} alt={`${brand.name} logo`} fill sizes="160px" className="object-contain" />
                           </span>
                         ) : (
-                          <span className="text-lg font-extrabold text-[#243041] group-hover:text-[#a81723]">{brand.name}</span>
+                          <span className="text-lg font-extrabold text-[#243041] group-hover:text-espresso">{brand.name}</span>
                         )}
                         <span className="mt-2 text-[10px] font-extrabold uppercase text-[#243041]">{brand.name}</span>
                       </Link>
                     ))}
                   </div>
                   <div className="mt-6 text-center">
-                    <Link href="/shop" onClick={() => setActiveMega(null)} className="inline-flex rounded-lg bg-[#a81723] px-6 py-3 text-xs font-bold text-white transition hover:bg-[#7d111b]">
+                    <Link href="/shop" onClick={() => setActiveMega(null)} className="inline-flex rounded-lg bg-espresso px-6 py-3 text-xs font-bold text-ivory transition hover:bg-espressoDark">
                       Browse all brands
                     </Link>
                   </div>
@@ -448,10 +448,10 @@ export function Navbar() {
         </div>
       ) : null}
       {open ? (
-        <div className="border-t border-maroon/10 bg-white lg:hidden">
+        <div className="border-t border-espresso/10 bg-white lg:hidden">
           <div className="container-page py-4">
             <form onSubmit={submitSearch} className="relative mb-3">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-maroon/50" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-espresso/50" />
               <input
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
@@ -460,7 +460,7 @@ export function Navbar() {
               />
             </form>
           </div>
-          <nav className="container-page flex flex-col pb-4 text-sm uppercase tracking-[0.18em] text-maroon">
+          <nav className="container-page flex flex-col pb-4 text-sm uppercase tracking-[0.18em] text-espresso">
             {status === "authenticated" ? (
               <div className="mb-3 rounded-2xl bg-cream p-4 normal-case tracking-normal">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
@@ -472,14 +472,14 @@ export function Navbar() {
                 {session.user.role === "ADMIN" ? (
                   <Link
                     href="/admin"
-                    className="mt-3 inline-flex text-xs font-bold uppercase tracking-[0.18em] text-maroon"
+                    className="mt-3 inline-flex text-xs font-bold uppercase tracking-[0.18em] text-espresso"
                     onClick={() => setOpen(false)}
                   >
                     Admin dashboard
                   </Link>
                 ) : null}
                 <button
-                  className="mt-3 block text-xs font-bold uppercase tracking-[0.18em] text-maroon"
+                  className="mt-3 block text-xs font-bold uppercase tracking-[0.18em] text-espresso"
                   onClick={() => signOut({ callbackUrl: "/" })}
                 >
                   Sign out

@@ -40,7 +40,7 @@ export default function RegisterPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-cream px-4 pt-20">
-      <form onSubmit={submit} className="w-full max-w-md bg-white p-8 shadow-[0_18px_60px_rgba(77,12,18,0.08)]">
+      <form onSubmit={submit} className="w-full max-w-md bg-white p-8 shadow-[0_18px_60px_rgba(60,26,8,0.08)]">
         <Image src="/eloria-logo.svg" alt="Eloria Beauty" width={260} height={72} className="mb-8 h-14 w-auto" />
         <h1 className="text-4xl">Create Account</h1>
         <div className="mt-7 grid gap-4">

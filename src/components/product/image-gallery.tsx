@@ -57,7 +57,7 @@ export function ImageGallery({ images, productName, fallback }: ImageGalleryProp
           type="button"
           onClick={() => openLightbox(active)}
           aria-label="Enlarge image"
-          className="group relative aspect-square w-full cursor-zoom-in overflow-hidden rounded-[22px] border border-maroon/10 bg-rose/35 shadow-[0_12px_40px_rgba(77,12,18,0.08)] focus:outline-none focus-visible:ring-2 focus-visible:ring-maroon/40"
+          className="group relative aspect-square w-full cursor-zoom-in overflow-hidden rounded-[22px] border border-espresso/10 bg-blush/35 shadow-[0_12px_40px_rgba(60,26,8,0.08)] focus:outline-none focus-visible:ring-2 focus-visible:ring-espresso/40"
         >
           <Image
             src={allImages[active]}
@@ -86,10 +86,10 @@ export function ImageGallery({ images, productName, fallback }: ImageGalleryProp
                 type="button"
                 onClick={() => setActive(i)}
                 aria-label={`View image ${i + 1}`}
-                className={`relative aspect-square overflow-hidden rounded-[12px] border-2 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-maroon/40 ${
+                className={`relative aspect-square overflow-hidden rounded-[12px] border-2 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-espresso/40 ${
                   active === i
-                    ? "border-maroon shadow-[0_4px_16px_rgba(168,23,35,0.22)] scale-105"
-                    : "border-maroon/10 bg-white opacity-70 hover:opacity-100 hover:border-maroon/30"
+                    ? "border-espresso shadow-[0_4px_16px_rgba(60,26,8,0.22)] scale-105"
+                    : "border-espresso/10 bg-white opacity-70 hover:opacity-100 hover:border-espresso/30"
                 }`}
               >
                 <Image

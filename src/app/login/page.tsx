@@ -41,7 +41,7 @@ export default function LoginPage() {
         </div>
       </div>
       <div className="flex items-center justify-center px-4 py-16">
-        <form onSubmit={submit} className="w-full max-w-md bg-white p-8 shadow-[0_18px_60px_rgba(77,12,18,0.08)]">
+        <form onSubmit={submit} className="w-full max-w-md bg-white p-8 shadow-[0_18px_60px_rgba(60,26,8,0.08)]">
           <Image src="/eloria-logo.svg" alt="Eloria Beauty" width={260} height={72} className="mb-8 h-14 w-auto" />
           <h1 className="text-4xl">Welcome Back</h1>
           <div className="mt-7 grid gap-4">

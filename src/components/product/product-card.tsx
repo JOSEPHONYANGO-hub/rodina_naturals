@@ -36,13 +36,13 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
   if (variant === "shop") {
     return (
       <>
-        <article className="group relative overflow-hidden rounded-[8px] border border-[#d7e0ea] bg-white p-3 shadow-[0_10px_24px_rgba(34,34,34,0.03)] transition duration-300 hover:-translate-y-0.5 hover:border-[#a81723] hover:shadow-[0_18px_38px_rgba(168,23,35,0.1)]">
+        <article className="group relative overflow-hidden rounded-[8px] border border-espresso/15 bg-white p-3 shadow-[0_10px_24px_rgba(34,34,34,0.03)] transition duration-300 hover:-translate-y-0.5 hover:border-espresso hover:shadow-[0_18px_38px_rgba(60,26,8,0.1)]">
           {hasOffer ? (
-            <span className="absolute left-4 top-0 z-10 rounded-b-[4px] bg-[#a81723] px-3 py-1.5 text-[11px] font-bold text-white">
+            <span className="absolute left-4 top-0 z-10 rounded-b-[4px] bg-espresso px-3 py-1.5 text-[11px] font-bold text-ivory">
               {offerPercent}% Off
             </span>
           ) : soldOut ? (
-            <span className="absolute left-4 top-0 z-10 rounded-b-[4px] bg-[#222222] px-3 py-1.5 text-[11px] font-bold text-white">
+            <span className="absolute left-4 top-0 z-10 rounded-b-[4px] bg-ink px-3 py-1.5 text-[11px] font-bold text-white">
               Sold Out
             </span>
           ) : null}
@@ -59,7 +59,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
           </Link>
           <div className="absolute right-3 top-3 flex flex-col gap-2">
             <button
-              className="grid h-9 w-9 place-items-center rounded-full border border-[#9ca3af] bg-white text-[#6b7280] transition hover:border-[#a81723] hover:text-[#a81723]"
+              className="grid h-9 w-9 place-items-center rounded-full border border-muted/50 bg-white text-muted transition hover:border-espresso hover:text-espresso"
               aria-label={`Quick view ${product.name}`}
               onClick={() => setQuickViewOpen(true)}
               type="button"
@@ -68,29 +68,29 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
             </button>
             <Link
               href="/shop"
-              className="grid h-9 w-9 place-items-center rounded-full border border-[#a81723] bg-white text-[#a81723] transition hover:bg-[#a81723] hover:text-white"
+              className="grid h-9 w-9 place-items-center rounded-full border border-espresso bg-white text-espresso transition hover:bg-espresso hover:text-ivory"
               aria-label="Wishlist"
             >
               <Heart className="h-4 w-4" />
             </Link>
           </div>
-          <div className="-mx-3 -mb-3 px-3 pb-3 pt-3 transition duration-300 group-hover:bg-[#a81723]">
-            <p className="text-xs text-[#8a94a6] transition group-hover:text-[#F5E6D3]">{product.category?.name || product.brand?.name}</p>
+          <div className="-mx-3 -mb-3 px-3 pb-3 pt-3 transition duration-300 group-hover:bg-espresso">
+            <p className="text-xs text-muted/60 transition group-hover:text-cream">{product.category?.name || product.brand?.name}</p>
             <Link href={`/products/${product.slug}`}>
-              <h3 className="mt-1 line-clamp-2 min-h-[2.55rem] text-[14px] font-bold leading-snug text-[#111827] transition hover:text-[#a81723] group-hover:text-white group-hover:hover:text-[#F5E6D3]">
+              <h3 className="mt-1 line-clamp-2 min-h-[2.55rem] text-[14px] font-bold leading-snug text-ink transition hover:text-espresso group-hover:text-white group-hover:hover:text-cream">
                 {product.name}
               </h3>
             </Link>
-            <div className="mt-3 flex min-h-10 items-center justify-between gap-3 border-t border-maroon/10 pt-3 transition group-hover:border-white/18">
+            <div className="mt-3 flex min-h-10 items-center justify-between gap-3 border-t border-espresso/10 pt-3 transition group-hover:border-white/18">
               <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
                 {hasOffer ? (
-                  <span className="font-medium text-[#9ca3af] line-through transition group-hover:text-white/60">{formatCurrency(product.price)}</span>
+                  <span className="font-medium text-muted/60 line-through transition group-hover:text-white/60">{formatCurrency(product.price)}</span>
                 ) : null}
-                <span className="font-semibold text-[#111827] transition group-hover:text-white">{formatCurrency(displayPrice)}</span>
+                <span className="font-semibold text-ink transition group-hover:text-white">{formatCurrency(displayPrice)}</span>
               </div>
               <button
                 onClick={addProduct}
-                className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-charcoal text-white transition hover:bg-[#a81723] group-hover:bg-white group-hover:text-[#a81723] group-hover:hover:bg-[#F5E6D3] disabled:cursor-not-allowed disabled:bg-charcoal/20"
+                className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-charcoal text-white transition hover:bg-espresso group-hover:bg-white group-hover:text-espresso group-hover:hover:bg-cream disabled:cursor-not-allowed disabled:bg-charcoal/20"
                 disabled={soldOut}
                 type="button"
                 aria-label={`Add ${product.name} to cart`}
@@ -109,13 +109,13 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
           >
             <div className="relative grid w-full max-w-4xl overflow-hidden rounded-[30px] bg-white shadow-[0_30px_100px_rgba(0,0,0,0.3)] md:grid-cols-[0.9fr_1fr]">
               <button
-                className="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-full bg-white text-maroon shadow"
+                className="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-full bg-white text-espresso shadow"
                 onClick={() => setQuickViewOpen(false)}
                 aria-label="Close quick view"
               >
                 <X className="h-4 w-4" />
               </button>
-              <div className="relative min-h-[320px] bg-rose/30">
+              <div className="relative min-h-[320px] bg-blush/30">
                 <Image src={image} alt={product.name} fill sizes="50vw" className="object-contain p-6" />
               </div>
               <div className="p-7 sm:p-9">
@@ -127,7 +127,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
                   {hasOffer ? (
                     <span className="text-lg font-semibold text-ink/45 line-through">{formatCurrency(product.price)}</span>
                   ) : null}
-                  <span className="text-xl font-bold text-maroon">{formatCurrency(displayPrice)}</span>
+                  <span className="text-xl font-bold text-espresso">{formatCurrency(displayPrice)}</span>
                 </div>
                 <p className="mt-4 text-sm leading-7 text-ink/65">
                   Premium beauty essential selected for modern everyday routines.
@@ -155,7 +155,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
 
   return (
     <>
-      <article className="group overflow-hidden rounded-[18px] border border-maroon/10 bg-white shadow-[0_18px_55px_rgba(77,12,18,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(77,12,18,0.11)]">
+      <article className="group overflow-hidden rounded-[18px] border border-espresso/10 bg-white shadow-[0_18px_55px_rgba(60,26,8,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(60,26,8,0.11)]">
         <div className="relative">
           <Link href={`/products/${product.slug}`} className="block">
             <div className="relative h-[150px] overflow-hidden bg-white sm:h-[165px] lg:h-[180px]">
@@ -180,14 +180,14 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
           </Link>
           {hasOffer || soldOut ? (
             <div className="absolute left-4 top-0">
-              <span className={cn("rounded-b-[4px] px-3 py-1.5 text-[11px] font-bold text-white shadow", soldOut ? "bg-[#222222]" : "bg-[#a81723]")}>
+              <span className={cn("rounded-b-[4px] px-3 py-1.5 text-[11px] font-bold text-white shadow", soldOut ? "bg-ink" : "bg-espresso")}>
                 {soldOut ? "Sold Out" : `${offerPercent}% Off`}
               </span>
             </div>
           ) : null}
           <div className="absolute right-3 top-3 flex flex-col gap-2 opacity-100 transition md:opacity-0 md:group-hover:opacity-100">
             <button
-              className="grid h-10 w-10 place-items-center rounded-full bg-white text-maroon shadow transition hover:bg-maroon hover:text-white"
+              className="grid h-10 w-10 place-items-center rounded-full bg-white text-espresso shadow transition hover:bg-espresso hover:text-ivory"
               aria-label={`Quick view ${product.name}`}
               onClick={() => setQuickViewOpen(true)}
             >
@@ -195,15 +195,15 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
             </button>
             <Link
               href="/shop"
-              className="grid h-10 w-10 place-items-center rounded-full bg-white text-maroon shadow transition hover:bg-maroon hover:text-white"
+              className="grid h-10 w-10 place-items-center rounded-full bg-white text-espresso shadow transition hover:bg-espresso hover:text-ivory"
               aria-label="Wishlist"
             >
               <Heart className="h-4 w-4" />
             </Link>
           </div>
         </div>
-        <div className="px-4 pb-4 pt-4 transition duration-300 group-hover:bg-[#a81723]">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#a81723] transition group-hover:text-[#F5E6D3]">
+        <div className="px-4 pb-4 pt-4 transition duration-300 group-hover:bg-espresso">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-espresso transition group-hover:text-cream">
             {product.brand?.name || product.category?.name}
           </p>
           <Link href={`/products/${product.slug}`}>
@@ -211,20 +211,20 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
               {product.name}
             </h3>
           </Link>
-          <div className="mt-4 flex items-center justify-between gap-3 border-t border-maroon/10 pt-4 transition group-hover:border-white/18">
+          <div className="mt-4 flex items-center justify-between gap-3 border-t border-espresso/10 pt-4 transition group-hover:border-white/18">
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
               {hasOffer ? (
                 <span className="text-sm font-semibold text-charcoal/42 line-through transition group-hover:text-white/60">
                   {formatCurrency(product.price)}
                 </span>
               ) : null}
-              <span className="text-sm font-bold tracking-[0.02em] text-maroon transition group-hover:text-white sm:text-base">
+              <span className="text-sm font-bold tracking-[0.02em] text-espresso transition group-hover:text-white sm:text-base">
                 {formatCurrency(displayPrice)}
               </span>
             </div>
             <button
               onClick={addProduct}
-              className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-charcoal text-white transition hover:bg-maroon group-hover:bg-white group-hover:text-[#a81723] group-hover:hover:bg-[#F5E6D3] disabled:cursor-not-allowed disabled:bg-charcoal/20"
+              className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-charcoal text-white transition hover:bg-espresso group-hover:bg-white group-hover:text-espresso group-hover:hover:bg-cream disabled:cursor-not-allowed disabled:bg-charcoal/20"
               aria-label={`Add ${product.name} to cart`}
               disabled={soldOut}
             >
@@ -242,13 +242,13 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
         >
           <div className="relative grid w-full max-w-4xl overflow-hidden rounded-[30px] bg-white shadow-[0_30px_100px_rgba(0,0,0,0.3)] md:grid-cols-[0.9fr_1fr]">
             <button
-              className="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-full bg-white text-maroon shadow"
+              className="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-full bg-white text-espresso shadow"
               onClick={() => setQuickViewOpen(false)}
               aria-label="Close quick view"
             >
               <X className="h-4 w-4" />
             </button>
-            <div className="relative min-h-[320px] bg-rose/30">
+            <div className="relative min-h-[320px] bg-blush/30">
               <Image src={image} alt={product.name} fill sizes="50vw" className="object-cover" />
             </div>
             <div className="p-7 sm:p-9">
@@ -260,7 +260,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
                 {hasOffer ? (
                   <span className="text-lg font-semibold text-ink/45 line-through">{formatCurrency(product.price)}</span>
                 ) : null}
-                <span className="text-xl font-bold text-maroon">{formatCurrency(displayPrice)}</span>
+                <span className="text-xl font-bold text-espresso">{formatCurrency(displayPrice)}</span>
               </div>
               <p className="mt-4 text-sm leading-7 text-ink/65">
                 Premium beauty essential selected for modern everyday routines.

@@ -27,7 +27,7 @@ export function ProductTabs({ bestSellers, newArrivals }: ProductTabsProps) {
             <p className="eyebrow">Trending now</p>
             <h2 className="section-title">Shop What Everyone Loves</h2>
           </div>
-          <div className="inline-flex rounded-full border border-maroon/10 bg-white p-1 shadow-[0_12px_35px_rgba(77,12,18,0.06)]">
+          <div className="inline-flex rounded-full border border-espresso/10 bg-white p-1 shadow-[0_12px_35px_rgba(60,26,8,0.06)]">
             {tabs.map((tab) => (
               <button
                 key={tab.id}

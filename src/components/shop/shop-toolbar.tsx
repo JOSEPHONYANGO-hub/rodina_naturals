@@ -24,21 +24,21 @@ export function ShopToolbar({
   }
 
   return (
-    <div className="mb-4 flex flex-col gap-3 rounded-[14px] border border-[#d7e0ea] bg-white px-4 py-3 shadow-[0_10px_30px_rgba(34,34,34,0.04)] sm:flex-row sm:items-center sm:justify-between">
-      <div className="flex items-center gap-3 text-sm text-[#6b7280]">
-        <span className="grid h-9 w-9 place-items-center rounded-lg bg-[#F5E6D3] text-[#a81723]">
+    <div className="mb-4 flex flex-col gap-3 rounded-[14px] border border-espresso/15 bg-white px-4 py-3 shadow-[0_10px_30px_rgba(34,34,34,0.04)] sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex items-center gap-3 text-sm text-muted">
+        <span className="grid h-9 w-9 place-items-center rounded-lg bg-cream text-espresso">
           <Grid3X3 className="h-4 w-4" />
         </span>
         <span>
-          Showing <strong className="text-xl text-[#a81723]">{pageSize}</strong> of {total} products
+          Showing <strong className="text-xl text-espresso">{pageSize}</strong> of {total} products
         </span>
       </div>
 
-      <div className="flex flex-wrap items-center gap-3 text-[11px] font-bold uppercase tracking-[0.12em] text-[#8b94a3]">
+      <div className="flex flex-wrap items-center gap-3 text-[11px] font-bold uppercase tracking-[0.12em] text-muted/70">
         <label className="flex items-center gap-2">
           Sort
           <select
-            className="h-10 rounded-lg border border-[#d7e0ea] bg-[#f8fafc] px-3 text-xs font-semibold normal-case tracking-normal text-[#374151] outline-none transition focus:border-[#a81723] focus:ring-2 focus:ring-[#a81723]/10"
+            className="h-10 rounded-lg border border-espresso/15 bg-ivory px-3 text-xs font-semibold normal-case tracking-normal text-ink outline-none transition focus:border-espresso focus:ring-2 focus:ring-espresso/10"
             value={sort}
             onChange={(event) => setParam("sort", event.target.value)}
           >
@@ -52,7 +52,7 @@ export function ShopToolbar({
         <label className="flex items-center gap-2">
           Show
           <select
-            className="h-10 rounded-lg border border-[#d7e0ea] bg-[#f8fafc] px-3 text-xs font-semibold normal-case tracking-normal text-[#374151] outline-none transition focus:border-[#a81723] focus:ring-2 focus:ring-[#a81723]/10"
+            className="h-10 rounded-lg border border-espresso/15 bg-ivory px-3 text-xs font-semibold normal-case tracking-normal text-ink outline-none transition focus:border-espresso focus:ring-2 focus:ring-espresso/10"
             value={String(pageSize)}
             onChange={(event) => setParam("take", event.target.value)}
           >

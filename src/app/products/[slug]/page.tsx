@@ -49,7 +49,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
             fallback={PRODUCT_IMAGE_FALLBACK}
           />
 
-          <div className="h-fit rounded-[24px] border border-maroon/10 bg-white p-5 shadow-[0_12px_40px_rgba(77,12,18,0.07)] sm:p-6">
+          <div className="h-fit rounded-[24px] border border-espresso/10 bg-white p-5 shadow-[0_12px_40px_rgba(60,26,8,0.07)] sm:p-6">
             <p className="eyebrow text-xs">{product.category.name}</p>
             <h1 className="mt-2 text-xl font-semibold leading-snug text-charcoal sm:text-2xl">
               {product.name}

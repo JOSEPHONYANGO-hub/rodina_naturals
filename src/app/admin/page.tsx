@@ -108,7 +108,7 @@ export default async function AdminPage() {
         <div className="grid gap-6 xl:grid-cols-[260px_1fr]">
           <aside className="h-fit rounded-[28px] border border-maroon/10 bg-white p-4 shadow-[0_18px_60px_rgba(34,34,34,0.06)] xl:sticky xl:top-36">
             <div className="rounded-[22px] bg-maroon px-5 py-5 text-white">
-              <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#F5E6D3]">Eloria</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-cream">Eloria</p>
               <h1 className="mt-2 text-2xl font-semibold text-white">Admin Suite</h1>
               <p className="mt-2 text-xs leading-5 text-white/75">Beauty commerce operations</p>
             </div>
@@ -236,8 +236,8 @@ export default async function AdminPage() {
                   </div>
                 </div>
 
-                <div className="rounded-[30px] border border-maroon/10 bg-maroon p-5 text-white shadow-[0_18px_60px_rgba(168,23,35,0.18)]">
-                  <PackageCheck className="h-7 w-7 text-[#F5E6D3]" />
+                <div className="rounded-[30px] border border-maroon/10 bg-maroon p-5 text-white shadow-[0_18px_60px_rgba(60,26,8,0.18)]">
+                  <PackageCheck className="h-7 w-7 text-cream" />
                   <h2 className="mt-4 text-2xl font-semibold text-white">Storefront Control</h2>
                   <p className="mt-2 text-sm leading-6 text-white/75">
                     Featured, best seller, stock, brand, category, pricing, and product images are managed from product edit screens.

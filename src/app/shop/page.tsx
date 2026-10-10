@@ -48,14 +48,14 @@ export default async function ShopPage({
           <ShopFilters brands={brands} categories={categories} />
           <div>
             {listing === null ? (
-              <div className="flex min-h-[40vh] flex-col items-center justify-center rounded-[24px] border border-[#a81723]/10 bg-white px-6 py-16 text-center shadow-sm">
-                <p className="text-lg font-semibold text-[#222222]">Shop temporarily unavailable</p>
-                <p className="mt-2 max-w-sm text-sm text-[#222222]/60">
+              <div className="flex min-h-[40vh] flex-col items-center justify-center rounded-[24px] border border-espresso/10 bg-white px-6 py-16 text-center shadow-sm">
+                <p className="text-lg font-semibold text-ink">Shop temporarily unavailable</p>
+                <p className="mt-2 max-w-sm text-sm text-ink/60">
                   We&apos;re having trouble loading products right now. Please refresh the page or try again in a moment.
                 </p>
                 <Link
                   href="/shop"
-                  className="mt-6 inline-flex h-10 items-center rounded-full bg-[#a81723] px-6 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-[#7a111b]"
+                  className="mt-6 inline-flex h-10 items-center rounded-full bg-espresso px-6 text-xs font-bold uppercase tracking-wide text-ivory transition hover:bg-espressoDark"
                 >
                   Refresh
                 </Link>
@@ -83,8 +83,8 @@ export default async function ShopPage({
                         href={`/shop?${next.toString()}`}
                         className={`grid h-10 w-10 place-items-center rounded-lg border text-sm font-semibold ${
                           listing!.page === index + 1
-                            ? "border-[#a81723] bg-[#a81723] text-white"
-                            : "border-[#d7e0ea] bg-white text-[#374151] transition hover:border-[#a81723] hover:text-[#a81723]"
+                            ? "border-espresso bg-espresso text-ivory"
+                            : "border-espresso/20 bg-white text-ink transition hover:border-espresso hover:text-espresso"
                         }`}
                       >
                         {index + 1}
