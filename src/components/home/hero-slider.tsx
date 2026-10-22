@@ -37,6 +37,24 @@ const slides = [
     href: "/shop?brand=bioxcin&category=hair-care",
     position: "object-top",
   },
+  {
+    title: "Bioxcin SunCare High Protection",
+    image: "/hero-banners/bioxcin-suncare.png",
+    href: "/shop?brand=bioxcin&category=sun-care",
+    position: "object-top",
+  },
+  {
+    title: "Bioxcin Collagen and Biotin",
+    image: "/hero-banners/bioxcin-collagen-biotin.png",
+    href: "/shop?brand=bioxcin",
+    position: "object-top",
+  },
+  {
+    title: "Bioxcin Keratin and Argan",
+    image: "/hero-banners/bioxcin-keratin-argan.png",
+    href: "/shop?brand=bioxcin&category=hair-care",
+    position: "object-top",
+  },
 ];
 
 export function HeroSlider() {
