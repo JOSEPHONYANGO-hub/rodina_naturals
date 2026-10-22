@@ -8,29 +8,34 @@ import { cn } from "@/lib/utils";
 
 const slides = [
   {
-    title: "Bioxcin Hydra-Restore Series",
-    image: "/hero-banners/bioxcin-hydra-restore.jpg",
-    href: "/shop?brand=bioxcin",
+    title: "Thalia Everyday Sun Care",
+    image: "/hero-banners/thalia-sun-care.png",
+    href: "/shop?brand=thalia&category=sun-care",
+    position: "object-center",
   },
   {
-    title: "Bioxcin Acnium Series",
-    image: "/hero-banners/bioxcin-acnium-series.png",
-    href: "/shop?brand=bioxcin",
+    title: "Thalia Pink Aloe Vera Series",
+    image: "/hero-banners/thalia-pink-aloe-vera.png",
+    href: "/shop?q=pink%20aloe%20vera",
+    position: "object-top",
   },
   {
-    title: "Bioxcin Renew Series",
-    image: "/hero-banners/bioxcin-renew-series.jpg",
-    href: "/shop?brand=bioxcin",
+    title: "Thalia Refreshing Body Scrubs",
+    image: "/hero-banners/thalia-body-scrubs.png",
+    href: "/shop?q=scrub",
+    position: "object-center",
   },
   {
-    title: "Bioxcin Hydra-Restore Hero",
-    image: "/hero-banners/bioxcin-hydra-restore-hero.jpg",
-    href: "/shop?brand=bioxcin",
+    title: "Bioxcin Youthful Skin Reset",
+    image: "/hero-banners/bioxcin-age-reverse.png",
+    href: "/shop?brand=bioxcin&category=anti-aging",
+    position: "object-center",
   },
   {
-    title: "Thalia Shower Gels",
-    image: "/hero-banners/thalia-shower-gels.png",
-    href: "/shop?brand=thalia",
+    title: "Bioxcin Hair Growth and Repair",
+    image: "/hero-banners/bioxcin-hair-growth-repair.png",
+    href: "/shop?brand=bioxcin&category=hair-care",
+    position: "object-center",
   },
 ];
 
@@ -73,7 +78,7 @@ export function HeroSlider() {
               fill
               priority={index === 0}
               sizes="100vw"
-              className="h-full w-full object-cover"
+              className={`h-full w-full object-cover ${slide.position}`}
             />
           </Link>
         ))}
