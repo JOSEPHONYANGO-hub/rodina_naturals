@@ -11,31 +11,31 @@ const slides = [
     title: "Thalia Shower Gels",
     image: "/hero-banners/thalia-shower-gels.png",
     href: "/shop?brand=thalia",
-    position: "object-center",
+    position: "object-top",
   },
   {
     title: "Bioxcin Acnium Series",
     image: "/hero-banners/bioxcin-acnium-series.png",
     href: "/shop?brand=bioxcin",
-    position: "object-center",
+    position: "object-top",
   },
   {
     title: "Thalia Everyday Sun Care",
     image: "/hero-banners/thalia-sun-care.png",
     href: "/shop?brand=thalia&category=sun-care",
-    position: "object-center",
+    position: "object-top",
   },
   {
     title: "Bioxcin Youthful Skin Reset",
     image: "/hero-banners/bioxcin-age-reverse.png",
     href: "/shop?brand=bioxcin&category=anti-aging",
-    position: "object-center",
+    position: "object-top",
   },
   {
     title: "Bioxcin Hair Growth and Repair",
     image: "/hero-banners/bioxcin-hair-growth-repair.png",
     href: "/shop?brand=bioxcin&category=hair-care",
-    position: "object-center",
+    position: "object-top",
   },
 ];
 
@@ -61,7 +61,7 @@ export function HeroSlider() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative aspect-[8/3] w-full overflow-hidden bg-brandPurple shadow-[0_12px_36px_rgba(36,22,23,0.1)]">
+      <div className="relative aspect-[3/2] w-full overflow-hidden bg-brandPurple shadow-[0_12px_36px_rgba(36,22,23,0.1)] sm:aspect-[2/1] lg:aspect-[3/1]">
         {slides.map((slide, index) => (
           <Link
             key={slide.title}
