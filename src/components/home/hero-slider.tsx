@@ -8,21 +8,21 @@ import { cn } from "@/lib/utils";
 
 const slides = [
   {
-    title: "Thalia Everyday Sun Care",
-    image: "/hero-banners/thalia-sun-care.png",
-    href: "/shop?brand=thalia&category=sun-care",
+    title: "Thalia Shower Gels",
+    image: "/hero-banners/thalia-shower-gels.png",
+    href: "/shop?brand=thalia",
     position: "object-center",
   },
   {
-    title: "Thalia Pink Aloe Vera Series",
-    image: "/hero-banners/thalia-pink-aloe-vera.png",
-    href: "/shop?q=pink%20aloe%20vera",
-    position: "object-top",
+    title: "Bioxcin Acnium Series",
+    image: "/hero-banners/bioxcin-acnium-series.png",
+    href: "/shop?brand=bioxcin",
+    position: "object-center",
   },
   {
-    title: "Thalia Refreshing Body Scrubs",
-    image: "/hero-banners/thalia-body-scrubs.png",
-    href: "/shop?q=scrub",
+    title: "Thalia Everyday Sun Care",
+    image: "/hero-banners/thalia-sun-care.png",
+    href: "/shop?brand=thalia&category=sun-care",
     position: "object-center",
   },
   {
