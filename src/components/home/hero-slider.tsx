@@ -8,29 +8,29 @@ import { cn } from "@/lib/utils";
 
 const slides = [
   {
-    title: "Sun Protection Collection",
-    image: "/hero-banners/sun-protection-collection.png",
-    href: "/shop?category=sunscreens",
-  },
-  {
-    title: "Pink Aloe Vera Series",
-    image: "/hero-banners/pink-aloe-vera-series.png",
-    href: "/shop?q=pink%20aloe%20vera",
-  },
-  {
-    title: "Beauty Deals Scrubs",
-    image: "/hero-banners/beauty-deals-scrubs.png",
-    href: "/shop?q=scrub",
-  },
-  {
-    title: "Bioxcin Age Reversal",
-    image: "/hero-banners/bioxcin-age-reversal.png",
+    title: "Bioxcin Hydra-Restore Series",
+    image: "/hero-banners/bioxcin-hydra-restore.jpg",
     href: "/shop?brand=bioxcin",
   },
   {
-    title: "Bioxcin Hair Grow and Repair",
-    image: "/hero-banners/bioxcin-hair-grow-repair.png",
-    href: "/shop?category=hair-care",
+    title: "Bioxcin Acnium Series",
+    image: "/hero-banners/bioxcin-acnium-series.png",
+    href: "/shop?brand=bioxcin",
+  },
+  {
+    title: "Bioxcin Renew Series",
+    image: "/hero-banners/bioxcin-renew-series.jpg",
+    href: "/shop?brand=bioxcin",
+  },
+  {
+    title: "Bioxcin Hydra-Restore Hero",
+    image: "/hero-banners/bioxcin-hydra-restore-hero.jpg",
+    href: "/shop?brand=bioxcin",
+  },
+  {
+    title: "Thalia Shower Gels",
+    image: "/hero-banners/thalia-shower-gels.png",
+    href: "/shop?brand=thalia",
   },
 ];
 
