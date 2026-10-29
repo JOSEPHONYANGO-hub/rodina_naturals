@@ -209,7 +209,7 @@ async function main() {
   );
 
   await prisma.user.upsert({
-    where: { email: "admin@eloriabeauty.co.ke" },
+    where: { email: "info@eloriabeauty.co.ke" },
     update: {
       name: "Eloria Admin",
       password: await hash("ChangeMe123!", 12),
@@ -217,7 +217,7 @@ async function main() {
     },
     create: {
       name: "Eloria Admin",
-      email: "admin@eloriabeauty.co.ke",
+      email: "info@eloriabeauty.co.ke",
       password: await hash("ChangeMe123!", 12),
       role: Role.ADMIN,
     },
