@@ -98,7 +98,11 @@ export default async function ProductPage({ params }: { params: { slug: string }
                 product={{
                   id: product.id,
                   name: product.name,
-                  price: Number(product.price),
+                  price: (() => {
+                    const full = Number(product.price);
+                    const sale = product.salePrice ? Number(product.salePrice) : null;
+                    return sale && sale > 0 && sale < full ? sale : full;
+                  })(),
                   image: productImage,
                   stock: product.stock,
                 }}

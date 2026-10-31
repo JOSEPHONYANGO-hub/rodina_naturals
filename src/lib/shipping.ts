@@ -102,7 +102,7 @@ export const G4S_RATES: Record<string, ShippingRate> = {
   mwatate: { name: "Mwatate", total: 950, excess: 70 },
   mwea: { name: "Mwea", total: 470, excess: 70 },
   mwingi: { name: "Mwingi", total: 610, excess: 70 },
-  nairobi: { name: "Nairobi", total: 350, excess: 70 },
+  nairobi: { name: "Nairobi", total: 300, excess: 70 },
   naivasha: { name: "Naivasha", total: 400, excess: 70 },
   nakuru: { name: "Nakuru", total: 400, excess: 70 },
   namanga: { name: "Namanga", total: 750, excess: 70 },

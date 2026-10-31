@@ -31,7 +31,10 @@ export async function createOrder(input: OrderInput, userId?: string) {
 
   const itemsTotal = input.items.reduce((sum, item) => {
     const product = productById.get(item.productId);
-    return sum + Number(product?.price || 0) * item.quantity;
+    const fullPrice = Number(product?.price || 0);
+    const salePrice = product?.salePrice ? Number(product.salePrice) : null;
+    const effectivePrice = salePrice && salePrice > 0 && salePrice < fullPrice ? salePrice : fullPrice;
+    return sum + effectivePrice * item.quantity;
   }, 0);
   const total = itemsTotal + (input.shippingCost ?? 0);
 
