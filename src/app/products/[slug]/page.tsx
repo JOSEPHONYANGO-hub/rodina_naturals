@@ -55,9 +55,25 @@ export default async function ProductPage({ params }: { params: { slug: string }
               {product.name}
             </h1>
             <div className="mt-3 flex flex-wrap items-center gap-2">
-              <p className="text-xl font-bold tracking-[0.04em] text-maroon">
-                {formatCurrency(product.price.toString())}
-              </p>
+              {(() => {
+                const full = Number(product.price);
+                const sale = product.salePrice ? Number(product.salePrice) : null;
+                const hasOffer = sale && sale > 0 && sale < full;
+                return hasOffer ? (
+                  <div className="flex items-center gap-2">
+                    <p className="text-xl font-bold tracking-[0.04em] text-maroon">
+                      {formatCurrency(sale.toString())}
+                    </p>
+                    <p className="text-base font-semibold text-ink/40 line-through">
+                      {formatCurrency(product.price.toString())}
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-xl font-bold tracking-[0.04em] text-maroon">
+                    {formatCurrency(product.price.toString())}
+                  </p>
+                );
+              })()}
               <span className="rounded-full bg-cream px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-maroon">
                 {product.stock > 0 ? `${product.stock} in stock` : "Out of stock"}
               </span>
