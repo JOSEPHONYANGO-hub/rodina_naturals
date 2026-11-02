@@ -39,8 +39,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
     orderBy: { createdAt: "desc" },
   });
 
-  const fullPrice = Number(product.price);
-  const salePrice = product.salePrice ? Number(product.salePrice) : null;
+  const fullPrice = Number(product.price.toString());
+  const salePrice = product.salePrice ? Number(product.salePrice.toString()) : null;
   const hasDiscount = salePrice !== null && salePrice > 0 && salePrice < fullPrice;
   const cartPrice = hasDiscount ? salePrice : fullPrice;
 
