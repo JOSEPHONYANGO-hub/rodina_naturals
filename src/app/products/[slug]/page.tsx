@@ -39,6 +39,11 @@ export default async function ProductPage({ params }: { params: { slug: string }
     orderBy: { createdAt: "desc" },
   });
 
+  const fullPrice = Number(product.price);
+  const salePrice = product.salePrice ? Number(product.salePrice) : null;
+  const hasDiscount = salePrice !== null && salePrice > 0 && salePrice < fullPrice;
+  const cartPrice = hasDiscount ? salePrice : fullPrice;
+
   return (
     <div className="bg-cream pb-16 pt-28">
       <div className="container-page">
@@ -55,25 +60,20 @@ export default async function ProductPage({ params }: { params: { slug: string }
               {product.name}
             </h1>
             <div className="mt-3 flex flex-wrap items-center gap-2">
-              {(() => {
-                const full = Number(product.price);
-                const sale = product.salePrice ? Number(product.salePrice) : null;
-                const hasOffer = sale && sale > 0 && sale < full;
-                return hasOffer ? (
-                  <div className="flex items-center gap-2">
-                    <p className="text-xl font-bold tracking-[0.04em] text-maroon">
-                      {formatCurrency(sale.toString())}
-                    </p>
-                    <p className="text-base font-semibold text-ink/40 line-through">
-                      {formatCurrency(product.price.toString())}
-                    </p>
-                  </div>
-                ) : (
+              {hasDiscount ? (
+                <div className="flex items-center gap-2">
                   <p className="text-xl font-bold tracking-[0.04em] text-maroon">
-                    {formatCurrency(product.price.toString())}
+                    {formatCurrency(salePrice)}
                   </p>
-                );
-              })()}
+                  <p className="text-base font-semibold text-ink/40 line-through">
+                    {formatCurrency(fullPrice)}
+                  </p>
+                </div>
+              ) : (
+                <p className="text-xl font-bold tracking-[0.04em] text-maroon">
+                  {formatCurrency(fullPrice)}
+                </p>
+              )}
               <span className="rounded-full bg-cream px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-maroon">
                 {product.stock > 0 ? `${product.stock} in stock` : "Out of stock"}
               </span>
@@ -114,11 +114,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                 product={{
                   id: product.id,
                   name: product.name,
-                  price: (() => {
-                    const full = Number(product.price);
-                    const sale = product.salePrice ? Number(product.salePrice) : null;
-                    return sale && sale > 0 && sale < full ? sale : full;
-                  })(),
+                  price: cartPrice,
                   image: productImage,
                   stock: product.stock,
                 }}
