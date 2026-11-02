@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AddToCartButton } from "@/components/product/add-to-cart";
+import { ProductPrice } from "@/components/product/product-price";
 import { ImageGallery } from "@/components/product/image-gallery";
 import { ProductCard } from "@/components/product/product-card";
 import { prisma } from "@/lib/prisma";
@@ -39,10 +40,13 @@ export default async function ProductPage({ params }: { params: { slug: string }
     orderBy: { createdAt: "desc" },
   });
 
-  const fullPrice = product.price.toNumber();
-  const salePrice = product.salePrice?.toNumber() ?? null;
-  const hasDiscount = salePrice !== null && salePrice > 0 && salePrice < fullPrice;
-  const cartPrice = hasDiscount ? salePrice : fullPrice;
+  const priceStr = product.price.toString();
+  const salePriceStr = product.salePrice?.toString() ?? null;
+  const fullPrice = parseFloat(priceStr);
+  const salePriceNum = salePriceStr ? parseFloat(salePriceStr) : null;
+  const cartPrice = salePriceNum !== null && salePriceNum > 0 && salePriceNum < fullPrice
+    ? salePriceNum
+    : fullPrice;
 
   return (
     <div className="bg-cream pb-16 pt-28">
@@ -60,20 +64,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
               {product.name}
             </h1>
             <div className="mt-3 flex flex-wrap items-center gap-2">
-              {hasDiscount ? (
-                <div className="flex items-center gap-2">
-                  <p className="text-xl font-bold tracking-[0.04em] text-maroon">
-                    {formatCurrency(salePrice)}
-                  </p>
-                  <p className="text-base font-semibold text-ink/40 line-through">
-                    {formatCurrency(fullPrice)}
-                  </p>
-                </div>
-              ) : (
-                <p className="text-xl font-bold tracking-[0.04em] text-maroon">
-                  {formatCurrency(fullPrice)}
-                </p>
-              )}
+              <ProductPrice price={priceStr} salePrice={salePriceStr} />
               <span className="rounded-full bg-cream px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-maroon">
                 {product.stock > 0 ? `${product.stock} in stock` : "Out of stock"}
               </span>
