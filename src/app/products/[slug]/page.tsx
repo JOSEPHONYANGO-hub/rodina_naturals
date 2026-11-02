@@ -6,7 +6,6 @@ import { ProductPrice } from "@/components/product/product-price";
 import { ImageGallery } from "@/components/product/image-gallery";
 import { ProductCard } from "@/components/product/product-card";
 import { prisma } from "@/lib/prisma";
-import { formatCurrency } from "@/lib/utils";
 import { FEATURED_BRANDS, toProductCard } from "@/services/catalog";
 
 export const dynamic = "force-dynamic";
